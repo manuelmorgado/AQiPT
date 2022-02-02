@@ -406,7 +406,7 @@ class atomicModel:
         HoffD = sum([self.dynParams['detunings']['Detuning'+str(element)][1]*(self._ops[(self.dynParams['detunings']['Detuning'+str(element)][0])[0]*self.Nrlevels + (self.dynParams['detunings']['Detuning'+str(element)][0])[1]] ) for element in range(len(self.dynParams['detunings'])) ]);
         
         if self.internalInteraction == None:
-            self.Hamiltonian = HD + HoffD;
+            self.Hamiltonian = 0.5*(HD + HoffD);
         else:
             # self.Hamiltonian = HD + HoffD;
             _Fullspace = [iden(self.Nrlevels)]*self.dynParams['Ensembles']['Atom_nr']; #empty string of operators for ensemble
@@ -414,7 +414,7 @@ class atomicModel:
             _Fullspace_lst=[];
             for atom_idx in range(self.dynParams['Ensembles']['Atom_nr']):
                 _bufFullspace = _Fullspace.copy();
-                _bufFullspace[atom_idx] = HD + HoffD;
+                _bufFullspace[atom_idx] = 0.5*(HD + HoffD);
                 _Fullspace_lst.append(qt.tensor(_bufFullspace));
 
             self.Hamiltonian = sum(_Fullspace_lst)  + self.internalInteraction;
