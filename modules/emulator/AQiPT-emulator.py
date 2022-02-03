@@ -1,8 +1,9 @@
 #Atomic Quantum information Processing Tool (AQIPT) - Emulator module
 
-# Author: Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
+# Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
+# Contributor(s): Swayangdipta Bera. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
 # Created: 2021-04-08
-# Last update: 2022-01-21
+# Last update: 2022-02-23
 
 
 #libs
@@ -20,7 +21,7 @@ warnings.filterwarnings('ignore')
 
 import networkx as nx
 
-from AQiPT.modules.control import AQiPTcontrol as aqipt
+from AQiPT import AQiPTdelta as aqipt
 
 
 #####################################################################################################
@@ -414,7 +415,7 @@ class atomicModel:
             _Fullspace_lst=[];
             for atom_idx in range(self.dynParams['Ensembles']['Atom_nr']):
                 _bufFullspace = _Fullspace.copy();
-                _bufFullspace[atom_idx] = 0.5*(HD + HoffD);
+                _bufFullspace[atom_idx] = (HD + HoffD);
                 _Fullspace_lst.append(qt.tensor(_bufFullspace));
 
             self.Hamiltonian = sum(_Fullspace_lst)  + self.internalInteraction;
@@ -1006,6 +1007,100 @@ class atomicQRegister:
         return self.atomicRegister
 
 
+#####################################################################################################
+#Scans-functions for atomicModels (AQiPT)
+#####################################################################################################
+
+def get_scanValues(scan, params):    
+
+    _VARs = [];
+    for variable in scan['variables']:
+        for subvariable in params[variable]:
+            if isinstance(params[variable][subvariable][1], np.ndarray):
+                _VARs.append([variable, subvariable, params[variable][subvariable][1]])
+                
+    return _VARs
+
+def update_params(scanNr1, scan_idx, scanNr2, pseudofix_idx, params, scanVariables):
+    
+    _bufParams = params.copy();
+    
+#     for varK in [scanVariables[scanNr1], scanVariables[scanNr1]]  :
+#         Variable, Subvariable, value = (varK[0],varK[1],varK[2]);
+#         print(varK)
+        
+    Variable1, Subvariable1, value1 = scanVariables[scanNr1]
+    Variable2, Subvariable2, value2 = scanVariables[scanNr2]
+    
+    _bufParams[Variable1][Subvariable1][1] = value1[scan_idx];
+    _bufParams[Variable2][Subvariable2][1] = value2[pseudofix_idx];
+        
+    return _bufParams
+
+def scan_i(scanNr1, scan_idx1, scanNr2, scan_idx2, params, scanValues, times, Nrlevels, psi0, name, AM):
+    
+    if AM is None:
+
+        params = update_params(scanNr1, scan_idx1, scanNr2, scan_idx2, params, scanValues); #updating params
+
+        AM = aqipt_emu.atomicModel(times, Nrlevels, psi0, params, name = 'Ensemble qubit made of 3-lvl',
+                                   simOpt=qt.Options(nsteps=9e5, rtol=1e-5, max_step=10e-5)); #build atomicModel class-object
+
+        AM.buildHamiltonian(); #building Hamiltonians
+        AM.buildLindbladians(); #building Lindbladians
+        AM.buildObservables(); #building Observables   
+        
+    
+    else:
+        print(scan_idx1, scan_idx2)
+        params = update_params(scanNr1, scan_idx1, scanNr2, scan_idx2, params, scanValues); #updating params
+        
+        AM.dynParams = params; #update new params in atomicModel() object
+
+        if any('couplings' in element for element in scanValues) or any('detunings' in element for element in scanValues):
+            AM.buildHamiltonian(); #building Hamiltonians
+        if any('dissipators' in element for element in scanValues):
+            AM.buildLindbladians(); #building Lindbladians
+            
+
+    AM.playSim(); #playing simulation
+    return AM.getResult().expect[0][len(times)-1]; #returning last value of simulation
+                 
+def Scan(scan, params, times, Nrlevels, psi0, name, atomicModel=None,):
+    
+    AM = atomicModel;
+    scanValues = get_scanValues(scan, params);
+    
+    idxs = [len(VAR[2]) for VAR in scanValues]
+    
+    for idx_scan in tqdm(range(len(idxs))):
+        
+        k=1;
+        scan_kResults = [];
+        for idx1 in tqdm(range(len(scanValues[idx_scan][2]))): #runs over variable_i
+            
+            idx_scan2=idx_scan+1;
+            scan_jResults = [];
+            while idx_scan2<len(idxs): #runs over variable_j where j \in {1,2,... n-1} of n variables
+                
+                scan_iResults = [];
+                print('Param1: ', idx_scan, 'Index Param1: ', idx1,'Param2: ', idx_scan2)
+                for idx2 in range(len(scanValues[idx_scan2][2])): #runs over all values of variable_j
+
+                    if AM==None:
+                        scan_iResults.append(scan_i(idx_scan, idx1, idx_scan2, idx2, params, scanValues, times, Nrlevels, psi0, name, AM));
+                    else:
+                        scan_iResults.append(scan_i(idx_scan, dx1, idx_scan2, idx2, params, scanValues, times, Nrlevels, psi0, name, AM));
+                idx_scan2+=1;
+
+                scan_jResults.append(scan_iResults);
+
+            
+            scan_kResults.append(scan_jResults);
+            
+        scan['scan-results'].append(scan_kResults);
+        
+    return AM, scan
 
 #####################################################################################################
 #optElement AQiPT class
@@ -1181,3 +1276,6 @@ class OptSetup(object):
 #     def playStatic():
     
 #     def playDynamic():
+
+
+
