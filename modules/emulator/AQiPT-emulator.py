@@ -1,9 +1,8 @@
 #Atomic Quantum information Processing Tool (AQIPT) - Emulator module
 
-# Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
-# Contributor(s): Swayangdipta Bera. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
+# Author: Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
 # Created: 2021-04-08
-# Last update: 2022-02-23
+# Last update: 2022-01-21
 
 
 #libs
@@ -1043,7 +1042,7 @@ def scan_i(scanNr1, scan_idx1, scanNr2, scan_idx2, params, scanValues, times, Nr
 
         params = update_params(scanNr1, scan_idx1, scanNr2, scan_idx2, params, scanValues); #updating params
 
-        AM = aqipt_emu.atomicModel(times, Nrlevels, psi0, params, name = 'Ensemble qubit made of 3-lvl',
+        AM = atomicModel(times, Nrlevels, psi0, params, name = 'Ensemble qubit made of 3-lvl',
                                    simOpt=qt.Options(nsteps=9e5, rtol=1e-5, max_step=10e-5)); #build atomicModel class-object
 
         AM.buildHamiltonian(); #building Hamiltonians
@@ -1073,11 +1072,11 @@ def Scan(scan, params, times, Nrlevels, psi0, name, atomicModel=None,):
     
     idxs = [len(VAR[2]) for VAR in scanValues]
     
-    for idx_scan in tqdm(range(len(idxs))):
+    for idx_scan in range(len(idxs)):
         
         k=1;
         scan_kResults = [];
-        for idx1 in tqdm(range(len(scanValues[idx_scan][2]))): #runs over variable_i
+        for idx1 in range(len(scanValues[idx_scan][2])): #runs over variable_i
             
             idx_scan2=idx_scan+1;
             scan_jResults = [];
