@@ -44,7 +44,7 @@ How to contribute?
 
 Contributors are acknowledged in the documentation.
 
-Contributions code development of AQiPT as well as Jupyter Notebooks that serve as tutorials are more than welcome. Fork the repository and send your pull requests, you can also fill bug reports at the [issues page](https://github.com/AQiPT/issues).
+Contributions code development of AQiPT as well as Jupyter Notebooks that serve as tutorials are more than welcome. Fork the repository and send your pull requests, you can also fill bug reports at the [issues page](https://github.com/manuelmorgado/AQiPT/issues).
 
 You can also contribute by helping out other users, or participating in the discussions and proposing changes.
 
