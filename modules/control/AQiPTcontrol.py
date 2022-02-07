@@ -1,21 +1,21 @@
 #Atomic Quantum information Processing Tool (AQIPT) - Control module
 
-# Author: Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
+# Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
+# Contributor(s): S.Whitlock, S.Bera, S.Yang. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
 # Created: 2021-04-08
-
+# Last update: 2022-02-07
 
 
 #libs
 import numpy as np
 
-%matplotlib inline               
 import matplotlib.pyplot as plt
 
 import scipy.stats as stats
 import scipy.signal as signal
 
 #####################################################################################################
-#Function AQiPT class
+#function AQiPT class
 #####################################################################################################
 class function:
     """
@@ -349,7 +349,7 @@ class function:
 
 #Pulse AQiPT class
 #####################################################################################################
-class pulse:
+class pulse: #pulse(function)
     """
         A class for building pulses shapes in time domain starting from AQiPT functions() for later
         build the AQiPT tracks() that can be assigned to AQiPT producers() via AQiPT instructions().
@@ -379,14 +379,16 @@ class pulse:
         step()
             Conjugate of quantum object.
     """
-    def __init__(self, times):
+    def __init__(self, pulse_label, times):
         
         #atributes
+        self.label = pulse_label
         self.tbase = times
         self._res = type
         # self.args = args
         self.waveform = np.zeros(tbase.shape)
-    
+        self.digiWaveform = np.zeros(self.tbase.shape)
+
     def overwriteFunction(self, tstart, function):
         '''
             Basic step function
@@ -434,12 +436,20 @@ class pulse:
             for i in range(len(function)):
                 if function[i]>=wf[i+tstart_index]:
                     wf[i+tstart_index] = function[i];
-                if function[i]<wf[i+tstart_index]:
-                    wf[i+tstart_index] = wf[i+tstart_index]+function[i];
+                if function[i]<wf[i+tstart_index]: #
+                    wf[i+tstart_index] = wf[i+tstart_index]+function[i]; #
                        
-        self.waveform = wf;
+        self.waveform = wf; #/max(wf);
         return self.waveform
     
+    def combineFunction(self, tstart, function):
+
+        l = sorted((self.waveform, function), key=len)
+        c = l[1].copy()
+        c[tstart:tstart+len(l[0])] += l[0]
+        self.waveform = c
+        return self.waveform
+
     def mergeFunction(self, tstart, function):
 
         self.waveform+=function
@@ -447,6 +457,34 @@ class pulse:
     
     def getPulse(self):
         return self.waveform
+    
+    def getLabel(self):
+        return self.label
+
+    def digitizeWaveform(self, bitdepth, bottom, top):  #Finn & Shannon's code
+        data = self.waveform
+        d = np.clip(data, bottom, top);
+        a = top-bottom;
+        self.digiWaveform = (np.round(((d/a)-bottom)*(2**bitdepth-1))/(2**bitdepth-1)+bottom)*a
+
+    def saveWaveform(awg_args:dict, wf_args_lst:list, waveforms_lst:list, fileformat='.csv', fname=None):
+        if fileformat == '.csv':
+
+            for i in range(len(waveforms_lst)):
+                if fname==None:
+                    metadata = ["waveformName," + str(wf_args_lst[i]['name']), "waveformPoints," + str(awg_args['sampling']-2), "waveformType,WAVE_ANALOG_16"]
+                    filename = "waveforms_files/ "+ str(wf_args_lst[i]['name']) + fileformat;
+                else:
+                    metadata = ["waveformName," + fname, "waveformPoints," + str(awg_args['sampling']-2), "waveformType,WAVE_ANALOG_16"]
+                    filename = "waveforms_files/ "+ fname + fileformat;
+                with open(filename, 'w') as fout:
+                    for line in metadata:
+                        fout.write(line+'\n')
+
+                    # np.savetxt(filename, (waveforms_lst[i]).astype(np.uint16) , delimiter=",")
+                    np.savetxt(filename, waveforms_lst[i] , delimiter=",")
+                    print(max(waveforms_lst[i]))
+            print('Saved waveforms!')
 
 #####################################################################################################
 
