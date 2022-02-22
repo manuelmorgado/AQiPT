@@ -14,7 +14,7 @@ The open-source nature of AQiPT allows users to customize and/or modify the pack
 Support
 -------
 
-This project has be support by the QUSTEC MSCA co-fund programme, agreement number:
+This project has be support by the European Union’s Horizon 2020 research and innovation programme QUSTEC Marie Skłodowska-Curie under grant agreement number 847471.
 
 
 Installation
