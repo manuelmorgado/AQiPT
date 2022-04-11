@@ -11,6 +11,8 @@
 import numpy as np
 import qutip as qt
 
+def gen_random():
+    return np.random.random()
 
 def QME_scan(H_tot, psi0, times, cops, mops, opts):
     '''
