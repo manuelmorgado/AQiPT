@@ -7,6 +7,34 @@
 
 
 #libs
+# import numpy as np
+
+# import matplotlib.pyplot as plt
+# import matplotlib
+
+# # from functools import reduce
+# # import itertools
+# # from typing import Iterator, List
+# import copy
+
+# # import warnings
+# # warnings.filterwarnings('ignore')
+
+# from tqdm import tqdm
+
+# # from numba import jit
+# # import numba
+# import os, time, dataclasses
+
+# #import AQiPT_core as aqipt
+
+# #import arc
+# from scipy.constants import physical_constants
+# from scipy.constants import e as C_e
+
+# import pandas as pd
+
+#libs
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -25,10 +53,11 @@ from tqdm import tqdm
 # from numba import jit
 # import numba
 import os, time, dataclasses
+from dataclasses import dataclass, field, fields
 
-import AQiPTc as aqipt
+from ... import AQiPT_core as aqipt
 
-import arc
+#import arc
 from scipy.constants import physical_constants
 from scipy.constants import e as C_e
 
