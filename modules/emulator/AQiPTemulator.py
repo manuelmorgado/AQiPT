@@ -66,7 +66,7 @@ def basis_nlvl(n):
 
     '''
     basis_lst = [qt.basis(n, state) for state in range(n)];
-    return np.array(basis_lst, dtype=object)
+    return  basis_lst#np.array(basis_lst, dtype=object)
 
 def ops_nlvl(n, basis_lst = None):
     '''
