@@ -3,7 +3,7 @@
 # Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
 # Contributor(s): 
 # Created: 2021-04-08
-# Last update: 2022-02-22
+# Last update: 2022-02-23
 
 
 #libs
@@ -66,7 +66,7 @@ def basis_nlvl(n):
 
     '''
     basis_lst = [qt.basis(n, state) for state in range(n)];
-    return  basis_lst#np.array(basis_lst, dtype=object)
+    return np.array(basis_lst, dtype=object)
 
 def ops_nlvl(n, basis_lst = None):
     '''
@@ -656,6 +656,7 @@ def mbitCom(nr_at=1, qdim=3):
 #set observables of dim^n Hilbert space system
 def obs(at_nr, qdim=2):
     if qdim==2:
+        print('=2')
         bit_lst = [];
         for i in range(at_nr+1):
             bit_lst+=bitCom(at_nr,i);
@@ -668,7 +669,8 @@ def obs(at_nr, qdim=2):
         return obs_lst, bit_lst
     if qdim!=2:
         bit_lst = [lst2string(i) for i in mbitCom(at_nr, qdim)];
-        obs_lst = [nqString2nqKet(i, qdim)*nqString2nqKet(i, qdim).dag() for i in bit_lst]
+        obs_lst = [qt.basis(qdim, i)*qt.basis(qdim, i).dag() for i in range(qdim)];
+        print(len(obs_lst))
         return obs_lst, bit_lst
 
 #caculate operatos of interaction
@@ -842,6 +844,7 @@ class atomicQRegister:
         else:
             self.lstNrlevels = lstNrlevels;
         self.Nrlevels = reduce(lambda x, y: x * y, self.lstNrlevels);
+        self._levels = None;
         self.NrQReg = len(self._AMs);
 
         self.__HilbertSpaceSize = sum(self.lstNrlevels);
@@ -866,12 +869,14 @@ class atomicQRegister:
         self.ncops = None;
         
         self.lstmops = [AM.mops for AM in self._AMs];
-        self.nmops = None;
+        self.nmops = [];
         
         self._ops, self._basis = ops_nlvl(self.Nrlevels);
         self._basisString = [];
         self._basis = [];
         self._intbasis = [];
+        self._pairInteraction_idx = [];
+        self._pairInteraction_lval = [];
 
         self.nC6Interaction = None;
         self.nC3Interaction = None;
@@ -995,12 +1000,14 @@ class atomicQRegister:
             between Rydberg states 
         '''
 
+        _pairInteraction_idx = [];
         _interaction_ops=[];
         for connection in self.connectivity:
             Vij = None;
             ri = connection[0];
             rj = connection[1];
 
+            _idx_ij = [];
             _PSI = [[] for _ in range(len(self._AMs))];
             _PSI_dag = [[] for _ in range(len(self._AMs))]; #copy of _PSI for building off diagonal terms of the type |rirjXrjri| (i.e., V_{d-d})
             _klst = list(range(len(self._AMs)));
@@ -1009,16 +1016,22 @@ class atomicQRegister:
                     _ri_ket = qt.basis(self.lstNrlevels[k], self.lstNrlevels[k] - (len(self._HSlist[k])-self._HSlist[k].index(ri)) );
                     _PSI[k] = _ri_ket;
                     _ri_ket_idx = k;
-                    _klst.pop(_klst.index(k));
+                    if k in _klst:
+                        _klst.pop(_klst.index(k));
+                    _idx_ij.append(_ri_ket_idx);
+
                 if rj in self._HSlist[k]:
                     _rj_ket = qt.basis(self.lstNrlevels[k], self.lstNrlevels[k] - (len(self._HSlist[k])-self._HSlist[k].index(rj)) );
                     _PSI[k] = _rj_ket;
                     _rj_ket_idx = k;
-                    _klst.pop(_klst.index(k));
+                    if k in _klst:
+                        _klst.pop(_klst.index(k));
+                    _idx_ij.append(_rj_ket_idx);
 
             #build the composed ket for the |rirjXrjri| (i.e., V_{d-d})
             _PSI_dag[_rj_ket_idx] = _ri_ket;
             _PSI_dag[_ri_ket_idx] = _rj_ket;
+
 
             _bufEigenstates=[];
             for k in _klst:
@@ -1033,8 +1046,8 @@ class atomicQRegister:
 
                 l_i = self.dynParams[_ri_ket_idx]['rydbergstates']['l_values'][(len(self._HSlist[_ri_ket_idx])-self._HSlist[_ri_ket_idx].index(ri))-1];
                 l_j = self.dynParams[_rj_ket_idx]['rydbergstates']['l_values'][(len(self._HSlist[_rj_ket_idx])-self._HSlist[_rj_ket_idx].index(rj))-1];
-                # print((len(self._HSlist[_ri_ket_idx])-self._HSlist[_ri_ket_idx].index(ri)), (len(self._HSlist[_rj_ket_idx])-self._HSlist[_rj_ket_idx].index(rj)))
-                # print(l_i, l_j)
+                self._pairInteraction_lval.append([l_i, l_j]);
+
                 if isinstance(Vij, qt.Qobj):
                     if l_i==l_j: #if li=lj check V_{vdW} or V_{d-d}
                         Vij+=qt.tensor(_PSI)*qt.tensor(_PSI).dag(); #|rirjXrirj| 
@@ -1055,6 +1068,8 @@ class atomicQRegister:
             Vij.dims = [[self.Nrlevels],[self.Nrlevels]];
             _interaction_ops.append(Vij);
             self._intbasis = _interaction_ops;
+            if _idx_ij not in self._pairInteraction_idx:
+                self._pairInteraction_idx.append(_idx_ij);
 
     def buildNinitState(self):
         '''
@@ -1138,7 +1153,7 @@ class atomicQRegister:
         '''
             Construct the Observables for the N atomicModel() that constitute the atomicQRegister() and store it in the attribute nmops.
         '''
-        self.nmops, labels = obs(1, self.Nrlevels)
+        self.nmops, self._levels = obs(1, self.Nrlevels)
     
     def add2QRegister(self, Nrlevels, psi0, params, name, AM=None):
         '''
@@ -1165,13 +1180,24 @@ class atomicQRegister:
     def buildInteractions(self):
 
         self._buildInteractingBasis();
-
-        #to-do : make sum over elements of _intbasis adding the correct C_val i.e., _buildC3Strength or _buildC6Strength depending on the interaction
-        _Vtot = sum(self._intbasis);
+        _Vtot=None;
+        for idx_basis in range(len(self._intbasis)):
+            if (self._pairInteraction_lval[idx_basis][0]-self._pairInteraction_lval[idx_basis][1])%2 == 0:
+                self._getC6Strength(c6_val=400, idx=idx_basis%self.NrQReg);
+                if isinstance(_Vtot, qt.Qobj):
+                    _Vtot += self.nC6Interaction*self._intbasis[idx_basis];
+                else:
+                    _Vtot = self.nC6Interaction*self._intbasis[idx_basis];
+            else:
+                self._getC3Strength(c3_val=20, idx=idx_basis%self.NrQReg);
+                if isinstance(_Vtot, qt.Qobj):
+                    _Vtot += self.nC3Interaction*self._intbasis[idx_basis];
+                else:
+                    _Vtot = self.nC3Interaction*self._intbasis[idx_basis];
 
         self.tnHamiltonian.append(_Vtot); #add the interaction term as always ON Hamiltonian
-
-    def _buildC6Strength(self, c6_val=1):
+    
+    def _getC6Strength(self, c6_val=1, idx=None):
 
         '''
             Build van der Waals interaction operators
@@ -1184,9 +1210,9 @@ class atomicQRegister:
             c6_val : value of the C6 coefficient
 
         '''
-        self.nC6Interaction = totBlockadeInt(self.dynParams['Ensembles']['Atom_pos'], self.dynParams['Ensembles']['Atom_nr'], qdim=self.Nrlevels, c_val=c6_val)
+        self.nC6Interaction = c6_val/eucdist(self.layout[self._pairInteraction_idx[idx][0]][0], self.layout[self._pairInteraction_idx[idx][0]][1], self.layout[self._pairInteraction_idx[idx][1]][0], self.layout[self._pairInteraction_idx[idx][1]][1]);
 
-    def _buildC3Strength(self, c3_val=1):
+    def _getC3Strength(self, c3_val=1, idx=None):
 
         '''
             Build Rydberg-Rydberg interactions operators
@@ -1199,7 +1225,7 @@ class atomicQRegister:
             c3_val : value of the C6 coefficient
 
         '''
-        self.nC3Interaction = totBlockadeInt(self.dynParams['Ensembles']['Atom_pos'], self.dynParams['Ensembles']['Atom_nr'], qdim=self.Nrlevels, c_val=c3_val)
+        self.nC3Interaction = c3_val/eucdist(self.layout[self._pairInteraction_idx[idx][0]][0], self.layout[self._pairInteraction_idx[idx][0]][1], self.layout[self._pairInteraction_idx[idx][1]][0], self.layout[self._pairInteraction_idx[idx][1]][1]);
 
     def getNObservables(self):
         '''
@@ -1213,23 +1239,50 @@ class atomicQRegister:
         '''
         return self.simRes
     
-    def showResults(self, resultseq=None, figureSize=(10,6)):
+    def showResults(self, resultseq=None, resultlabel=None, figureSize=(10,6), figure=None, axis=None):
         '''
             Return Results for the N atomicModel() that constitute the atomicQRegister().
         '''
-        
-        resultseq = self.simRes
-        
-        fig, axs = plt.subplots(figsize=figureSize);
 
-        for i in range(len(resultseq.expect)):
-            axs.plot(self.times, resultseq.expect[i], label=i);
+        resultseq = self.simRes;
+        if resultlabel == None:
+            resultlabel = [lst2str(i) for i in list(itertools.product(*[range(AM.Nrlevels) for AM in self._AMs]))];
 
-        plt.legend();
-        plt.xlabel('Time', fontsize=18);
-        plt.ylabel('Population', fontsize=18)
+        if figure==None and axis==None:
+            
+            fig, axs = plt.subplots(figsize=figureSize);
 
-        return fig, axs
+            for i in range(len(resultseq.expect)):
+                if resultlabel != None:
+                    axs.plot(self.times, resultseq.expect[i], label=resultlabel[i]);
+                else:
+                    axs.plot(self.times, resultseq.expect[i], label=i);
+
+            plt.legend();
+            plt.xlabel('Time', fontsize=18);
+            plt.ylabel('Population', fontsize=18)
+
+            return fig, axs
+
+        else:
+            resultseq = self.simRes
+            
+            fig, axs = figure, axis;
+
+            colormap = plt.cm.nipy_spectral; #I suggest to use nipy_spectral, Set1,Paired
+            axs.set_prop_cycle(color=[colormap(i) for i in np.linspace(0, 1, self.Nrlevels)]);
+
+            for i in range(len(resultseq.expect)):
+                if resultlabel != None:
+                    axs.plot(self.times, resultseq.expect[i], label=resultlabel[i]);
+                else:
+                    axs.plot(self.times, resultseq.expect[i], label=i);
+
+            plt.legend();
+            plt.xlabel('Time', fontsize=18);
+            plt.ylabel('Population', fontsize=18)
+
+            return fig, axs
     
     def registerMap(self, plotON=True):
         '''
