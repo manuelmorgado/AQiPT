@@ -26,7 +26,7 @@ from tqdm import tqdm
 # import numba
 import os, time, dataclasses
 
-import AQiPTc as aqipt
+import AQiPTcore as aqipt
 
 import arc
 from scipy.constants import physical_constants
