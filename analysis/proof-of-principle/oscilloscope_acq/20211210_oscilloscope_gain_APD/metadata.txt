@@ -1,0 +1,11 @@
+Metadata
+--------
+
+We measure a square pulse coming from the AWG->Switch->Amplifier->AOM->PDA->Oscilloscope for different gains of the PDA in order to check the effect of the gains on the waveshape.
+
+scope_1 : gain of 10dB
+scope_2 : gain of 20dB
+scope_3 : gain of 30dB
+scope_4 : gain of 40dB
+
+

@@ -1,0 +1,11 @@
+Metadata
+--------
+
+Measurement in the Keysight oscilloscope, we measure the waveforms for STIRAP and waveforms corrections
+
+Important data:
+scope_4.csv -> waveform measured by PDA with electronic switch
+scope_5.csv -> waveform measured by PDA without electronic switch and 6dB attenuator
+scope_6.csv -> waveform measured by PDA without electronic switch and 8dB attenuator
+scope_7.csv -> waveform measured directly from AWG problem with sampling due to the use of 110MHz carrier frequency.
+scope_8.csv -> waveform for response time of the system with switch: {AWG->(0.6V, 110MHz), FG->(2.5V, 5KHz)}
