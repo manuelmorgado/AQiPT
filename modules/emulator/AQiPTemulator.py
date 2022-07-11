@@ -3,7 +3,7 @@
 # Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
 # Contributor(s): 
 # Created: 2021-04-08
-# Last update: 2022-02-23
+# Last update: 2022-06-12
 
 
 #libs
@@ -65,8 +65,8 @@ def basis_nlvl(n):
             basis_lst (array) : eigenbasis as array object in the order |1>, |2>...
 
     '''
-    basis_lst = [qt.basis(n, state) for state in range(n)];
-    return basis_lst #np.array(basis_lst, dtype=object)
+    qt_basis_lst = [qt.basis(n, state) for state in range(n)];
+    return np.array(qt_basis_lst, dtype=object), qt_basis_lst
 
 def ops_nlvl(n, basis_lst = None):
     '''
@@ -87,15 +87,15 @@ def ops_nlvl(n, basis_lst = None):
 
     '''
     if basis_lst == None:
-        basis = basis_nlvl(n);
-        proyectors = [ket1*ket2.dag() for ket1 in basis for ket2 in basis];
+        np_basis, qt_basis = basis_nlvl(n);
+        qt_proyectors = [ket1*(ket2.dag()) for ket1 in qt_basis for ket2 in qt_basis];
 
-        return np.array(proyectors, dtype=object), basis
+        return np.array(qt_proyectors, dtype=object), qt_basis, qt_proyectors
     else:
-        basis = basis_lst;
-        proyectors = [ket1*ket2.dag() for ket1 in basis for ket2 in basis];
+        qt_basis  = basis_lst;
+        qt_proyectors = [ket1*(ket2.dag()) for ket1 in qt_basis for ket2 in qt_basis];
 
-        return proyectors
+        return np.array(qt_proyectors, dtype=object), qt_basis, qt_proyectors
 
 def iden(n):
     '''
@@ -284,7 +284,7 @@ class atomicModel:
                 
         #atributes
         
-        self._ops, self._basis = ops_nlvl(Nrlevels); #eigenoperators and eigenbasis
+        self.np_ops, self._basis, self._ops = ops_nlvl(Nrlevels); #eigenoperators and eigenbasis
         
         self.times = times;
         self.Nrlevels = Nrlevels;
@@ -488,7 +488,7 @@ class atomicModel:
             c6_val : value of the C6 coefficient
 
         '''
-        self.internalInteraction = totBlockadeInt(self.dynParams['Ensembles']['Atom_pos'], self.dynParams['Ensembles']['Atom_nr'], qdim=self.Nrlevels, C6=c6_val)
+        self.internalInteraction = totBlockadeInt(self.dynParams['Ensembles']['Atom_pos'], self.dynParams['Ensembles']['Atom_nr'], qdim=self.Nrlevels, c_val=c6_val)
 
     def getResult(self):
         '''
@@ -656,7 +656,6 @@ def mbitCom(nr_at=1, qdim=3):
 #set observables of dim^n Hilbert space system
 def obs(at_nr, qdim=2):
     if qdim==2:
-        print('=2')
         bit_lst = [];
         for i in range(at_nr+1):
             bit_lst+=bitCom(at_nr,i);
@@ -670,7 +669,6 @@ def obs(at_nr, qdim=2):
     if qdim!=2:
         bit_lst = [lst2string(i) for i in mbitCom(at_nr, qdim)];
         obs_lst = [qt.basis(qdim, i)*qt.basis(qdim, i).dag() for i in range(qdim)];
-        print(len(obs_lst))
         return obs_lst, bit_lst
 
 #caculate operatos of interaction
@@ -787,6 +785,8 @@ class atomicQRegister:
             Map of connectivity between physical registers via Rydberg states. Blind to the interaction strength
         layout : list
             Map of spatial distribution of physical registers
+        _HSlist : list
+            Hilbert space indexes of the interacting states of the qudits that belongs to the QRegister (label of Rydberg states)
 
         Methods
         -------
@@ -1027,46 +1027,46 @@ class atomicQRegister:
                     if k in _klst:
                         _klst.pop(_klst.index(k));
                     _idx_ij.append(_rj_ket_idx);
+                print(ri, rj)
+                #build the composed ket for the |rirjXrjri| (i.e., V_{d-d})
+                _PSI_dag[_rj_ket_idx] = _ri_ket;
+                _PSI_dag[_ri_ket_idx] = _rj_ket;
 
-            #build the composed ket for the |rirjXrjri| (i.e., V_{d-d})
-            _PSI_dag[_rj_ket_idx] = _ri_ket;
-            _PSI_dag[_ri_ket_idx] = _rj_ket;
 
+                _bufEigenstates=[];
+                for k in _klst:
+                    _bufEigenstates.append([qt.basis(self.lstNrlevels[k], eigenstate) for eigenstate in range(self.lstNrlevels[k]-len(self._HSlist[k]))]); #not allowing 3rths Rydberg states
+                    
+                for combin in itertools.product(*_bufEigenstates):
+                    _c=0; #initialize counter for the element of the combination
+                    for _idx in _klst:
+                        _PSI[_idx]=combin[_c]; #substitute the GS eigenstates of the _idx Hilbert space in the _klst of HS not used to locate ri & rj
+                        _PSI_dag[_idx]=combin[_c]; #substitute the GS eigenstates of the _idx Hilbert space in the _klst of HS not used to locate rj & ri
+                        _c+=1; #next element of the combination
 
-            _bufEigenstates=[];
-            for k in _klst:
-                _bufEigenstates.append([qt.basis(self.lstNrlevels[k], eigenstate) for eigenstate in range(self.lstNrlevels[k]-len(self._HSlist[k]))]); #not allowing 3rths Rydberg states
-                
-            for combin in itertools.product(*_bufEigenstates):
-                _c=0; #initialize counter for the element of the combination
-                for _idx in _klst:
-                    _PSI[_idx]=combin[_c]; #substitute the GS eigenstates of the _idx Hilbert space in the _klst of HS not used to locate ri & rj
-                    _PSI_dag[_idx]=combin[_c]; #substitute the GS eigenstates of the _idx Hilbert space in the _klst of HS not used to locate rj & ri
-                    _c+=1; #next element of the combination
+                    l_i = self.dynParams[_ri_ket_idx]['rydbergstates']['l_values'][(len(self._HSlist[_ri_ket_idx])-self._HSlist[_ri_ket_idx].index(ri))-1];
+                    l_j = self.dynParams[_rj_ket_idx]['rydbergstates']['l_values'][(len(self._HSlist[_rj_ket_idx])-self._HSlist[_rj_ket_idx].index(rj))-1];
+                    self._pairInteraction_lval.append([l_i, l_j]);
 
-                l_i = self.dynParams[_ri_ket_idx]['rydbergstates']['l_values'][(len(self._HSlist[_ri_ket_idx])-self._HSlist[_ri_ket_idx].index(ri))-1];
-                l_j = self.dynParams[_rj_ket_idx]['rydbergstates']['l_values'][(len(self._HSlist[_rj_ket_idx])-self._HSlist[_rj_ket_idx].index(rj))-1];
-                self._pairInteraction_lval.append([l_i, l_j]);
-
-                if isinstance(Vij, qt.Qobj):
-                    if l_i==l_j: #if li=lj check V_{vdW} or V_{d-d}
-                        Vij+=qt.tensor(_PSI)*qt.tensor(_PSI).dag(); #|rirjXrirj| 
+                    if isinstance(Vij, qt.Qobj):
+                        if l_i==l_j: #if li=lj check V_{vdW} or V_{d-d}
+                            Vij+=qt.tensor(_PSI)*qt.tensor(_PSI).dag(); #|rirjXrirj| 
+                        else:
+                            _Vop = qt.tensor(_PSI)*qt.tensor(_PSI_dag).dag();
+                            _Vopdag = (qt.tensor(_PSI)*qt.tensor(_PSI_dag).dag()).dag();
+                            _Vopdag.dims = _Vop,dims;
+                            Vij+= _Vop + _Vopdag; #|rirjXrjri| + h.c
                     else:
-                        _Vop = qt.tensor(_PSI)*qt.tensor(_PSI_dag).dag();
-                        _Vopdag = (qt.tensor(_PSI)*qt.tensor(_PSI_dag).dag()).dag();
-                        _Vopdag.dims = _Vop,dims;
-                        Vij+= _Vop + _Vopdag; #|rirjXrjri| + h.c
-                else:
-                    if l_i==l_j: #if li=lj check V_{vdW} or V_{d-d}
-                        Vij =qt.tensor(_PSI)*qt.tensor(_PSI).dag(); #|rirjXrirj|
-                    else:
-                        _Vop = qt.tensor(_PSI)*qt.tensor(_PSI_dag).dag();
-                        _Vopdag = (qt.tensor(_PSI)*qt.tensor(_PSI_dag).dag()).dag();
-                        _Vopdag.dims = _Vop.dims;
-                        Vij = _Vop + _Vopdag; #|rirjXrjri| + h.c
+                        if l_i==l_j: #if li=lj check V_{vdW} or V_{d-d}
+                            Vij =qt.tensor(_PSI)*qt.tensor(_PSI).dag(); #|rirjXrirj|
+                        else:
+                            _Vop = qt.tensor(_PSI)*qt.tensor(_PSI_dag).dag();
+                            _Vopdag = (qt.tensor(_PSI)*qt.tensor(_PSI_dag).dag()).dag();
+                            _Vopdag.dims = _Vop.dims;
+                            Vij = _Vop + _Vopdag; #|rirjXrjri| + h.c
 
-            Vij.dims = [[self.Nrlevels],[self.Nrlevels]];
-            _interaction_ops.append(Vij);
+                Vij.dims = [[self.Nrlevels],[self.Nrlevels]];
+                _interaction_ops.append(Vij);
             self._intbasis = _interaction_ops;
             if _idx_ij not in self._pairInteraction_idx:
                 self._pairInteraction_idx.append(_idx_ij);
@@ -1210,7 +1210,9 @@ class atomicQRegister:
             c6_val : value of the C6 coefficient
 
         '''
-        self.nC6Interaction = c6_val/eucdist(self.layout[self._pairInteraction_idx[idx][0]][0], self.layout[self._pairInteraction_idx[idx][0]][1], self.layout[self._pairInteraction_idx[idx][1]][0], self.layout[self._pairInteraction_idx[idx][1]][1]);
+        print(idx)
+        self.nC6Interaction = c6_val/eucdist(self.layout[self._pairInteraction_idx[idx][0]][0], self.layout[self._pairInteraction_idx[idx][0]][1],
+                                             self.layout[self._pairInteraction_idx[idx][1]][0], self.layout[self._pairInteraction_idx[idx][1]][1]);
 
     def _getC3Strength(self, c3_val=1, idx=None):
 
@@ -1225,7 +1227,8 @@ class atomicQRegister:
             c3_val : value of the C6 coefficient
 
         '''
-        self.nC3Interaction = c3_val/eucdist(self.layout[self._pairInteraction_idx[idx][0]][0], self.layout[self._pairInteraction_idx[idx][0]][1], self.layout[self._pairInteraction_idx[idx][1]][0], self.layout[self._pairInteraction_idx[idx][1]][1]);
+        self.nC3Interaction = c3_val/eucdist(self.layout[self._pairInteraction_idx[idx][0]][0], self.layout[self._pairInteraction_idx[idx][0]][1],
+                                             self.layout[self._pairInteraction_idx[idx][1]][0], self.layout[self._pairInteraction_idx[idx][1]][1]);
 
     def getNObservables(self):
         '''
@@ -1356,7 +1359,7 @@ def scan_i(scanNr1, scan_idx1, scanNr2, scan_idx2, params, scanValues, times, Nr
         
     
     else:
-        print(scan_idx1, scan_idx2)
+        # print(scan_idx1, scan_idx2)
         params = update_params(scanNr1, scan_idx1, scanNr2, scan_idx2, params, scanValues); #updating params
         
         AM.dynParams = params; #update new params in atomicModel() object
