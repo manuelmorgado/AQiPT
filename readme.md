@@ -4,9 +4,7 @@
 ![alt text](https://github.com/manuelmorgado/AQiPT/blob/main/resources/logo/aqipt_logo.png?raw=true)
 
 
-AQiPT is an friendly open-souce software for bridging theoretical physics and experimental physics in the field of Quantum Information Processing (QIP) with atomic architectures. AQiPT is based in numpy, scipy, matplotlib and other packages such as QuTiP, Qiskit and Labscript.
-
-The goal of AQiPT is to setup a general framework where simulations, quantum circuits and experiments of quantum devices dedicated to QIP, can converge. Allowing to work in general and standard software ecosystem that interfaces the different levels of a quantum software stack.
+AQiPT is a modular and extensible quantum software framework designed for managing and controlling quantum devices and associated hardware components from different manufacturers. Built using Python, this software offers a high-level of abstraction through modular components that handle hardware abstraction, instruction scheduling, and data management. AQiPT also includes a gateway that seamlessly integrates internal processes, enabling high or low-level programming and easy maintenance and extension of the system. Our software caters to different types of users, including those who require precise control of quantum devices and those who need a more user-friendly programming interface. Primarily designed for use in atomic physics experiments and atom-based quantum computing platforms providing tight integration of experimental automation with digital twins
 
 The open-source nature of AQiPT allows users to customize and/or modify the package at will. Besides, AQiPT is multiplatform i.e., compatible with UNIX and Windows OS. Being free of licensing fees, AQiPT represent an excellent tool to deep into the research and development of quantum information processing and quantum engineering.
 
