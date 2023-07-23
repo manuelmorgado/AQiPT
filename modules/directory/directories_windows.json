@@ -1,0 +1,16 @@
+{
+	"hardware specifications": "C:\\Users\\AQiPT\\hardware\\",
+	"hardware drivers": "C:\\Users\\AQiPT\\hardware\\drivers\\",
+	"configuration": "C:\\Users\\AQiPT\\configuration\\",
+	"data depository": "C:\\Users\\AQiPT\\depository\\data\\",
+	"analysis module": "C:\\Users\\AQiPT\\analysis\\",
+	"compiler": "C:\\Users\\AQiPT\\compiler\\",
+	"control module": "C:\\Users\\AQiPT\\modules\\control\\",
+	"daq module": "C:\\Users\\AQiPT\\modules\\daq\\",
+	"datalogger module": "C:\\Users\\AQiPT\\modules\\datalogger\\",
+	"emulator module": "C:\\Users\\AQiPT\\modules\\emulator\\",
+	"interface module": "C:\\Users\\AQiPT\\modules\\interface\\",
+	"kernel module": "C:\\Users\\AQiPT\\modules\\kernel\\",
+	"notebooks": "C:\\Users\\AQiPT\\notebooks\\",
+	"versions": "C:\\Users\\AQiPT\\versions\\"
+}

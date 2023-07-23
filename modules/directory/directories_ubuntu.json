@@ -1,0 +1,16 @@
+{
+	"hardware specifications": "/home/AQiPT/hardware/",
+	"hardware drivers": "/home/AQiPT/hardware/drivers/",
+	"configuration": "/home/AQiPT/configuration/",
+	"data depository": "/home/AQiPT/depository/data/",
+	"analysis module": "/home/AQiPT/analysis/",
+	"compiler": "/home//AQiPT/compiler/",
+	"control module": "/home/AQiPT/modules/control/",
+	"daq module": "/home/AQiPT/modules/daq/",
+	"datalogger module": "/home/AQiPT/modules/datalogger/",
+	"emulator module": "/home/AQiPT/modules/emulator/",
+	"interface module": "/home/AQiPT/modules/interface/",
+	"kernel module": "/home/AQiPT/modules/kernel/",
+	"notebooks": "/home/AQiPT/notebooks/",
+	"versions": "/home/AQiPT/versions/"
+}
