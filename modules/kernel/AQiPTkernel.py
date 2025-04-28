@@ -1,9 +1,10 @@
-#Atomic Quantum information Processing Tool (AQIPT) - DAQ module
+#Atomic Quantum information Processing Tool (AQIPT - /ɪˈkwɪpt/) - DAQ module
 
 # Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
-# Contributor(s): 
+#                            Universitaet Stuttgart. 5. Physikalisches Institut - QRydDemo
+# Contributor(s): Angel Alvarez. Universidad Simon Bolivar. Quantum Information and Communication Group.
 # Created: 2021-04-08
-# Last update: 2022-10-07
+# Last update: 2024-12-14
 
 
 #libs
@@ -14,6 +15,7 @@ import matplotlib
 
 # from functools import reduce
 # import itertools
+from itertools import product
 # from typing import Iterator, List
 import copy
 
@@ -27,36 +29,29 @@ import os, time, dataclasses
 from datetime import date
 from dataclasses import dataclass, field
 import json
-from typing import List
-
+from typing import List, Tuple, Dict, Any, Union, Optional
 
 from AQiPT import AQiPTcore as aqipt
 from AQiPT.modules.directory import AQiPTdirectory as dirPath
-from AQiPT.modules.control import AQiPTcontrol as control
 
 import arc
 from scipy.constants import physical_constants
 from scipy.constants import e as C_e
+import qutip as qt
 
 import random
 
 import pandas as pd
 
-'''
-	TO DO LIST
-	----------
-
-	    -Finish other properties of atoms such C3, Dip.Mat.Element
-	    -Include other sourcers like PairStates python package
-	    -Include other formats to export the data e.g., '.qg8'
-	    -Add extra constrains in the extraParams for including specification of the lasers for the different transitions (at the moment all transitions use same power, polarization and waist.)
-'''
-
-# directory = dirPath.directory_tree({'path': 'C:\\Users\\EQM\\Desktop\\AQiPT_vNewPC_20230525\\AQiPT_vLaptop\\AQiPT\\modules\\directory\\',
-#                                     'filename': 'directories_windows.json',
-#                                     'printON': False})
 directory = aqipt.directory;
 
+###################################################################################################
+#######################                 Backend Kernel                #############################
+###################################################################################################
+
+#####################################################################################################
+############################          SPECIFICATIONS SECTION             ############################
+#####################################################################################################
 
 #####################################################################################################
 #atomSpecs AQiPT (data)class
@@ -518,16 +513,19 @@ class atomSpecs:
 
 
                     #starkmap
-                    __StarkMap = self.getSMap_fromARC(istate, 
-                                                      self._eParams['4SMap']['nrange'], 
-                                                      self._eParams['4SMap']['lmax'], 
-                                                      self._eParams['4SMap']['bz'], 
-                                                      self._eParams['4SMap']['erange'], 
-                                                      self._eParams['4SMap']['n'], 
-                                                      self._eParams['4SMap']['progressbar'], 
-                                                      self._eParams['4SMap']['unit'], 
-                                                      self._eParams['4SMap']['highlightstate'], 
-                                                      self._eParams['4SMap']['highlightcolour']);
+                    if not self._eParams['4SMap']:
+                        __StarkMap = None;
+                    else:
+                        __StarkMap = self.getSMap_fromARC(istate, 
+                                                          self._eParams['4SMap']['nrange'], 
+                                                          self._eParams['4SMap']['lmax'], 
+                                                          self._eParams['4SMap']['bz'], 
+                                                          self._eParams['4SMap']['erange'], 
+                                                          self._eParams['4SMap']['n'], 
+                                                          self._eParams['4SMap']['progressbar'], 
+                                                          self._eParams['4SMap']['unit'], 
+                                                          self._eParams['4SMap']['highlightstate'], 
+                                                          self._eParams['4SMap']['highlightcolour']);
 
 
                     #spontaneous decay
@@ -555,8 +553,12 @@ class atomSpecs:
                     else:
                         __C6 = None;
                         __BlockadeRadius = None;
-                        
-                    __LeRoyRadius = self.getLeRoyRadius_fromARC( __StarkMap);
+                    
+                    #LeRoyRadius
+                    if not self._eParams['4SMap']:
+                        __LeRoyRadius = None;
+                    else:
+                        __LeRoyRadius = self.getLeRoyRadius_fromARC( __StarkMap);
                     
                     #polarizability
                     try:
@@ -592,34 +594,50 @@ class atomSpecs:
                     #datacell for stored file
                     #adding exceptions that includes plots
                     try:
-                        _c6COPY = __C6[0]
+                        _c6COPY = __C6[0];
                     except:
-                        _c6COPY = __C6
+                        _c6COPY = __C6;
                     try:
-                        _BBRCOPY = extract_BBRData(__BlackBodyRadiation)
+                        _BBRCOPY = extract_BBRData(__BlackBodyRadiation);
                     except:
-                        _BBRCOPY = __BlackBodyRadiation   
-                    _cell2save = datacell(Energy=__Energy,
-                                     Transition_freq=__TransitionFrequency,
-                                     Wavelength=__TransitionWavelenght,
-                                     Rabi_freq=__RabiFrequency,
-                                     Dip_Mat_element=__Dip_Mat_element,
-                                     Lifetime=__NaturalLifetime,
-                                     Rydberg=__RydbergState,
-                                     BBR=_BBRCOPY,
-                                     C3=__C3,
-                                     C6=_c6COPY,
-                                     Rbl=__BlockadeRadius,
-                                     LeRoy_radius=__LeRoyRadius,
-                                     Polarizability=__Polarizability,
-                                     Stark_Map=extract_SMapData(__StarkMap));
+                        _BBRCOPY = __BlackBodyRadiation;
+                    try:   
+                        _cell2save = datacell(Energy=__Energy,
+                                              Transition_freq=__TransitionFrequency,
+                                              Wavelength=__TransitionWavelenght,
+                                              Rabi_freq=__RabiFrequency,
+                                              Dip_Mat_element=__Dip_Mat_element,
+                                              Lifetime=__NaturalLifetime,
+                                              Rydberg=__RydbergState,
+                                              BBR=_BBRCOPY,
+                                              C3=__C3,
+                                              C6=_c6COPY,
+                                              Rbl=__BlockadeRadius,
+                                              LeRoy_radius=__LeRoyRadius,
+                                              Polarizability=__Polarizability,
+                                              Stark_Map=extract_SMapData(__StarkMap));
+                    except:
+                        _cell2save = datacell(Energy=__Energy,
+                                              Transition_freq=__TransitionFrequency,
+                                              Wavelength=__TransitionWavelenght,
+                                              Rabi_freq=__RabiFrequency,
+                                              Dip_Mat_element=__Dip_Mat_element,
+                                              Lifetime=__NaturalLifetime,
+                                              Rydberg=__RydbergState,
+                                              BBR=_BBRCOPY,
+                                              C3=__C3,
+                                              C6=_c6COPY,
+                                              Rbl=__BlockadeRadius,
+                                              LeRoy_radius=__LeRoyRadius,
+                                              Polarizability=__Polarizability,
+                                              Stark_Map=None);
                     _cells2save.append(_cell2save);
                     
             print("There are "+str(len(_cells))+" cells")
             
-            self._metadata.update({'cell_labels' : str(_labels)})
-            self.atomicdata = atomicData(clabel=_labels, cells=_cells )
-            self._atomicdata2save = atomicData(clabel=_labels, cells=_cells2save )
+            self._metadata.update({'cell_labels' : str(_labels)});
+            self.atomicdata = atomicData(clabel=_labels, cells=_cells );
+            self._atomicdata2save = atomicData(clabel=_labels, cells=_cells2save );
     
     def update(variable, recompilation=True):
     
@@ -1037,7 +1055,6 @@ def _lst2dic(lst):
                     'mF': int(mF_val.strip())}
 
 class atomicKernel:
-
     '''
         AQiPT class that introduce the notion of the atomic physics into the simulations executed with atomicModel() class.
         The class allows to add all the constrains set by the physics of the system (e.g., neutral and Rydberg atoms). The
@@ -1070,6 +1087,7 @@ class atomicKernel:
             __updateParams4AMs :
     
     '''
+
     def __init__(self, element, statelst, labsetup=None, atomSpec=None, label='default_KernelName'):
         
         self.kernelname = label;
@@ -1276,7 +1294,6 @@ class atomicKernel:
 #####################################################################################################
 
 class hardwareSpecs(object):
-
     '''
         AQiPT class that use a JSON parser of real setup and instantiate the different optical and
         electronic elements of the setup. The class 
@@ -2377,6 +2394,750 @@ class IDs:
     python_memory_alloc :str = field(default="0x0")
     subTYPE : str = field(default="Default")
 
+###################################################################################################
+#######################                 Middleware Kernel             #############################
+###################################################################################################
+
+#####################################################################################################
+############################            TRANSPILER SECTION               ############################
+#####################################################################################################
+
+from AQiPT.modules.control import AQiPTcontrol as control
+
+def merge_waveforms(waveforms :dict, name: str):
+    # coupling = {};
+    # done = [];
+    # k = 0;
+
+    # values = list(waveforms.values())
+    # for i in range(len(values)):
+    #     if i in done: continue
+    #     v1 = values[i];
+
+    #     for j in range(len(values)):
+            
+    #         if i == j: continue
+            
+    #         v2 = values[j];
+
+    #         # Matching the same levels of coupling
+    #         if v2[0] == v1[0]:
+    #             v1 = [v1[0], v1[1], np.add(v1[2], v2[2])];
+    #             values[i] = v1;
+    #             done.append(j);
+
+    #     coupling[name+str(k)] = v1;
+    #     done.append(i);
+    #     k += 1;
+    #--------#
+
+    coupling = {}
+    done = []
+    k = 0
+
+    values = list(waveforms.values())
+    for i, vi in enumerate(values):
+        if i in done:
+            continue
+        v1 = vi
+
+        for j, vj in enumerate(values):
+            if i == j:
+                continue
+
+            v2 = vj
+
+            # Matching the same levels of coupling
+            if v2[0] == v1[0] and v2[1] == v1[1]:
+                v1 = [v1[0], v1[1], np.add(v1[2], v2[2])]
+                vi = v1
+                done.append(j)
+
+        coupling[name + str(k)] = v1
+        done.append(i)
+        k += 1
+
+    return coupling
+
+def coupling_detuning_constructors(couplings: List[tuple],
+                                   detunings: List[tuple],
+                                   omega_coup: Union[List[float], float, int] = 20,
+                                   omega_detu: Union[List[float], float, int] = 0,) -> Tuple[dict, dict]:
+    '''
+            Constructor of the couplings and detunings dictionaries.
+        
+        INPUTS
+            couplings (List[float]): coupling list time dependency.
+            detunings (List[float]): detuning list time dependency.
+            omega_coup (int, optional): coupling amplitude. Defaults to 20.
+            omega_detu (int, optional): coupling amplitude. Defaults to 0.
+
+        OUTPUTS
+            Tuple[dict, dict]: build dictionaries for couplings and detunings.
+    '''
+
+    coupling_dict = {};
+    if isinstance(omega_coup, (int, float)):
+        for i, coupling in enumerate(couplings):
+            levels, coupling = coupling;
+            coupling_dict["Coupling" + str(i)] = [levels, omega_coup, coupling];
+
+    elif isinstance(omega_coup, List):
+        assert len(omega_coup) == len(couplings);
+
+        for i, coupling in enumerate(couplings):
+            levels, coupling = coupling;
+            coupling_dict["Coupling" + str(i)] = [levels, omega_coup[i], coupling];
+
+    detuning_dict = {};
+    for i, detuning in enumerate(detunings):
+        levels, detuning = detuning;
+        detuning_dict["Detuning" + str(i)] = [levels, omega_detu, detuning];
+
+    return coupling_dict, detuning_dict
+
+def freq_given_phi(phi: float, v_ct: float) -> float:
+    '''
+    Function that yields the right frequency for generating an angle of
+    $\Phi_{11}$ under the interaction of strenght $V_{ct}$.
+
+    INPUTS:
+        phi (float): required angle.
+        v_ct (float): interaction strength.
+
+    OUTPUTS:
+        float: resulting frequency.
+    '''
+    phi = max(phi, np.pi / 8);
+    phi = min(phi, 0.9 * np.pi);
+    freq = +v_ct * 9.55717 * np.log(-0.3614 * (0.3745 - phi)) / (2 * np.pi);
+    return freq
+
+#####################################################################################################
+#Rydberg schedules classes
+#####################################################################################################
+
+# plt.style.use("dark_background");
+
+class RydbergQubitSchedule():
+    '''
+        Class wrapper of the schedule for the Rydberg qubits and Rydberg quantum register.
 
 
+        Parameters
+        ----------
 
+        coupling_waveforms ():
+        detuning_waveforms ():
+
+        Attributes
+        ----------
+
+        coupling_waveforms (): 
+        detuning_waveforms (): 
+        times (): 
+        
+        _merge_pulses ():
+        q_schedule ():
+
+    '''
+
+    def __init__(self, coupling_waveforms: Any, detuning_waveforms: Any, **kwargs):
+        self.coupling_waveforms = coupling_waveforms;
+        self.detuning_waveforms = detuning_waveforms;
+
+        self._merge_waveforms();
+        self.q_schedule = self;
+
+        if "backend" in kwargs:
+            backend_config = kwargs["backend"];
+            assert isinstance(backend_config, aqipt.BackendConfig)
+
+            self.backend_config = backend_config;
+
+        else:
+            self.backend_config = aqipt.backend_config;
+
+        simulation_config = self.backend_config.simulation_config;
+        sampling = simulation_config.sampling;
+        bitdepth = simulation_config.bitdepth;
+        t_max = simulation_config.time_simulation;
+
+        self.times = aqipt.general_params({"sampling": sampling, "bitdepth": bitdepth, "time_dyn": t_max}).timebase();
+
+    def _merge_waveforms(self):
+        '''
+            Merge waveforms of the Couplings and Detunings.
+        '''
+
+        self.coupling_waveforms = merge_waveforms(self.coupling_waveforms, 'Coupling');
+        self.detuning_waveforms = merge_waveforms(self.detuning_waveforms, 'Detuning');
+        
+    def add_function(self, new_funct: np.ndarray, idx : str, parameter = "coupling"):
+        '''
+            Sum waveforms of the Couplings and Detunings.
+
+            INPUTS:
+                funct (np.ndarray): function to be add.
+                where (str): index where function needs to be add.
+                funct_type (str, optional): type of function. Defaults to "coupling".
+
+            OUTPUTS:
+                ValueError: unspecified function type.
+        '''
+
+        if parameter == "coupling":
+            _schedule = self.coupling_waveforms;
+        elif parameter == "detuning":
+            _schedule = self.detuning_waveforms;
+
+        _funct = _schedule[idx][2];
+        _funct += new_funct;
+        
+        _schedule[idx][2] = _funct;
+        
+    def add_coupling(self, new_schedule: dict, idx : str, parameter = "coupling"):
+        '''
+            Merge waveforms of the Couplings and Detunings.
+
+            INPUTS
+                new_schedule (dict): schedule que se desea agregar.
+                idx (str): index where the schedule needs to be add.
+                funct_type (str, optional): function type Defaults to "coupling".
+
+            OUTPUTS
+                ValueError: function type.
+        '''
+
+        if type == "coupling":
+            _schedule = self.coupling_waveforms;
+        elif type == "detuning":
+            _schedule = self.detuning_waveforms;
+        else:
+            raise ValueError
+            
+        _schedule[idx] = new_schedule[idx];    
+
+    def plot_couplings(self, plotON:bool=True, name:str='', phase=True, amp=True):
+        '''
+            Plot couplings function.
+
+            INPUTS:
+                plot (bool, optional): show plot. Defaults to True.
+                name (str, optional): plots label. Defaults to "".
+                phase (bool, optional): show phases of waveforms. Defaults to True.
+                amp (bool, optional): show amplitudes of the waveforms. Defaults to True.
+
+            OUTPUTs:
+                Any: plot figure.
+        '''
+        times = self.times;
+        p_waveforms = {};
+
+        waveform_config = self.backend_config.waveform_config;
+        coupling_color = waveform_config.DEFAULT_COLORS["coupling"];
+
+        for key in self.coupling_waveforms.keys():
+
+            pair = self.coupling_waveforms[key][0];
+            omega = self.coupling_waveforms[key][1];
+            p_waveforms[str(pair) + str(omega)] = [];
+
+        for key in self.coupling_waveforms.keys():
+
+            pair = self.coupling_waveforms[key][0];
+            waveform = self.coupling_waveforms[key][-1];
+            omega = self.coupling_waveforms[key][1];
+            p_waveforms[str(pair) + str(omega)].append((waveform, omega));
+    
+        L = len(p_waveforms.keys());
+        fig, axis = plt.subplots(L, figsize=(16,2*L));
+
+        for i in range(L):
+            
+            key = list(p_waveforms.keys())[i];
+        
+            if L == 1:
+                for waveform, omega in p_waveforms[key] :
+                    
+                    factor = omega / (2*np.pi);
+                    max_amp = np.max(np.abs(waveform));
+                    
+                    abs_waveform = np.abs(waveform)/max_amp;
+                    angl_waveform = -np.angle(waveform); #phasor angle (from complex number)
+
+                    if phase:
+                        axis.plot(times, angl_waveform, color=aqipt.coupling_color[i+1 % 4], label="$\phi (t)$");
+                        axis.fill_between(times, angl_waveform, color=aqipt.coupling_color[i+1 % 4], alpha=0.2);
+                    if amp:
+                        axis.plot(times, abs_waveform, color=aqipt.coupling_color[i % 4], label="$\Omega (t)$");
+                        axis.fill_between(times, abs_waveform, color=aqipt.coupling_color[i % 4], alpha=0.3);
+
+                    if factor != 1:
+                        axis.text(.01, .99, f'$\Omega = 2\pi{factor:0.2f}$', ha='left', va='top', transform=axis.transAxes);
+
+                axis.set_ylabel('Value');
+               
+                axis.legend();
+            else :
+                for waveform, omega in p_waveforms[key] :
+                    factor = omega / (2*np.pi);
+                    max_amp = np.max(np.abs(waveform));
+                    
+                    abs_waveform = np.abs(waveform);
+                    angl_waveform = -np.angle(waveform); #phasor angle (from complex number)
+                    
+                    if phase:
+                        axis[i].plot(times, angl_waveform, color=aqipt.coupling_color[1], label="$\phi (t)$");
+                        axis[i].fill_between(times, angl_waveform, color=aqipt.coupling_color[1], alpha=0.2);
+                    if amp:
+                        axis[i].plot(times, abs_waveform, color=aqipt.coupling_color[0], label="$\Omega (t)$");
+                        axis[i].fill_between(times, abs_waveform, color=aqipt.coupling_color[0], alpha=0.3);
+
+                    
+                    axis[i].text(.01, .99, f'$\Omega = 2\pi{factor:0.2f}$', ha='left', va='top', transform=axis[i].transAxes);
+
+                axis[i].set_ylabel('Value')
+                axis[i].legend();
+               
+        fig.suptitle(f'Coupling{name}: {key[:6]}', fontsize=16);
+        
+        if not plotON: return fig, axis
+
+        plt.show()
+
+    def plot_detunings(self, plot: bool = True, name: str = ''):
+        '''
+            Plot detuning function.
+
+            INPUTS:
+                plot (bool, optional): show plot. Defaults to True.
+                name (str, optional): plots label. Defaults to "".
+                phase (bool, optional): show phases of waveforms. Defaults to True.
+                amp (bool, optional): show amplitudes of the waveforms. Defaults to True.
+
+            OUTPUTs:
+                Any: plot figure.
+        '''
+
+        times = self.times;
+        p_waveforms = {};
+
+        waveform_config = self.backend_config.waveform_config;
+        detuning_color = waveform_config.DEFAULT_COLORS["detuning"];
+
+        simulation_config = self.backend_config.simulation_config;
+        T_MAX = simulation_config.time_simulation;
+
+        for waveform in self.detuning_waveforms.keys():
+            pair = self.detuning_waveforms[waveform][0];
+            p_waveforms[str(pair)] = [];
+        
+        for key in self.detuning_waveforms.keys():
+            pair = self.detuning_waveforms[key][0];
+            waveform = self.detuning_waveforms[key][-1];
+            p_waveforms[str(pair)].append(waveform);
+
+        L = len(p_waveforms.keys());
+        fig, axis = plt.subplots(L, figsize=(16,2*L));
+
+        for i in range(len(p_waveforms.keys())):
+            
+            key = list(p_waveforms.keys())[i];
+        
+            if len(p_waveforms.keys()) == 1:
+                for waveform in p_waveforms[key]:
+                    axis.plot(times, waveform, color=detuning_color[0]);
+                    axis.fill_between(times, waveform, color=detuning_color[0], alpha=0.3);
+                    axis.set_ylabel('Value');
+                    axis.set_xlim(0, T_MAX);
+            else :
+                for waveform in p_waveforms[key]:
+                    axis[i].plot(times, waveform, color=detuning_color[i]);
+                    axis[i].fill_between(times, waveform, color=detuning_color[i], alpha=0.3);
+                    axis[i].set_ylabel('Value');
+                    axis[i].set_xlim(0, T_MAX);
+
+        fig.suptitle(f'Detuning{name}: {key[:6]}', fontsize=16);
+        if not plot: return fig, axis
+
+        plt.show()
+
+    def plot_all(self, couplings_label='', detunings_label=''):
+        '''
+            Plot all function.
+        '''
+        self.plot_couplings(name=couplings_label);
+        self.plot_detunings(name=detunings_label);
+
+
+class RydbergQRegisterSchedule():
+    '''
+        Class wrapper of the schedule for the Rydberg quantum register.
+
+
+        Parameters
+        ----------
+
+        schedules ():
+
+        Attributes
+        ----------
+
+        schedules (): 
+        times (): 
+        n_qubits (): 
+    '''
+
+    def __init__(self, schedules: List[RydbergQubitSchedule], **kwargs):
+
+        if "backend" in kwargs:
+            backend_config = kwargs["backend"];
+            assert isinstance(backend_config, aqipt.BackendConfig);
+
+            self.backend_config = backend_config;
+
+        else:
+            self.backend_config = aqipt.backend_config;
+
+        simulation_config = self.backend_config.simulation_config;
+        SAMPLING = simulation_config.sampling;
+        BITDEPTH = simulation_config.bitdepth;
+        T_MAX = simulation_config.time_simulation;
+
+        self.schedules = schedules;
+        self.times = aqipt.general_params({"sampling": SAMPLING, "bitdepth": BITDEPTH, "time_dyn": T_MAX}).timebase();
+        self.n_qubits = len(schedules);
+        
+    def plot_schedule(self, couplings=True, detunings=False):
+        '''
+            Plot schedule of the quantum register.
+
+            INPUTS
+                couplings (bool, optional): visible plot for couplings. Defaults to True.
+                detunings (bool, optional): visible plot for detunings. Defaults to False.
+        '''
+        
+        for i in range(len(self.schedules)):
+
+            _schedule = self.schedules[i];
+            
+            if couplings:
+                _schedule.plot_couplings(name=f' {i}');
+                
+            if detunings:
+                _schedule.plot_detunings(name=f' {i}');
+
+#####################################################################################################
+#Rydberg quantum computing classes
+#####################################################################################################
+from AQiPT.modules.emulator import AQiPTemulator as emulator
+
+WAVEFORM_PARAMS = aqipt.simulation_config.WAVEFORM_PARAMS;
+
+class RydbergQubit():
+    '''
+        Class wrapper of the AQiPTemulator atomicModel for generating the atom instances for
+        the simulation of transpiled quantum circuits.
+
+
+        Parameters
+        ----------
+
+        nr_levels (int): number of levels of the atomicModel instance (set to 2 for qubits)
+        rydbergs_states (dict): dictionary for the states that are Rydberg states and the l 
+                                quantum number values corresponding to the list of states.
+        dissipators ():
+        initial_state ():
+        name ():
+        schedule ():
+
+
+        Attributes
+        ----------
+
+        nr_levels ():
+        rydberg_states ():
+        dissipators ():
+        initial_state ():
+        name ():
+        schedule ():
+        atom ():
+
+    '''
+
+    def __init__(self,
+                 nr_levels: int = 4,
+                 rydberg_states: Dict[str, Any] = aqipt.backend_config.atomic_config.rydberg_states,
+                 dissipators: Dict[str, Any] = {"Dissipator0": [[0, 0], 0]},
+                 initial_state: Optional[Union[int, qt.Qobj]] = 0,
+                 name: Optional[str] = "qubit",
+                 schedule: Optional[RydbergQubitSchedule] = None,
+                 **kwargs,):
+
+        self.nr_levels = nr_levels;
+        self.rydberg_states = rydberg_states;
+        self.dissipators = dissipators;
+        self.initial_state = initial_state;
+        self.name = name;
+        self.schedule = schedule;
+        self.atom = None;
+
+        if "backend" in kwargs.keys():
+            backend_config = kwargs["backend"];
+            assert isinstance(backend_config, aqipt.BackendConfig);
+
+            self.backend_config = backend_config;
+
+        else:
+            self.backend_config = aqipt.backend_config;
+
+    def _compile(self):
+
+        '''
+            Compiler of the full atomicModel including the simulation of the instantiated class in the 'control' mode.
+        '''
+
+        sim_params_q = {'couplings': self.schedule.coupling_waveforms, 
+                        'detunings': self.schedule.detuning_waveforms, 
+                        'dissipators': self.dissipators,
+                        'rydbergstates': self.rydberg_states}; 
+
+        simulation_config = self.backend_config.simulation_config;
+        _qubit = emulator.atomicModel(self.schedule.times, 
+                                      self.nr_levels, 
+                                      self.initial_state, 
+                                      sim_params_q, 
+                                      name=self.name, 
+                                      simOpt=qt.Options(nsteps=simulation_config.nsteps, rtol=simulation_config.rtol, max_step=simulation_config.max_steps, store_states=simulation_config.store_states));
+        _qubit.modelMap(plotON=False);
+
+        _qubit.buildTHamiltonian();
+        # _qubit.buildHamiltonian();
+        # _qubit.buildLindbladians();
+        
+        _qubit.buildObservables();
+
+        self.atom = _qubit;
+
+    def simulate(self):
+        self.atom.playSim(mode='control');
+
+    def __str__(self):
+        print('{self.name}')
+    
+    def plot_results(self):
+
+        '''
+            Plotting results of simulation.
+        '''
+        waveform_config = self.backend_config.waveform_config;
+        other_color = waveform_config.DEFAULT_COLORS["other"];
+        simRes = self.atom.getResult();
+        
+        states = simRes.expect;
+        sl = len(states);
+
+        fig, axis = plt.subplots(sl, figsize=(16, 2*sl));
+        plt.setp(axis, yticks=[0, 0.5, 1]);
+
+        for i in range(sl):
+            state = states[i];
+            
+            axis[i].plot(self.schedule.times, state, color=other_color[i % 4]);
+            axis[i].set_ylabel(f'State {i}', fontsize=14);
+            axis[i].set_ylim(0,1);
+            axis[i].vlines(x = range(0,12,2), ymin = 0, ymax =1, color = 'silver', linestyle='dotted');
+            axis[i].spines['top'].set_visible(False);
+            axis[i].spines['right'].set_visible(False);
+            if i != sl-1:
+                axis[i].get_xaxis().set_visible(False);
+                
+            plt.yticks([0,0.5,1]);
+
+        fig.suptitle('Population evolution', fontsize=24);
+        fig.supxlabel('Time', fontsize=18);
+        plt.show()
+
+class RydbergQuantumRegister():
+    '''
+        Class wrapper of the AQiPTemulator atomicQRegister for generating the quantum register
+        instances for the simulation of transpiled quantum circuits.
+
+
+        Parameters
+        ----------
+
+        nr_levels (int): number of levels of the atomicModel instance (set to 2 for qubits)
+        rydbergs_states (dict): dictionary for the states that are Rydberg states and the l 
+                                quantum number values corresponding to the list of states.
+        qubits ():
+        layout ():
+        init_state ():
+        name ():
+        connectivity ():
+        c6 ():
+        c3 ():
+        times ():
+
+
+        Attributes
+        ----------
+
+        qubits ():
+        layout ():
+        init_state ():
+        name ():
+        connectivity ():
+        c6 ():
+        c3 ():
+        times ():
+        atomic_qregister ():
+        schedule ():
+
+    '''
+
+    def __init__(self,
+                 qubits: List[RydbergQubit],
+                 layout: List[tuple] = aqipt.backend_config.atomic_config.layout,
+                 init_state: Union[str, qt.Qobj, Any] = None,
+                 name: str = "Quantum Register",
+                 connectivity: Optional[List[Any]] = aqipt.backend_config.atomic_config.connectivity,
+                 c6: float = aqipt.backend_config.atomic_config.c6_constant,
+                 c3: float = aqipt.backend_config.atomic_config.c3_constant,
+                 **kwargs,):
+
+        self.qubits = qubits;
+        self.layout = layout;
+        if isinstance(init_state, str):
+            self.init_state = (str(0).zfill(len(qubits)) if init_state == None else init_state);
+        else:
+            self.init_state = init_state;
+        self.name = name;
+        self.connectivity = connectivity;
+        self.c6 = c6;
+        self.c3 = c3;
+
+        if "backend" in kwargs.keys():
+
+            backend_config = kwargs["backend"]
+            assert isinstance(backend_config, aqipt.BackendConfig)
+            self.backend_config = backend_config;
+
+        else:
+
+            self.backend_config = aqipt.backend_config;
+
+        simulation_config = self.backend_config.simulation_config;
+        SAMPLING = simulation_config.sampling;
+        BITDEPTH = simulation_config.bitdepth;
+        T_MAX = simulation_config.time_simulation;
+
+        self.times = aqipt.general_params({"sampling": SAMPLING, "bitdepth": BITDEPTH, "time_dyn": T_MAX}).timebase();
+
+        self.atomic_qregister = None;
+        self.schedule = {};
+
+    def _atoms(self):
+        '''
+            Instantiate a set of atomicModels for being the qubits to be simulated for the quantum
+            circuit transpilation.
+        '''
+
+        atoms = []
+        for qubit in self.qubits:
+            if qubit.atom is not None:
+                qubit._compile();
+                qubit.simulate();
+            atoms.append(qubit.atom);
+
+        return atoms
+
+    def compile(self):
+        '''
+            Setting of the full atomicQRegister of the instantiated class.
+        '''
+
+        atomic_qregister = emulator.atomicQRegister(physicalRegisters= self._atoms(),
+                                                    initnState = self.init_state,
+                                                    name = self.name,
+                                                    connectivity= self.connectivity,
+                                                    layout = self.layout);
+
+        self._schedule();
+        atomic_qregister.buildNinitState();
+        atomic_qregister.buildTNHamiltonian(); 
+        atomic_qregister.registerMap(plotON=False, figure_size=(3,3)); 
+
+        simulation_config = self.backend_config.simulation_config
+        atomic_qregister.simOpts = qt.Options(nsteps=simulation_config.nsteps, rtol=simulation_config.rtol, max_step=simulation_config.max_steps, store_states=simulation_config.store_states);
+        
+        atomic_qregister.compile();
+        atomic_qregister.buildInteractions(c6=self.c6, c3=self.c3); 
+        # atomic_qregister.buildNLindbladians();
+        
+        atomic_qregister.buildNObservables();
+        
+        self.atomic_qregister = atomic_qregister;
+
+    def simulate(self):
+        '''
+            Compile of the full atomicQRegister including the simulation of the instantiated class in the 'control' mode.
+        '''
+        self.atomic_qregister.playSim(mode='control');
+
+    def _schedule(self):
+        '''
+            Yields the schedule of the Rydberg quantum register.
+        '''
+
+        qubits_schedules_lst = [qubit.schedule for qubit in self.qubits];
+        self.schedule = RydbergQRegisterSchedule(qubits_schedules_lst);
+
+    def plot_schedule(self, couplings=True, detunings=False):
+        '''
+            Plot schedule of the Rydberg quantum register e.g., couplings and detunings.
+        '''
+
+        waveform_config = self.backend_config.waveform_config;
+        coupling_color = waveform_config.DEFAULT_COLORS["coupling"]
+        detuning_color = waveform_config.DEFAULT_COLORS["detuning"]
+        self.schedule.plot_schedule(couplings, detunings, coupling_color, detuning_color);
+
+    def plot_results(self):
+        '''
+           Plot results from the simulation of the Rydberg Quantum Register associated to the transpiled quantum circuit.
+        '''
+
+        waveform_config = self.backend_config.waveform_config;
+        other_color = waveform_config.DEFAULT_COLORS["other"];
+
+        simRes = self.atomic_qregister.getResult();
+        
+        states = simRes.expect;
+        sl = len(states);
+
+        levels = self.qubits[0].rydberg_states['l_values'];
+        perm_lev = list(product(levels, repeat=len(self.qubits)));
+
+
+        fig, axis = plt.subplots(sl, figsize=(16, 1.7*sl));
+        plt.setp(axis, yticks=[0, 0.5, 1]);
+
+        for i in range(sl):
+            state = states[i];
+            
+            axis[i].plot(self.times, state, color=other_color[i%4]);
+            axis[i].set_ylabel(f'State {perm_lev[i]}', fontsize=14);
+            axis[i].set_ylim(0,1);
+            axis[i].vlines(x = range(0,12,2), ymin = 0, ymax =1, color = 'silver', linestyle='dotted');
+            axis[i].spines['top'].set_visible(False);
+            axis[i].spines['right'].set_visible(False);
+            if i != sl-1:
+                axis[i].get_xaxis().set_visible(False);
+                
+            plt.yticks([0,0.5,1]);
+
+        fig.suptitle('Population evolution', fontsize=24);
+        fig.supxlabel('Time', fontsize=18);
+        plt.show()
