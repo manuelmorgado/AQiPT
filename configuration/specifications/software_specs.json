@@ -1,0 +1,19 @@
+{ 
+  "author": "Manuel Morgado",
+  "affiliation": "AQiPT devolpers",
+  "website": "https://www.aqipt.io/",
+  "created": "2024.12-14",
+  "comments": "Template AQiPT Software specifications.",
+  "variables_UNITS": [{"ID": "0x025","FREQUENCY_UNIT": "KHz"}, 
+  					  				{"ID": "0x026","AMPLITUDE_UNIT": "V"}, 
+  					  				{"ID": "0x027","PHASE_UNIT": "rad"}, 
+  					  				{"ID": "0x028","TIME_UNIT": "s"},
+  					  				{"ID": "0x029","POWER_UNIT": "W"},
+  					  				{"ID": "0x030","ANGLE_UNIT": "rad"},
+  					  				{"ID": "0x031","OTHER_UNIT": "V/s"}],
+  "variables": [],
+  "tracks":[],
+  "sequences":[],
+  "instructions":[],
+  "configuration": []
+}

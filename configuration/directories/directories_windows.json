@@ -1,0 +1,16 @@
+{
+	"hardware specifications": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\hardware\\",
+	"hardware drivers": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\hardware\\drivers\\",
+	"configuration": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\configuration\\",
+	"data depository": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\depository\\data\\",
+	"analysis module": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\analysis\\",
+	"compiler": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\compiler\\",
+	"control module": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\modules\\control\\",
+	"daq module": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\modules\\daq\\",
+	"datalogger module": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\modules\\datalogger\\",
+	"emulator module": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\modules\\emulator\\",
+	"interface module": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\modules\\interface\\",
+	"kernel module": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\modules\\kernel\\",
+	"notebooks": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\notebooks\\",
+	"versions": "C:\\Users\\Desktop\\PhD_thesis_notebooks\\AQiPT_vLaptop\\AQiPT\\versions\\"
+}

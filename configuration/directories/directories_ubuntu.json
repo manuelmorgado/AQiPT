@@ -1,0 +1,16 @@
+{
+	"hardware specifications": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/hardware/",
+	"hardware drivers": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/hardware/drivers/",
+	"configuration": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/configuration/",
+	"data depository": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/depository/data/",
+	"analysis module": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/analysis/",
+	"compiler": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/compiler/",
+	"control module": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/modules/control/",
+	"daq module": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/modules/daq/",
+	"datalogger module": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/modules/datalogger/",
+	"emulator module": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/modules/emulator/",
+	"interface module": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/modules/interface/",
+	"kernel module": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/modules/kernel/",
+	"notebooks": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/notebooks/",
+	"versions": "/home/mmorgado/Desktop/eqm/PhD_docs/PhD_thesis_notebooks/AQiPT/versions/"
+}
