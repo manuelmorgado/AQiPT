@@ -1,0 +1,62 @@
+# PynSource Version 1.2
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin. Comments are saved.'}
+{'type':'umlshape', 'id':'atomSpecs', 'x':14, 'y':222, 'width':227, 'height':434, 'attrs': '_atomName|_atomicdata2save|_eParams|_metadata|_source|atom|atomicdata|fullstates|partialstate|states', 'meths': '__init__|getBBR_fromARC|getC6_fromARC|getLeRoyRadius_fromARC|getLifetime_fromARC|getPolarizability_fromARC|getRabifreq_fromARC|getRb_fromARC|getSMap_fromARC|getTransitionFrequency_fromARC|getTransitionWavelength_fromARC|isRydberg|save|set_atomicData|update'}
+{'type':'umlshape', 'id':'atomicData', 'x':24, 'y':54, 'width':110, 'height':79, 'attrs': 'cells|clabel', 'meths': ''}
+{'type':'umlshape', 'id':'datacell', 'x':277, 'y':26, 'width':115, 'height':259, 'attrs': 'BBR|C3|C6|Dip_Mat_element|Energy|LeRoy_radius|Lifetime|Polarizability|Rabi_freq|Rbl|Rydberg|Stark_Map|Transition_freq|Wavelength', 'meths': ''}
+{'type':'umlshape', 'id':'atomicKernel', 'x':1617, 'y':90, 'width':136, 'height':314, 'attrs': '_historyAM|_nrStates|atomSpecs|couplings|detunings|dissipators|element|kernelname|labsetup|params4AMs|states', 'meths': '__init__|__updateParams4AMs|getGamma|getRabi|kernel2Model|loadSpec'}
+{'type':'umlshape', 'id':'hardwareSpecs', 'x':1008, 'y':77, 'width':140, 'height':509, 'attrs': '_IDs_bench|_affiliation|_author|_comments|_dateCreation|_website|hardwareLST|hardwareLSType|hardwareTypes|specifications', 'meths': '__init__|createAOD|createAOM|createAWG|createAntenna|createCamera|createCoil|createDDS|createDMD|createElectrode|createIQmixer|createLaser|createLaserAUX|createMixer|createSLM|createSensor|createShutter|initSetup|loadSpecs|printHeader'}
+{'type':'umlshape', 'id':'AOM', 'x':593, 'y':623, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Laser', 'x':379, 'y':571, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'LaserAUX', 'x':1503, 'y':617, 'width':90, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Camera', 'x':1323, 'y':627, 'width':70, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'AWG', 'x':867, 'y':623, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'DDS', 'x':1403, 'y':606, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'IQmixer', 'x':1118, 'y':611, 'width':80, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Mixer', 'x':517, 'y':593, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Shutter', 'x':948, 'y':616, 'width':80, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'DMD', 'x':1718, 'y':608, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'SLM', 'x':788, 'y':608, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Electrode', 'x':1804, 'y':606, 'width':100, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Coil', 'x':1613, 'y':614, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Sensor', 'x':1034, 'y':617, 'width':70, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'AOD', 'x':691, 'y':612, 'width':66, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Antenna', 'x':1222, 'y':615, 'width':80, 'height':119, 'attrs': 'channels|driver|specs', 'meths': '__init__'}
+{'type':'umlshape', 'id':'softwareSpecs', 'x':794, 'y':162, 'width':140, 'height':254, 'attrs': '_IDs_bench|_affiliation|_author|_comments|_dateCreation|_headers|_python_waveforms|_website|specifications', 'meths': '__init__|loadSpecs|printHeader|update'}
+{'type':'umlshape', 'id':'variables', 'x':646, 'y':124, 'width':122, 'height':269, 'attrs': '_RAWvariables|_affiliation|_author|_comments|_dateCreation|_website|name|units', 'meths': '__init__|add_variable|load_fromSpecs|printHeader|refresh_VARunit|refresh_VARvalue'}
+{'type':'umlshape', 'id':'IDsBench', 'x':496, 'y':52, 'width':94, 'height':224, 'attrs': '_AQiPT_bench|_CH_bench|_HW_bench|_SW_bench', 'meths': '__init__|_add_record|get_CH_bench|get_HW_bench|get_SW_bench|set_HW_bench|set_SW_bench'}
+{'type':'umlshape', 'id':'IDs', 'x':402, 'y':320, 'width':143, 'height':124, 'attrs': 'dec_ID|hex_ID|name|python_memory_alloc|subTYPE', 'meths': ''}
+{'type':'umlshape', 'id':'RydbergQubitSchedule', 'x':456, 'y':1164, 'width':210, 'height':239, 'attrs': 'backend_config|coupling_waveforms|detuning_waveforms|q_schedule|times', 'meths': '__init__|_merge_waveforms|add_coupling|add_function|plot_all|plot_couplings|plot_detunings'}
+{'type':'umlshape', 'id':'RydbergQRegisterSchedule', 'x':-12, 'y':699, 'width':250, 'height':149, 'attrs': 'backend_config|n_qubits|schedules|times', 'meths': '__init__|plot_schedule'}
+{'type':'umlshape', 'id':'RydbergQubit', 'x':58, 'y':1055, 'width':130, 'height':254, 'attrs': 'atom|backend_config|dissipators|initial_state|name|nr_levels|rydberg_states|schedule', 'meths': '__init__|__str__|_compile|plot_results|simulate'}
+{'type':'umlshape', 'id':'RydbergQuantumRegister', 'x':277, 'y':732, 'width':230, 'height':329, 'attrs': 'atomic_qregister|backend_config|c3|c6|connectivity|init_state|layout|name|qubits|schedule|times', 'meths': '__init__|_atoms|_schedule|compile|plot_results|plot_schedule|simulate'}
+{'type':'umlshape', 'id':'object', 'x':768, 'y':18, 'width':70, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'list', 'x':174, 'y':13, 'width':50, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'dict', 'x':438, 'y':1097, 'width':50, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'np.ndarray', 'x':591, 'y':1089, 'width':110, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'edge', 'id':'softwareSpecs_to_object', 'source':'softwareSpecs', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'AOM_to_hardwareSpecs', 'source':'AOM', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'LaserAUX_to_hardwareSpecs', 'source':'LaserAUX', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'DMD_to_hardwareSpecs', 'source':'DMD', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'AOD_to_hardwareSpecs', 'source':'AOD', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'IDsBench_to_object', 'source':'IDsBench', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Shutter_to_hardwareSpecs', 'source':'Shutter', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'DDS_to_hardwareSpecs', 'source':'DDS', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'IQmixer_to_hardwareSpecs', 'source':'IQmixer', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'SLM_to_hardwareSpecs', 'source':'SLM', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Laser_to_hardwareSpecs', 'source':'Laser', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Sensor_to_hardwareSpecs', 'source':'Sensor', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Mixer_to_hardwareSpecs', 'source':'Mixer', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Antenna_to_hardwareSpecs', 'source':'Antenna', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Coil_to_hardwareSpecs', 'source':'Coil', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'variables_to_object', 'source':'variables', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Electrode_to_hardwareSpecs', 'source':'Electrode', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'hardwareSpecs_to_object', 'source':'hardwareSpecs', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Camera_to_hardwareSpecs', 'source':'Camera', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'AWG_to_hardwareSpecs', 'source':'AWG', 'target':'hardwareSpecs', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'RydbergQRegisterSchedule_to_RydbergQuantumRegister', 'source':'RydbergQRegisterSchedule', 'target':'RydbergQuantumRegister', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'IDs_to_IDsBench', 'source':'IDs', 'target':'IDsBench', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'list_to_datacell', 'source':'list', 'target':'datacell', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'dict_to_RydbergQubitSchedule', 'source':'dict', 'target':'RydbergQubitSchedule', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'atomicData_to_atomSpecs', 'source':'atomicData', 'target':'atomSpecs', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.ndarray_to_RydbergQubitSchedule', 'source':'np.ndarray', 'target':'RydbergQubitSchedule', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'list_to_atomicData', 'source':'list', 'target':'atomicData', 'uml_edge_type': 'composition'}

@@ -1,0 +1,19 @@
+# PynSource Version 1.2
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin. Comments are saved.'}
+{'type':'umlshape', 'id':'Trc', 'x':10, 'y':10, 'width':129, 'height':449, 'attrs': '_TEMPLATE_NAME|_endi|_f|_lRIS_TIME_ARRAY|_lTRIGTIME_ARRAY|_lUSER_TEXT|_lWAVE_ARRAY_1|_lWAVE_ARRAY_2|_lWAVE_DESCRIPTOR|_offs|_processings|_recTypes|_smplFmt|_timebases|_vCouplings|_vGains|d|f|x|y', 'meths': '__init__|_getTimeStamp|_readS|_readSamples|_readX|open'}
+{'type':'umlshape', 'id':'DataManager', 'x':189, 'y':67, 'width':120, 'height':284, 'attrs': 'Processed_data|RAW_data|_authors|_comments|_date|_groups|_variables|directory|filename', 'meths': '__init__|add_RAW_data|getPath|getVariable|printPath|remove_data'}
+{'type':'umlshape', 'id':'Data', 'x':513, 'y':25, 'width':136, 'height':164, 'attrs': '_rawData_directory|raw_data|versions', 'meths': '__init__|analyze|get_all_versions|get_latest_version'}
+{'type':'umlshape', 'id':'ImageData', 'x':539, 'y':357, 'width':122, 'height':149, 'attrs': '__image_filename|_camera_type|_image_list', 'meths': '__init__|analyze|process'}
+{'type':'umlshape', 'id':'TableData', 'x':714, 'y':252, 'width':115, 'height':119, 'attrs': '__datafile_name|_camera_type', 'meths': '__init__|analyze'}
+{'type':'umlshape', 'id':'TextData', 'x':770, 'y':6, 'width':90, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'ArrayData', 'x':766, 'y':178, 'width':100, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'AQiPTData', 'x':769, 'y':91, 'width':100, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'time.strftime', 'x':347, 'y':329, 'width':140, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'h5py.File', 'x':351, 'y':180, 'width':100, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'edge', 'id':'TextData_to_Data', 'source':'TextData', 'target':'Data', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'ArrayData_to_Data', 'source':'ArrayData', 'target':'Data', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'AQiPTData_to_Data', 'source':'AQiPTData', 'target':'Data', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'TableData_to_Data', 'source':'TableData', 'target':'Data', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'ImageData_to_Data', 'source':'ImageData', 'target':'Data', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'time.strftime_to_DataManager', 'source':'time.strftime', 'target':'DataManager', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'h5py.File_to_DataManager', 'source':'h5py.File', 'target':'DataManager', 'uml_edge_type': 'composition'}

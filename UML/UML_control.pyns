@@ -1,0 +1,27 @@
+# PynSource Version 1.2
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin. Comments are saved.'}
+{'type':'umlshape', 'id':'function', 'x':27, 'y':192, 'width':129, 'height':419, 'attrs': '_plot|_res|area|args|tbase|waveform', 'meths': '__init__|chirp|chirplet|cspline|gaussian|gaussian_chirplet|getFunction|parabola|plotFunction|quadrature|ramp|resample|sawtooth|setArea|sinusoidal|step|supergaussian|triangular'}
+{'type':'umlshape', 'id':'pulse', 'x':226, 'y':265, 'width':129, 'height':449, 'attrs': '_combfunctionLST|_compiled|_digitized|_functionsLST|_res|_timeFlags|digiWaveform|label|tbase|waveform', 'meths': '__init__|add2Pulse|changeLabel|combineFunction|combinePulses|compilePulse|digitizeWaveform|getLabel|getPulse|mergeFunction|overwriteFunction|plotPulse|removeFunction|resample|saveWaveform|sumFunction'}
+{'type':'umlshape', 'id':'track', 'x':403, 'y':412, 'width':108, 'height':269, 'attrs': '_compiled|_res|digiWaveform|label|pulseList|tTrack', 'meths': '__init__|add2Track|clearTrack|compileTrack|getComposition|getLabel|getTrack|plotTrack'}
+{'type':'umlshape', 'id':'sequence', 'x':548, 'y':431, 'width':129, 'height':254, 'attrs': '_API_sequence|_Stack|_res|digiWaveformStack|label|nr_cycles|tSequence', 'meths': '__init__|clearSequence|getLabel|getSequence|plotSequence|stack2Sequence'}
+{'type':'umlshape', 'id':'experiment', 'x':1118, 'y':298, 'width':115, 'height':359, 'attrs': '_cmdMapper|_cmdMapperFile|_cmdMapperType|_creation|_metadata|_operationMode|atom|database|director|hardware|producer|sequences|tracks|waveforms', 'meths': '__init__|_assembler|_executeIFexist|compile|execute|recompile'}
+{'type':'umlshape', 'id':'director', 'x':919, 'y':371, 'width':122, 'height':284, 'attrs': '_HW_specs|_ID|_SW_specs|_SWmap|_atom_specs|_calibration|_drivers|_iscompiled', 'meths': '__init__|_mapperHW|_mapperSW|load_HWspecs|load_SWspecs|load_calibration|load_drivers'}
+{'type':'umlshape', 'id':'mapSW', 'x':711, 'y':435, 'width':157, 'height':199, 'attrs': 'command|instruction_id|instruction_name|instruction_realCH|instruction_specs|instruction_timeflag|instruction_timeflags|instruction_type|sequence_id|sequence_name', 'meths': ''}
+{'type':'umlshape', 'id':'np.concatenate', 'x':468, 'y':66, 'width':150, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'np.array', 'x':215, 'y':70, 'width':90, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'np.zeros', 'x':648, 'y':71, 'width':90, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'list', 'x':141, 'y':67, 'width':50, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'np.linspace', 'x':321, 'y':75, 'width':120, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'dict', 'x':755, 'y':80, 'width':50, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'edge', 'id':'mapSW_to_director', 'source':'mapSW', 'target':'director', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.concatenate_to_pulse', 'source':'np.concatenate', 'target':'pulse', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_pulse', 'source':'np.array', 'target':'pulse', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.zeros_to_track', 'source':'np.zeros', 'target':'track', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.concatenate_to_track', 'source':'np.concatenate', 'target':'track', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.zeros_to_pulse', 'source':'np.zeros', 'target':'pulse', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'list_to_pulse', 'source':'list', 'target':'pulse', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.linspace_to_function', 'source':'np.linspace', 'target':'function', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.zeros_to_sequence', 'source':'np.zeros', 'target':'sequence', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.linspace_to_pulse', 'source':'np.linspace', 'target':'pulse', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'dict_to_pulse', 'source':'dict', 'target':'pulse', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'dict_to_mapSW', 'source':'dict', 'target':'mapSW', 'uml_edge_type': 'composition'}

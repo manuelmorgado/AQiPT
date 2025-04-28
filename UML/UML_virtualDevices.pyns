@@ -1,0 +1,10 @@
+# PynSource Version 1.2
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin. Comments are saved.'}
+{'type':'umlshape', 'id':'camera', 'x':10, 'y':80, 'width':108, 'height':374, 'attrs': '_ID|_status|_type|data|dwellTime|exposureTime|height|imageFormat|power|raisingTime|shutterTime|temperature|width', 'meths': '__init__|acquireImage|getImage|imageFormat|saveImage|setTemperature|turnOFF|turnON'}
+{'type':'umlshape', 'id':'shutter', 'x':22, 'y':508, 'width':101, 'height':194, 'attrs': '_ID|_status|_type|configuration|dwellTime|shutterTime', 'meths': '__init__|close|open'}
+{'type':'umlshape', 'id':'DMD', 'x':299, 'y':94, 'width':87, 'height':374, 'attrs': '_ID|_status|_type|bitdepth|frameTiming|imageData|imagesNr|loadTime|showTime|sizeX|sizeY|triggerMode', 'meths': 'Halt|Reset|Run|SeqAlloc|SeqPut|SetTiming|Start|Stop|__init__'}
+{'type':'umlshape', 'id':'DDS', 'x':148, 'y':452, 'width':108, 'height':344, 'attrs': '_ID|_status|_type|amplitude|bitdepth|clockFrequency|clockWaveform|frequency|phase|sampling|ttl|waveform', 'meths': 'OFF|ON|__init__|getSignal|setAmplitude|setFrequency|setPhase'}
+{'type':'umlshape', 'id':'MW_generator', 'x':445, 'y':125, 'width':130, 'height':344, 'attrs': '_ID|_status|_type|amplitude|bitdepth|clockFrequency|clockWaveform|frequency|phase|sampling|ttl|waveform', 'meths': 'OFF|ON|__init__|getSignal|setAmplitude|setFrequency|setPhase'}
+{'type':'umlshape', 'id':'AWG', 'x':158, 'y':91, 'width':108, 'height':299, 'attrs': '_ID|_status|_type|bitdepth|clockFrequency|clockWaveform|nr_channels|sampling|ttl|waveforms', 'meths': 'OFF|ON|__init__|getSignal|setWaveform|showSignal'}
+{'type':'umlshape', 'id':'laser', 'x':302, 'y':661, 'width':66, 'height':119, 'attrs': '_ID|_status|_type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'oscilloscope', 'x':290, 'y':509, 'width':130, 'height':119, 'attrs': '_ID|_status|_type', 'meths': '__init__'}

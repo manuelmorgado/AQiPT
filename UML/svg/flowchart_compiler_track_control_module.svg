@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   contentStyleType="text/css"
+   height="360px"
+   preserveAspectRatio="none"
+   style="width:813px;height:360px;background:#FFFFFF;"
+   version="1.1"
+   viewBox="0 0 813 360"
+   width="813px"
+   zoomAndPan="magnify"
+   id="svg92"
+   sodipodi:docname="flowchart_compiler_track_control_module.svg"
+   inkscape:version="1.0.2 (1.0.2+r75+1)">
+  <metadata
+     id="metadata96">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1879"
+     inkscape:window-height="1025"
+     id="namedview94"
+     showgrid="false"
+     inkscape:zoom="1.1367633"
+     inkscape:cx="406.62883"
+     inkscape:cy="225.70103"
+     inkscape:window-x="1961"
+     inkscape:window-y="480"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg92"
+     inkscape:document-rotation="0" />
+  <defs
+     id="defs2" />
+  <g
+     id="g90"
+     inkscape:export-filename="/home/mmorgado/Desktop/PhD_thesis_notebooks/AQiPT/UML/png/compiler_track_control_module.png"
+     inkscape:export-xdpi="299.89291"
+     inkscape:export-ydpi="299.89291">
+    <ellipse
+       cx="384.5"
+       cy="20"
+       fill="#222222"
+       rx="10"
+       ry="10"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse4" />
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="48"
+       x="360.5"
+       y="50"
+       id="rect6" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="28"
+       x="370.5"
+       y="71.1387"
+       id="text8">Start</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="297"
+       x="236"
+       y="103.9688"
+       id="rect10" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="277"
+       x="246"
+       y="125.1074"
+       id="text12">Declare method compileTrack(new_pulseLST)</text>
+    <polygon
+       fill="#F1F1F1"
+       points="320,157.9375,449,157.9375,461,169.9375,449,181.9375,320,181.9375,308,169.9375,320,157.9375"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon14" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="129"
+       x="320"
+       y="173.7456"
+       id="text16">new_pulseLST is None</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="23"
+       x="285"
+       y="167.3433"
+       id="text18">true</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="28"
+       x="461"
+       y="167.3433"
+       id="text20">false</text>
+    <path
+       d="M179,191.9375 L179,230.7695 L159,234.7695 L179,238.7695 L179,277.6016 A0,0 0 0 0 179,277.6016 L536,277.6016 A0,0 0 0 0 536,277.6016 L536,201.9375 L526,191.9375 L179,191.9375 A0,0 0 0 0 179,191.9375 "
+       fill="#FEFFDD"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="path22" />
+    <path
+       d="M526,191.9375 L526,201.9375 L536,201.9375 L526,191.9375 "
+       fill="#FEFFDD"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="path24" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="173"
+       x="185"
+       y="209.0044"
+       id="text26">For each pulse in pulseList:</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="223"
+       x="185"
+       y="224.1372"
+       id="text28">- If digiWaveform is an np.ndarray,</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="308"
+       x="193"
+       y="239.27"
+       id="text30">concatenate the current pulse to digiWaveform.</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="336"
+       x="185"
+       y="254.4028"
+       id="text32">- Else, initialize digiWaveform with the current pulse.</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="261"
+       x="185"
+       y="269.5356"
+       id="text34">- Set _compiled to True after processing.</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="148"
+       x="11"
+       y="217.7852"
+       id="rect36" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="128"
+       x="21"
+       y="238.9238"
+       id="text38">Iterate over pulseList</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="256"
+       x="546"
+       y="191.9375"
+       id="rect40" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="236"
+       x="556"
+       y="213.0762"
+       id="text42">Do nothing (new_pulseLST is not None)</text>
+    <polygon
+       fill="#F1F1F1"
+       points="384.5,283.6016,396.5,295.6016,384.5,307.6016,372.5,295.6016,384.5,283.6016"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon44" />
+    <ellipse
+       cx="384.5"
+       cy="338.6016"
+       fill="none"
+       rx="11"
+       ry="11"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse46" />
+    <ellipse
+       cx="384.5"
+       cy="338.6016"
+       fill="#222222"
+       rx="6"
+       ry="6"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse48" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="384.5"
+       x2="384.5"
+       y1="30"
+       y2="50"
+       id="line50" />
+    <polygon
+       fill="#181818"
+       points="380.5,40,384.5,50,388.5,40,384.5,44"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon52" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="384.5"
+       x2="384.5"
+       y1="83.9688"
+       y2="103.9688"
+       id="line54" />
+    <polygon
+       fill="#181818"
+       points="380.5,93.9688,384.5,103.9688,388.5,93.9688,384.5,97.9688"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon56" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="308"
+       x2="85"
+       y1="169.9375"
+       y2="169.9375"
+       id="line58" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="85"
+       x2="85"
+       y1="169.9375"
+       y2="217.7852"
+       id="line60" />
+    <polygon
+       fill="#181818"
+       points="81,207.7852,85,217.7852,89,207.7852,85,211.7852"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon62" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="461"
+       x2="674"
+       y1="169.9375"
+       y2="169.9375"
+       id="line64" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="674"
+       x2="674"
+       y1="169.9375"
+       y2="191.9375"
+       id="line66" />
+    <polygon
+       fill="#181818"
+       points="670,181.9375,674,191.9375,678,181.9375,674,185.9375"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon68" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="85"
+       x2="85"
+       y1="251.7539"
+       y2="295.6016"
+       id="line70" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="85"
+       x2="372.5"
+       y1="295.6016"
+       y2="295.6016"
+       id="line72" />
+    <polygon
+       fill="#181818"
+       points="362.5,291.6016,372.5,295.6016,362.5,299.6016,366.5,295.6016"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon74" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="674"
+       x2="674"
+       y1="225.9063"
+       y2="295.6016"
+       id="line76" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="674"
+       x2="396.5"
+       y1="295.6016"
+       y2="295.6016"
+       id="line78" />
+    <polygon
+       fill="#181818"
+       points="406.5,291.6016,396.5,295.6016,406.5,299.6016,402.5,295.6016"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon80" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="384.5"
+       x2="384.5"
+       y1="137.9375"
+       y2="157.9375"
+       id="line82" />
+    <polygon
+       fill="#181818"
+       points="380.5,147.9375,384.5,157.9375,388.5,147.9375,384.5,151.9375"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon84" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="384.5"
+       x2="384.5"
+       y1="307.6016"
+       y2="327.6016"
+       id="line86" />
+    <polygon
+       fill="#181818"
+       points="380.5,317.6016,384.5,327.6016,388.5,317.6016,384.5,321.6016"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon88" />
+    <!--SRC=[PP31QiCm44Jl-eezsf3c0vnhMWYKNcpeCGXv7I-rLsQrJcY_lYlRfPZe8gHvcbbDKY_ggZfl9-UgCuR12yA8siSMGXmd6h0H7xuAniTrceU4xtLJ6amTxEw04dn4nXAqHuP2PSRIWQtgeYXU4U8T1LQUaWLcaQC9GhTUb-DR540V-XK3ud- -Me0Nk7JGqeq-_HsxA6FEzGmy7Rdr8lxxi71WqtEmLCx9DXA4MGHPDsUDEvVZPlvgsi5YISaFz8Fxg0Tf_-przxP6XUlMMPi36gi0VAVvrn83faHyMsdaTlcwmpnCqNdRjhRECIkzeSy5cx2MV7BcG9rpIUFq2m00]-->
+  </g>
+</svg>

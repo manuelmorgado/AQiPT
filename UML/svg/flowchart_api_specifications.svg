@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   contentStyleType="text/css"
+   height="1147px"
+   preserveAspectRatio="none"
+   style="width:471px;height:1147px;background:#FFFFFF;"
+   version="1.1"
+   viewBox="0 0 471 1147"
+   width="471px"
+   zoomAndPan="magnify"
+   id="svg280"
+   sodipodi:docname="flowchart_api_specifications.svg"
+   inkscape:version="1.0.2 (1.0.2+r75+1)">
+  <metadata
+     id="metadata284">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1879"
+     inkscape:window-height="1025"
+     id="namedview282"
+     showgrid="false"
+     inkscape:zoom="0.74978204"
+     inkscape:cx="235.5"
+     inkscape:cy="573.5"
+     inkscape:window-x="1961"
+     inkscape:window-y="480"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg280"
+     inkscape:document-rotation="0" />
+  <defs
+     id="defs2" />
+  <g
+     id="g278"
+     inkscape:export-filename="/home/mmorgado/Desktop/PhD_thesis_notebooks/AQiPT/UML/png/api_specifications.png"
+     inkscape:export-xdpi="300"
+     inkscape:export-ydpi="300">
+    <ellipse
+       cx="223"
+       cy="20"
+       fill="#222222"
+       rx="10"
+       ry="10"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse4" />
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="48"
+       x="199"
+       y="50"
+       id="rect6" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="28"
+       x="209"
+       y="71.1387"
+       id="text8">Start</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="169"
+       x="138.5"
+       y="103.9688"
+       id="rect10" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="98"
+       x="148.5"
+       y="125.1074"
+       id="text12">Declare function</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="149"
+       x="148.5"
+       y="139.0762"
+       id="text14">generateSpecifications()</text>
+    <polygon
+       fill="#F1F1F1"
+       points="180.5,171.9063,265.5,171.9063,277.5,183.9063,265.5,195.9063,180.5,195.9063,168.5,183.9063,180.5,171.9063"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon16" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="85"
+       x="180.5"
+       y="187.7144"
+       id="text18">mode=='JSON'</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="23"
+       x="145.5"
+       y="181.312"
+       id="text20">true</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="15"
+       x="277.5"
+       y="181.312"
+       id="text22">No</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="164"
+       x="27.5"
+       y="205.9063"
+       id="rect24" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="142"
+       x="37.5"
+       y="227.0449"
+       id="text26">Instantiate IDsBench for</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="144"
+       x="37.5"
+       y="241.0137"
+       id="text28">hardware specifications</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="197"
+       x="11"
+       y="288.8438"
+       id="rect30" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="177"
+       x="21"
+       y="309.9824"
+       id="text32">Load hardware specifications</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="62"
+       x="21"
+       y="323.9512"
+       id="text34">from JSON</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="153"
+       x="33"
+       y="371.7813"
+       id="rect36" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="133"
+       x="43"
+       y="392.9199"
+       id="text38">Print hardware header</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="167"
+       x="26"
+       y="440.75"
+       id="rect40" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="147"
+       x="36"
+       y="461.8887"
+       id="text42">Initialize hardware setup</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="163"
+       x="28"
+       y="509.7188"
+       id="rect44" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="143"
+       x="38"
+       y="530.8574"
+       id="text46">Associate hardware IDs</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="84"
+       x="38"
+       y="544.8262"
+       id="text48">with IDsBench</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="162"
+       x="28.5"
+       y="592.6563"
+       id="rect50" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="142"
+       x="38.5"
+       y="613.7949"
+       id="text52">Instantiate IDsBench for</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="140"
+       x="38.5"
+       y="627.7637"
+       id="text54">software specifications</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="193"
+       x="13"
+       y="675.5938"
+       id="rect56" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="173"
+       x="23"
+       y="696.7324"
+       id="text58">Load software specifications</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="62"
+       x="23"
+       y="710.7012"
+       id="text60">from JSON</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="149"
+       x="35"
+       y="758.5313"
+       id="rect62" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="129"
+       x="45"
+       y="779.6699"
+       id="text64">Print software header</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="159"
+       x="30"
+       y="827.5"
+       id="rect66" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="139"
+       x="40"
+       y="848.6387"
+       id="text68">Associate software IDs</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="84"
+       x="40"
+       y="862.6074"
+       id="text70">with IDsBench</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="145"
+       x="37"
+       y="910.4375"
+       id="rect72" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="125"
+       x="47"
+       y="931.5762"
+       id="text74">Return specifications</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="114"
+       x="47"
+       y="945.5449"
+       id="text76">dictionary for JSON</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="164"
+       x="254.5"
+       y="254.3086"
+       id="rect78" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="142"
+       x="264.5"
+       y="275.4473"
+       id="text80">Instantiate IDsBench for</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="144"
+       x="264.5"
+       y="289.416"
+       id="text82">hardware specifications</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="197"
+       x="238"
+       y="337.2461"
+       id="rect84" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="177"
+       x="248"
+       y="358.3848"
+       id="text86">Load hardware specifications</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="88"
+       x="248"
+       y="372.3535"
+       id="text88">for waveforms</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="153"
+       x="260"
+       y="420.1836"
+       id="rect90" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="133"
+       x="270"
+       y="441.3223"
+       id="text92">Print hardware header</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="167"
+       x="253"
+       y="489.1523"
+       id="rect94" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="147"
+       x="263"
+       y="510.291"
+       id="text96">Initialize hardware setup</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="163"
+       x="255"
+       y="558.1211"
+       id="rect98" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="143"
+       x="265"
+       y="579.2598"
+       id="text100">Associate hardware IDs</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="84"
+       x="265"
+       y="593.2285"
+       id="text102">with IDsBench</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="162"
+       x="255.5"
+       y="641.0586"
+       id="rect104" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="142"
+       x="265.5"
+       y="662.1973"
+       id="text106">Instantiate IDsBench for</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="140"
+       x="265.5"
+       y="676.166"
+       id="text108">software specifications</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="193"
+       x="240"
+       y="723.9961"
+       id="rect110" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="173"
+       x="250"
+       y="745.1348"
+       id="text112">Load software specifications</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="88"
+       x="250"
+       y="759.1035"
+       id="text114">for waveforms</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="159"
+       x="257"
+       y="806.9336"
+       id="rect116" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="139"
+       x="267"
+       y="828.0723"
+       id="text118">Associate software IDs</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="84"
+       x="267"
+       y="842.041"
+       id="text120">with IDsBench</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="178"
+       x="247.5"
+       y="889.8711"
+       id="rect122" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="158"
+       x="257.5"
+       y="911.0098"
+       id="text124">Get channel specifications</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="88"
+       x="257.5"
+       y="924.9785"
+       id="text126">from IDsBench</text>
+    <rect
+       fill="#F1F1F1"
+       height="47.9375"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="171"
+       x="251"
+       y="972.8086"
+       id="rect128" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="125"
+       x="261"
+       y="993.9473"
+       id="text130">Return specifications</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="151"
+       x="261"
+       y="1007.916"
+       id="text132">dictionary for waveforms</text>
+    <polygon
+       fill="#F1F1F1"
+       points="276.5,205.9063,396.5,205.9063,408.5,217.9063,396.5,229.9063,276.5,229.9063,264.5,217.9063,276.5,205.9063"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon134" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="23"
+       x="340.5"
+       y="240.1167"
+       id="text136">true</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="120"
+       x="276.5"
+       y="221.7144"
+       id="text138">mode=='waveforms'</text>
+    <polygon
+       fill="#F1F1F1"
+       points="336.5,1040.7461,348.5,1052.7461,336.5,1064.7461,324.5,1052.7461,336.5,1040.7461"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon140" />
+    <polygon
+       fill="#F1F1F1"
+       points="223,1070.7461,235,1082.7461,223,1094.7461,211,1082.7461,223,1070.7461"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon142" />
+    <ellipse
+       cx="223"
+       cy="1125.7461"
+       fill="none"
+       rx="11"
+       ry="11"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse144" />
+    <ellipse
+       cx="223"
+       cy="1125.7461"
+       fill="#222222"
+       rx="6"
+       ry="6"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse146" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="223"
+       x2="223"
+       y1="30"
+       y2="50"
+       id="line148" />
+    <polygon
+       fill="#181818"
+       points="219,40,223,50,227,40,223,44"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon150" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="223"
+       x2="223"
+       y1="83.9688"
+       y2="103.9688"
+       id="line152" />
+    <polygon
+       fill="#181818"
+       points="219,93.9688,223,103.9688,227,93.9688,223,97.9688"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon154" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="253.8438"
+       y2="288.8438"
+       id="line156" />
+    <polygon
+       fill="#181818"
+       points="105.5,278.8438,109.5,288.8438,113.5,278.8438,109.5,282.8438"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon158" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="336.7813"
+       y2="371.7813"
+       id="line160" />
+    <polygon
+       fill="#181818"
+       points="105.5,361.7813,109.5,371.7813,113.5,361.7813,109.5,365.7813"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon162" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="405.75"
+       y2="440.75"
+       id="line164" />
+    <polygon
+       fill="#181818"
+       points="105.5,430.75,109.5,440.75,113.5,430.75,109.5,434.75"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon166" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="474.7188"
+       y2="509.7188"
+       id="line168" />
+    <polygon
+       fill="#181818"
+       points="105.5,499.7188,109.5,509.7188,113.5,499.7188,109.5,503.7188"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon170" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="557.6563"
+       y2="592.6563"
+       id="line172" />
+    <polygon
+       fill="#181818"
+       points="105.5,582.6563,109.5,592.6563,113.5,582.6563,109.5,586.6563"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon174" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="640.5938"
+       y2="675.5938"
+       id="line176" />
+    <polygon
+       fill="#181818"
+       points="105.5,665.5938,109.5,675.5938,113.5,665.5938,109.5,669.5938"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon178" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="723.5313"
+       y2="758.5313"
+       id="line180" />
+    <polygon
+       fill="#181818"
+       points="105.5,748.5313,109.5,758.5313,113.5,748.5313,109.5,752.5313"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon182" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="792.5"
+       y2="827.5"
+       id="line184" />
+    <polygon
+       fill="#181818"
+       points="105.5,817.5,109.5,827.5,113.5,817.5,109.5,821.5"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon186" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="875.4375"
+       y2="910.4375"
+       id="line188" />
+    <polygon
+       fill="#181818"
+       points="105.5,900.4375,109.5,910.4375,113.5,900.4375,109.5,904.4375"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon190" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="302.2461"
+       y2="337.2461"
+       id="line192" />
+    <polygon
+       fill="#181818"
+       points="332.5,327.2461,336.5,337.2461,340.5,327.2461,336.5,331.2461"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon194" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="385.1836"
+       y2="420.1836"
+       id="line196" />
+    <polygon
+       fill="#181818"
+       points="332.5,410.1836,336.5,420.1836,340.5,410.1836,336.5,414.1836"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon198" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="454.1523"
+       y2="489.1523"
+       id="line200" />
+    <polygon
+       fill="#181818"
+       points="332.5,479.1523,336.5,489.1523,340.5,479.1523,336.5,483.1523"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon202" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="523.1211"
+       y2="558.1211"
+       id="line204" />
+    <polygon
+       fill="#181818"
+       points="332.5,548.1211,336.5,558.1211,340.5,548.1211,336.5,552.1211"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon206" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="606.0586"
+       y2="641.0586"
+       id="line208" />
+    <polygon
+       fill="#181818"
+       points="332.5,631.0586,336.5,641.0586,340.5,631.0586,336.5,635.0586"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon210" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="688.9961"
+       y2="723.9961"
+       id="line212" />
+    <polygon
+       fill="#181818"
+       points="332.5,713.9961,336.5,723.9961,340.5,713.9961,336.5,717.9961"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon214" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="771.9336"
+       y2="806.9336"
+       id="line216" />
+    <polygon
+       fill="#181818"
+       points="332.5,796.9336,336.5,806.9336,340.5,796.9336,336.5,800.9336"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon218" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="854.8711"
+       y2="889.8711"
+       id="line220" />
+    <polygon
+       fill="#181818"
+       points="332.5,879.8711,336.5,889.8711,340.5,879.8711,336.5,883.8711"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon222" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="937.8086"
+       y2="972.8086"
+       id="line224" />
+    <polygon
+       fill="#181818"
+       points="332.5,962.8086,336.5,972.8086,340.5,962.8086,336.5,966.8086"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon226" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="229.9063"
+       y2="254.3086"
+       id="line228" />
+    <polygon
+       fill="#181818"
+       points="332.5,244.3086,336.5,254.3086,340.5,244.3086,336.5,248.3086"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon230" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="408.5"
+       x2="445"
+       y1="217.9063"
+       y2="217.9063"
+       id="line232" />
+    <polygon
+       fill="#181818"
+       points="441,627.5273,445,637.5273,449,627.5273,445,631.5273"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon234" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="445"
+       x2="445"
+       y1="217.9063"
+       y2="1052.7461"
+       id="line236" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="445"
+       x2="348.5"
+       y1="1052.7461"
+       y2="1052.7461"
+       id="line238" />
+    <polygon
+       fill="#181818"
+       points="358.5,1048.7461,348.5,1052.7461,358.5,1056.7461,354.5,1052.7461"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon240" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="1020.7461"
+       y2="1040.7461"
+       id="line242" />
+    <polygon
+       fill="#181818"
+       points="332.5,1030.7461,336.5,1040.7461,340.5,1030.7461,336.5,1034.7461"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon244" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="168.5"
+       x2="109.5"
+       y1="183.9063"
+       y2="183.9063"
+       id="line246" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="183.9063"
+       y2="205.9063"
+       id="line248" />
+    <polygon
+       fill="#181818"
+       points="105.5,195.9063,109.5,205.9063,113.5,195.9063,109.5,199.9063"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon250" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="277.5"
+       x2="336.5"
+       y1="183.9063"
+       y2="183.9063"
+       id="line252" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="183.9063"
+       y2="205.9063"
+       id="line254" />
+    <polygon
+       fill="#181818"
+       points="332.5,195.9063,336.5,205.9063,340.5,195.9063,336.5,199.9063"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon256" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="109.5"
+       y1="958.375"
+       y2="1082.7461"
+       id="line258" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="109.5"
+       x2="211"
+       y1="1082.7461"
+       y2="1082.7461"
+       id="line260" />
+    <polygon
+       fill="#181818"
+       points="201,1078.7461,211,1082.7461,201,1086.7461,205,1082.7461"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon262" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="336.5"
+       y1="1064.7461"
+       y2="1082.7461"
+       id="line264" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="336.5"
+       x2="235"
+       y1="1082.7461"
+       y2="1082.7461"
+       id="line266" />
+    <polygon
+       fill="#181818"
+       points="245,1078.7461,235,1082.7461,245,1086.7461,241,1082.7461"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon268" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="223"
+       x2="223"
+       y1="151.9063"
+       y2="171.9063"
+       id="line270" />
+    <polygon
+       fill="#181818"
+       points="219,161.9063,223,171.9063,227,161.9063,223,165.9063"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon272" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="223"
+       x2="223"
+       y1="1094.7461"
+       y2="1114.7461"
+       id="line274" />
+    <polygon
+       fill="#181818"
+       points="219,1104.7461,223,1114.7461,227,1104.7461,223,1108.7461"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon276" />
+    <!--SRC=[fP9DReCm48NtFeLtWIiGPT4gKfMgIggoPMEPSMq9niWUYjhJr_oKa1OQeh00YNapyvw-yIGSiIHjFrl6aZt8GZZWgaP9ncA6xu3W145QWJJAID7-zb4Sr4RngBGvx7QRv_HqtCISD22FoDKGCnwUv82U19890_XXxny1fURAkWorS7dJhl8NWxTztuiLEL-GPAYSBNcxSb2_EeDqbciGERZjZmCJrXVc2oRpWEfgg3zuRsNdRom7enasXlHeEOIz4iTRHLVYB4YMuepoYpXdksDzpcwhxHlUGbQ7VtRcfkCht6VhVzWEXGSU7MqFRuAt4HyGPAMVONmFvpMiWxjn_QJh7-PhkD_C_Xx-QsvW8UODl4VcNUCJ49TQ848nVt1p-TOToo-V4EgAzM_coLRV]-->
+  </g>
+</svg>

@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   contentStyleType="text/css"
+   height="1340px"
+   preserveAspectRatio="none"
+   style="width:457px;height:1340px;background:#FFFFFF;"
+   version="1.1"
+   viewBox="0 0 457 1340"
+   width="457px"
+   zoomAndPan="magnify"
+   id="svg262"
+   sodipodi:docname="flowchart_api_analogs.svg"
+   inkscape:export-filename="/home/mmorgado/Desktop/PhD_thesis_notebooks/AQiPT/UML/png/api_analogs.png"
+   inkscape:export-xdpi="120"
+   inkscape:export-ydpi="120"
+   inkscape:version="1.0.2 (1.0.2+r75+1)">
+  <metadata
+     id="metadata266">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1879"
+     inkscape:window-height="1025"
+     id="namedview264"
+     showgrid="false"
+     inkscape:zoom="0.9076296"
+     inkscape:cx="234.95582"
+     inkscape:cy="400.14381"
+     inkscape:window-x="1961"
+     inkscape:window-y="480"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg262"
+     inkscape:document-rotation="0" />
+  <defs
+     id="defs2" />
+  <g
+     id="g260"
+     inkscape:export-filename="/home/mmorgado/Desktop/PhD_thesis_notebooks/AQiPT/UML/png/g260.png"
+     inkscape:export-xdpi="400.02707"
+     inkscape:export-ydpi="400.02707">
+    <ellipse
+       cx="227.75"
+       cy="20"
+       fill="#222222"
+       rx="10"
+       ry="10"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse4" />
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="48"
+       x="203.75"
+       y="50"
+       id="rect6" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="28"
+       x="213.75"
+       y="71.1387"
+       id="text8">Start</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="179"
+       x="138.25"
+       y="103.9688"
+       id="rect10" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="159"
+       x="148.25"
+       y="125.1074"
+       id="text12">Declare function analogs()</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="411"
+       x="22.25"
+       y="157.9375"
+       id="rect14" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="391"
+       x="32.25"
+       y="179.0762"
+       id="text16">Check if analogs_duration is set, else calculate from analog_args</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="135"
+       x="160.25"
+       y="211.9063"
+       id="rect18" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="115"
+       x="170.25"
+       y="233.0449"
+       id="text20">Initialize signals list</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="239"
+       x="108.25"
+       y="265.875"
+       id="rect22" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="219"
+       x="118.25"
+       y="287.0137"
+       id="text24">Iterate over zipped parameters lists</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="265"
+       x="95.25"
+       y="363.8438"
+       id="rect26" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="245"
+       x="105.25"
+       y="384.9824"
+       id="text28">Check for time conflicts between signals</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="275"
+       x="90.25"
+       y="417.8125"
+       id="rect30" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="255"
+       x="100.25"
+       y="438.9512"
+       id="text32">Set dynamic parameters for current signal</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="172"
+       x="141.75"
+       y="471.7813"
+       id="rect34" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="152"
+       x="151.75"
+       y="492.9199"
+       id="text36">Create time base (tbase)</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="263"
+       x="96.25"
+       y="525.75"
+       id="rect38" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="243"
+       x="106.25"
+       y="546.8887"
+       id="text40">Generate analog function based on type</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="251"
+       x="102.25"
+       y="637.7031"
+       id="rect42" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="231"
+       x="112.25"
+       y="658.8418"
+       id="text44">Modulate signal with carrier frequency</text>
+    <polygon
+       fill="#F1F1F1"
+       points="143.25,589.3008,312.25,589.3008,324.25,601.3008,312.25,613.3008,143.25,613.3008,131.25,601.3008,143.25,589.3008"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon46" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="23"
+       x="231.75"
+       y="623.5112"
+       id="text48">true</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="169"
+       x="143.25"
+       y="605.1089"
+       id="text50">Carrier frequency is specified</text>
+    <polygon
+       fill="#F1F1F1"
+       points="227.75,691.6719,239.75,703.6719,227.75,715.6719,215.75,703.6719,227.75,691.6719"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon52" />
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="210"
+       x="122.75"
+       y="735.6719"
+       id="rect54" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="190"
+       x="132.75"
+       y="756.8105"
+       id="text56">Append generated signal to list</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="130"
+       x="162.75"
+       y="789.6406"
+       id="rect58" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="110"
+       x="172.75"
+       y="810.7793"
+       id="text60">Increment counter</text>
+    <polygon
+       fill="#F1F1F1"
+       points="152.25,319.8438,303.25,319.8438,315.25,331.8438,303.25,343.8438,152.25,343.8438,140.25,331.8438,152.25,319.8438"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon62" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="151"
+       x="152.25"
+       y="335.6519"
+       id="text64">Any signal left to process?</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="14"
+       x="126.25"
+       y="329.2495"
+       id="text66">no</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="274"
+       x="90.75"
+       y="865.6094"
+       id="rect68" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="254"
+       x="100.75"
+       y="886.748"
+       id="text70">Calculate global bitlimits and max bitdepth</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="231"
+       x="112.25"
+       y="919.5781"
+       id="rect72" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="211"
+       x="122.25"
+       y="940.7168"
+       id="text74">Compose all signals into waveform</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="316"
+       x="69.75"
+       y="973.5469"
+       id="rect76" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="296"
+       x="79.75"
+       y="994.6855"
+       id="text78">Check if hardware ID is specified (ch_id != '0x0')</text>
+    <polygon
+       fill="#F1F1F1"
+       points="215.75,1027.5156,239.75,1027.5156,251.75,1039.5156,239.75,1051.5156,215.75,1051.5156,203.75,1039.5156,215.75,1027.5156"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon80" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="21"
+       x="217.25"
+       y="1043.3237"
+       id="text82">Yes</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="23"
+       x="180.75"
+       y="1036.9214"
+       id="text84">true</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="15"
+       x="251.75"
+       y="1036.9214"
+       id="text86">No</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="206"
+       x="11"
+       y="1061.5156"
+       id="rect88" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="186"
+       x="21"
+       y="1082.6543"
+       id="text90">Locate Python hardware object</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="185"
+       x="21.5"
+       y="1115.4844"
+       id="rect92" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="165"
+       x="31.5"
+       y="1136.623"
+       id="text94">Prepare hardware interface</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="209"
+       x="237"
+       y="1061.5156"
+       id="rect96" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="189"
+       x="247"
+       y="1082.6543"
+       id="text98">Set hardware interface to None</text>
+    <polygon
+       fill="#F1F1F1"
+       points="227.75,1155.4531,239.75,1167.4531,227.75,1179.4531,215.75,1167.4531,227.75,1155.4531"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon100" />
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="253"
+       x="101.25"
+       y="1199.4531"
+       id="rect102" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="233"
+       x="111.25"
+       y="1220.5918"
+       id="text104">Construct arguments for API_sequence</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="342"
+       x="56.75"
+       y="1253.4219"
+       id="rect106" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="322"
+       x="66.75"
+       y="1274.5605"
+       id="text108">Return waveform, hardware interface, and arguments</text>
+    <ellipse
+       cx="227.75"
+       cy="1318.3906"
+       fill="none"
+       rx="11"
+       ry="11"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse110" />
+    <ellipse
+       cx="227.75"
+       cy="1318.3906"
+       fill="#222222"
+       rx="6"
+       ry="6"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse112" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="30"
+       y2="50"
+       id="line114" />
+    <polygon
+       fill="#181818"
+       points="223.75,40,227.75,50,231.75,40,227.75,44"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon116" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="83.9688"
+       y2="103.9688"
+       id="line118" />
+    <polygon
+       fill="#181818"
+       points="223.75,93.9688,227.75,103.9688,231.75,93.9688,227.75,97.9688"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon120" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="137.9375"
+       y2="157.9375"
+       id="line122" />
+    <polygon
+       fill="#181818"
+       points="223.75,147.9375,227.75,157.9375,231.75,147.9375,227.75,151.9375"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon124" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="191.9063"
+       y2="211.9063"
+       id="line126" />
+    <polygon
+       fill="#181818"
+       points="223.75,201.9063,227.75,211.9063,231.75,201.9063,227.75,205.9063"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon128" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="245.875"
+       y2="265.875"
+       id="line130" />
+    <polygon
+       fill="#181818"
+       points="223.75,255.875,227.75,265.875,231.75,255.875,227.75,259.875"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon132" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="397.8125"
+       y2="417.8125"
+       id="line134" />
+    <polygon
+       fill="#181818"
+       points="223.75,407.8125,227.75,417.8125,231.75,407.8125,227.75,411.8125"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon136" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="451.7813"
+       y2="471.7813"
+       id="line138" />
+    <polygon
+       fill="#181818"
+       points="223.75,461.7813,227.75,471.7813,231.75,461.7813,227.75,465.7813"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon140" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="505.75"
+       y2="525.75"
+       id="line142" />
+    <polygon
+       fill="#181818"
+       points="223.75,515.75,227.75,525.75,231.75,515.75,227.75,519.75"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon144" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="613.3008"
+       y2="637.7031"
+       id="line146" />
+    <polygon
+       fill="#181818"
+       points="223.75,627.7031,227.75,637.7031,231.75,627.7031,227.75,631.7031"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon148" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="324.25"
+       x2="363.25"
+       y1="601.3008"
+       y2="601.3008"
+       id="line150" />
+    <polygon
+       fill="#181818"
+       points="359.25,644.6875,363.25,654.6875,367.25,644.6875,363.25,648.6875"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon152" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="363.25"
+       x2="363.25"
+       y1="601.3008"
+       y2="703.6719"
+       id="line154" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="363.25"
+       x2="239.75"
+       y1="703.6719"
+       y2="703.6719"
+       id="line156" />
+    <polygon
+       fill="#181818"
+       points="249.75,699.6719,239.75,703.6719,249.75,707.6719,245.75,703.6719"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon158" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="671.6719"
+       y2="691.6719"
+       id="line160" />
+    <polygon
+       fill="#181818"
+       points="223.75,681.6719,227.75,691.6719,231.75,681.6719,227.75,685.6719"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon162" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="559.7188"
+       y2="589.3008"
+       id="line164" />
+    <polygon
+       fill="#181818"
+       points="223.75,579.3008,227.75,589.3008,231.75,579.3008,227.75,583.3008"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon166" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="715.6719"
+       y2="735.6719"
+       id="line168" />
+    <polygon
+       fill="#181818"
+       points="223.75,725.6719,227.75,735.6719,231.75,725.6719,227.75,729.6719"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon170" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="769.6406"
+       y2="789.6406"
+       id="line172" />
+    <polygon
+       fill="#181818"
+       points="223.75,779.6406,227.75,789.6406,231.75,779.6406,227.75,783.6406"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon174" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="343.8438"
+       y2="363.8438"
+       id="line176" />
+    <polygon
+       fill="#181818"
+       points="223.75,353.8438,227.75,363.8438,231.75,353.8438,227.75,357.8438"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon178" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="823.6094"
+       y2="833.6094"
+       id="line180" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="387.25"
+       y1="833.6094"
+       y2="833.6094"
+       id="line182" />
+    <polygon
+       fill="#181818"
+       points="383.25,583.7188,387.25,573.7188,391.25,583.7188,387.25,579.7188"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon184" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="387.25"
+       x2="387.25"
+       y1="331.8438"
+       y2="833.6094"
+       id="line186" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="387.25"
+       x2="315.25"
+       y1="331.8438"
+       y2="331.8438"
+       id="line188" />
+    <polygon
+       fill="#181818"
+       points="325.25,327.8438,315.25,331.8438,325.25,335.8438,321.25,331.8438"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon190" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="140.25"
+       x2="78.25"
+       y1="331.8438"
+       y2="331.8438"
+       id="line192" />
+    <polygon
+       fill="#181818"
+       points="74.25,569.7188,78.25,579.7188,82.25,569.7188,78.25,573.7188"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon194" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="78.25"
+       x2="78.25"
+       y1="331.8438"
+       y2="845.6094"
+       id="line196" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="78.25"
+       x2="227.75"
+       y1="845.6094"
+       y2="845.6094"
+       id="line198" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="845.6094"
+       y2="865.6094"
+       id="line200" />
+    <polygon
+       fill="#181818"
+       points="223.75,855.6094,227.75,865.6094,231.75,855.6094,227.75,859.6094"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon202" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="299.8438"
+       y2="319.8438"
+       id="line204" />
+    <polygon
+       fill="#181818"
+       points="223.75,309.8438,227.75,319.8438,231.75,309.8438,227.75,313.8438"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon206" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="899.5781"
+       y2="919.5781"
+       id="line208" />
+    <polygon
+       fill="#181818"
+       points="223.75,909.5781,227.75,919.5781,231.75,909.5781,227.75,913.5781"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon210" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="953.5469"
+       y2="973.5469"
+       id="line212" />
+    <polygon
+       fill="#181818"
+       points="223.75,963.5469,227.75,973.5469,231.75,963.5469,227.75,967.5469"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon214" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="114"
+       x2="114"
+       y1="1095.4844"
+       y2="1115.4844"
+       id="line216" />
+    <polygon
+       fill="#181818"
+       points="110,1105.4844,114,1115.4844,118,1105.4844,114,1109.4844"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon218" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="203.75"
+       x2="114"
+       y1="1039.5156"
+       y2="1039.5156"
+       id="line220" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="114"
+       x2="114"
+       y1="1039.5156"
+       y2="1061.5156"
+       id="line222" />
+    <polygon
+       fill="#181818"
+       points="110,1051.5156,114,1061.5156,118,1051.5156,114,1055.5156"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon224" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="251.75"
+       x2="341.5"
+       y1="1039.5156"
+       y2="1039.5156"
+       id="line226" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="341.5"
+       x2="341.5"
+       y1="1039.5156"
+       y2="1061.5156"
+       id="line228" />
+    <polygon
+       fill="#181818"
+       points="337.5,1051.5156,341.5,1061.5156,345.5,1051.5156,341.5,1055.5156"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon230" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="114"
+       x2="114"
+       y1="1149.4531"
+       y2="1167.4531"
+       id="line232" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="114"
+       x2="215.75"
+       y1="1167.4531"
+       y2="1167.4531"
+       id="line234" />
+    <polygon
+       fill="#181818"
+       points="205.75,1163.4531,215.75,1167.4531,205.75,1171.4531,209.75,1167.4531"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon236" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="341.5"
+       x2="341.5"
+       y1="1095.4844"
+       y2="1167.4531"
+       id="line238" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="341.5"
+       x2="239.75"
+       y1="1167.4531"
+       y2="1167.4531"
+       id="line240" />
+    <polygon
+       fill="#181818"
+       points="249.75,1163.4531,239.75,1167.4531,249.75,1171.4531,245.75,1167.4531"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon242" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="1007.5156"
+       y2="1027.5156"
+       id="line244" />
+    <polygon
+       fill="#181818"
+       points="223.75,1017.5156,227.75,1027.5156,231.75,1017.5156,227.75,1021.5156"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon246" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="1179.4531"
+       y2="1199.4531"
+       id="line248" />
+    <polygon
+       fill="#181818"
+       points="223.75,1189.4531,227.75,1199.4531,231.75,1189.4531,227.75,1193.4531"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon250" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="1233.4219"
+       y2="1253.4219"
+       id="line252" />
+    <polygon
+       fill="#181818"
+       points="223.75,1243.4219,227.75,1253.4219,231.75,1243.4219,227.75,1247.4219"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon254" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="227.75"
+       x2="227.75"
+       y1="1287.3906"
+       y2="1307.3906"
+       id="line256" />
+    <polygon
+       fill="#181818"
+       points="223.75,1297.3906,227.75,1307.3906,231.75,1297.3906,227.75,1301.3906"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon258" />
+    <!--SRC=[RPB1Rjim38RlVWhkL1l8eUS4mn2qm11WAuBrj5CWItJCJPOyYQwRFlqeMN7NjRx84AcV_3yoiWfSRH_JiQkgxJrggm92DpdDv1qefwm_nxf9qRiUzM-WxdfxCbDGEOqYHEGDe8q8MbazMSKY4_nGaaygd6CIEJXYKfPU42AT9HR1KipL3umXFVDF6E25nX4DZ2ge0IMmf8d4t9D5gFVkKWJ0OiV07iRWDSRufQb0lj9kvmCm3TAMTvqbpH5Qv1dHNUjBwPp_Y0pcujH0-j-oIK1F8Q3Zyc9Nz0EcRhDugyHupUbeIlWhkiNE0k2LQKeo83zy6R4K5wZrdGg1n7aNyC-4JbyorX4rTOIc0Uwbvvh3X8l1NEMxDmlhmc8cxcK2_oajBQ4pr1MpUw7h39nBa-RwNZ0kuyXP1wS33icvzfCJ7BjANfK9ED-afLYdVRQ-5OMMsD90mbb9WK4zfnk38_TvX_mmUc6bh5tdJqwgpke91VNmPj5w5SoS5l9m_mO6rBe_aO5Fd-7czldsHfWdWZynliUq_UPrQkzuuLwWhvA-_ONwQlGOS4oNQvIIsqvf6L1Uwlh1DwzhyZujWNlm3ZEWH5cSkYXTQ0PP_Ib1N7PfVpoSuZANDFtj3-GfkDN_vWFnJKQvokogo7xy2m00]-->
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+# PynSource Version 1.2
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin. Comments are saved.'}
+{'type':'umlshape', 'id':'real_drivers', 'x':212, 'y':158, 'width':171, 'height':224, 'attrs': '_analog_dev|_daq_dev|_data_dev|_digital_dev|_pathDir|_real_dev_directory_LST', 'meths': '__init__|_init_analog|_init_daq|_init_data|_init_digital'}
+{'type':'umlshape', 'id':'analog_drivers', 'x':38, 'y':39, 'width':150, 'height':104, 'attrs': '_directory', 'meths': '__init__|wrap'}
+{'type':'umlshape', 'id':'daq_drivers', 'x':438, 'y':30, 'width':120, 'height':104, 'attrs': '_directory', 'meths': '__init__|wrap'}
+{'type':'umlshape', 'id':'data_drivers', 'x':35, 'y':381, 'width':130, 'height':104, 'attrs': '_directory', 'meths': '__init__|wrap'}
+{'type':'umlshape', 'id':'digital_drivers', 'x':436, 'y':382, 'width':160, 'height':104, 'attrs': '_directory', 'meths': '__init__|wrap'}
+{'type':'edge', 'id':'daq_drivers_to_real_drivers', 'source':'daq_drivers', 'target':'real_drivers', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'analog_drivers_to_real_drivers', 'source':'analog_drivers', 'target':'real_drivers', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'digital_drivers_to_real_drivers', 'source':'digital_drivers', 'target':'real_drivers', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'data_drivers_to_real_drivers', 'source':'data_drivers', 'target':'real_drivers', 'uml_edge_type': 'composition'}

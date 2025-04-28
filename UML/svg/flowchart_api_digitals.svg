@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   contentStyleType="text/css"
+   height="905px"
+   preserveAspectRatio="none"
+   style="width:963px;height:905px;background:#FFFFFF;"
+   version="1.1"
+   viewBox="0 0 963 905"
+   width="963px"
+   zoomAndPan="magnify"
+   id="svg174"
+   sodipodi:docname="flowchart_api_digitals.svg"
+   inkscape:version="1.0.2 (1.0.2+r75+1)">
+  <metadata
+     id="metadata178">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1879"
+     inkscape:window-height="1025"
+     id="namedview176"
+     showgrid="false"
+     inkscape:zoom="0.95027624"
+     inkscape:cx="339.13635"
+     inkscape:cy="509.85101"
+     inkscape:window-x="1961"
+     inkscape:window-y="480"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg174"
+     inkscape:document-rotation="0" />
+  <defs
+     id="defs2" />
+  <g
+     id="g172"
+     inkscape:export-filename="/home/mmorgado/Desktop/PhD_thesis_notebooks/AQiPT/UML/png/api_digitals.png"
+     inkscape:export-xdpi="500"
+     inkscape:export-ydpi="500">
+    <ellipse
+       cx="216.75"
+       cy="20"
+       fill="#222222"
+       rx="10"
+       ry="10"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse4" />
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="48"
+       x="192.75"
+       y="50"
+       id="rect6" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="28"
+       x="202.75"
+       y="71.1387"
+       id="text8">Start</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="165"
+       x="134.25"
+       y="103.9688"
+       id="rect10" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="145"
+       x="144.25"
+       y="125.1074"
+       id="text12">Declare function digitals</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="213"
+       x="110.25"
+       y="157.9375"
+       id="rect14" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="193"
+       x="120.25"
+       y="179.0762"
+       id="text16">Prepare invertions list if needed</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="210"
+       x="111.75"
+       y="211.9063"
+       id="rect18" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="190"
+       x="121.75"
+       y="233.0449"
+       id="text20">Prepare risetimes list if needed</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="204"
+       x="114.75"
+       y="265.875"
+       id="rect22" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="184"
+       x="124.75"
+       y="287.0137"
+       id="text24">Prepare falltimes list if needed</text>
+    <path
+       d="M381.75,309.8438 L381.75,356.2422 L361.75,360.2422 L381.75,364.2422 L381.75,410.6406 A0,0 0 0 0 381.75,410.6406 L951.75,410.6406 A0,0 0 0 0 951.75,410.6406 L951.75,319.8438 L941.75,309.8438 L381.75,309.8438 A0,0 0 0 0 381.75,309.8438 "
+       fill="#FEFFDD"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="path26" />
+    <path
+       d="M941.75,309.8438 L941.75,319.8438 L951.75,319.8438 L941.75,309.8438 "
+       fill="#FEFFDD"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="path28" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="549"
+       x="387.75"
+       y="326.9106"
+       id="text30">For each set of signal parameters (timeflag, ttl_duration, risetime, falltime, invertion):</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="308"
+       x="387.75"
+       y="342.0435"
+       id="text32">- Calculate combined time base ttl for the signal</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="351"
+       x="387.75"
+       y="357.1763"
+       id="text34">- Check for time conflict and print warning if necessary</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="355"
+       x="387.75"
+       y="372.3091"
+       id="text36">- Generate rising and falling edges using wait() function</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="382"
+       x="387.75"
+       y="387.4419"
+       id="text38">- Generate TTL pulse (inverted if specified) using constant()</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="13"
+       lengthAdjust="spacing"
+       textLength="244"
+       x="387.75"
+       y="402.5747"
+       id="text40">- Append signals and timeflags to lists</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="290"
+       x="71.75"
+       y="343.2578"
+       id="rect42" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="270"
+       x="81.75"
+       y="364.3965"
+       id="text44">Initialize signals, timeflags, and tbase_ttl lists</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="253"
+       x="90.25"
+       y="430.6406"
+       id="rect46" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="233"
+       x="100.25"
+       y="451.7793"
+       id="text48">Iterate over each signal parameter set</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="220"
+       x="106.75"
+       y="484.6094"
+       id="rect50" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="200"
+       x="116.75"
+       y="505.748"
+       id="text52">Compose waveform from signals</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="155"
+       x="139.25"
+       y="538.5781"
+       id="rect54" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="135"
+       x="149.25"
+       y="559.7168"
+       id="text56">Check if ch_id != '0x0'</text>
+    <polygon
+       fill="#F1F1F1"
+       points="204.75,592.5469,228.75,592.5469,240.75,604.5469,228.75,616.5469,204.75,616.5469,192.75,604.5469,204.75,592.5469"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon58" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="21"
+       x="206.25"
+       y="608.355"
+       id="text60">Yes</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="23"
+       x="169.75"
+       y="601.9526"
+       id="text62">true</text>
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="11"
+       lengthAdjust="spacing"
+       textLength="15"
+       x="240.75"
+       y="601.9526"
+       id="text64">No</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="206"
+       x="11"
+       y="626.5469"
+       id="rect66" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="186"
+       x="21"
+       y="647.6855"
+       id="text68">Locate Python hardware object</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="185"
+       x="21.5"
+       y="680.5156"
+       id="rect70" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="165"
+       x="31.5"
+       y="701.6543"
+       id="text72">Prepare hardware interface</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="165"
+       x="237"
+       y="626.5469"
+       id="rect74" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="145"
+       x="247"
+       y="647.6855"
+       id="text76">Set _hw_python to None</text>
+    <polygon
+       fill="#F1F1F1"
+       points="216.75,720.4844,228.75,732.4844,216.75,744.4844,204.75,732.4844,216.75,720.4844"
+       style="stroke:#181818;stroke-width:0.5;"
+       id="polygon78" />
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="243"
+       x="95.25"
+       y="764.4844"
+       id="rect80" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="223"
+       x="105.25"
+       y="785.623"
+       id="text82">Prepare arguments for API_sequence</text>
+    <rect
+       fill="#F1F1F1"
+       height="33.9688"
+       rx="12.5"
+       ry="12.5"
+       style="stroke:#181818;stroke-width:0.5;"
+       width="342"
+       x="45.75"
+       y="818.4531"
+       id="rect84" />
+    <text
+       fill="#000000"
+       font-family="sans-serif"
+       font-size="12"
+       lengthAdjust="spacing"
+       textLength="322"
+       x="55.75"
+       y="839.5918"
+       id="text86">Return waveform, hardware interface, and arguments</text>
+    <ellipse
+       cx="216.75"
+       cy="883.4219"
+       fill="none"
+       rx="11"
+       ry="11"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse88" />
+    <ellipse
+       cx="216.75"
+       cy="883.4219"
+       fill="#222222"
+       rx="6"
+       ry="6"
+       style="stroke:#222222;stroke-width:1.0;"
+       id="ellipse90" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="30"
+       y2="50"
+       id="line92" />
+    <polygon
+       fill="#181818"
+       points="212.75,40,216.75,50,220.75,40,216.75,44"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon94" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="83.9688"
+       y2="103.9688"
+       id="line96" />
+    <polygon
+       fill="#181818"
+       points="212.75,93.9688,216.75,103.9688,220.75,93.9688,216.75,97.9688"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon98" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="137.9375"
+       y2="157.9375"
+       id="line100" />
+    <polygon
+       fill="#181818"
+       points="212.75,147.9375,216.75,157.9375,220.75,147.9375,216.75,151.9375"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon102" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="191.9063"
+       y2="211.9063"
+       id="line104" />
+    <polygon
+       fill="#181818"
+       points="212.75,201.9063,216.75,211.9063,220.75,201.9063,216.75,205.9063"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon106" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="245.875"
+       y2="265.875"
+       id="line108" />
+    <polygon
+       fill="#181818"
+       points="212.75,255.875,216.75,265.875,220.75,255.875,216.75,259.875"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon110" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="299.8438"
+       y2="343.2578"
+       id="line112" />
+    <polygon
+       fill="#181818"
+       points="212.75,333.2578,216.75,343.2578,220.75,333.2578,216.75,337.2578"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon114" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="377.2266"
+       y2="430.6406"
+       id="line116" />
+    <polygon
+       fill="#181818"
+       points="212.75,420.6406,216.75,430.6406,220.75,420.6406,216.75,424.6406"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon118" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="464.6094"
+       y2="484.6094"
+       id="line120" />
+    <polygon
+       fill="#181818"
+       points="212.75,474.6094,216.75,484.6094,220.75,474.6094,216.75,478.6094"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon122" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="518.5781"
+       y2="538.5781"
+       id="line124" />
+    <polygon
+       fill="#181818"
+       points="212.75,528.5781,216.75,538.5781,220.75,528.5781,216.75,532.5781"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon126" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="114"
+       x2="114"
+       y1="660.5156"
+       y2="680.5156"
+       id="line128" />
+    <polygon
+       fill="#181818"
+       points="110,670.5156,114,680.5156,118,670.5156,114,674.5156"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon130" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="192.75"
+       x2="114"
+       y1="604.5469"
+       y2="604.5469"
+       id="line132" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="114"
+       x2="114"
+       y1="604.5469"
+       y2="626.5469"
+       id="line134" />
+    <polygon
+       fill="#181818"
+       points="110,616.5469,114,626.5469,118,616.5469,114,620.5469"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon136" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="240.75"
+       x2="319.5"
+       y1="604.5469"
+       y2="604.5469"
+       id="line138" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="319.5"
+       x2="319.5"
+       y1="604.5469"
+       y2="626.5469"
+       id="line140" />
+    <polygon
+       fill="#181818"
+       points="315.5,616.5469,319.5,626.5469,323.5,616.5469,319.5,620.5469"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon142" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="114"
+       x2="114"
+       y1="714.4844"
+       y2="732.4844"
+       id="line144" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="114"
+       x2="204.75"
+       y1="732.4844"
+       y2="732.4844"
+       id="line146" />
+    <polygon
+       fill="#181818"
+       points="194.75,728.4844,204.75,732.4844,194.75,736.4844,198.75,732.4844"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon148" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="319.5"
+       x2="319.5"
+       y1="660.5156"
+       y2="732.4844"
+       id="line150" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="319.5"
+       x2="228.75"
+       y1="732.4844"
+       y2="732.4844"
+       id="line152" />
+    <polygon
+       fill="#181818"
+       points="238.75,728.4844,228.75,732.4844,238.75,736.4844,234.75,732.4844"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon154" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="572.5469"
+       y2="592.5469"
+       id="line156" />
+    <polygon
+       fill="#181818"
+       points="212.75,582.5469,216.75,592.5469,220.75,582.5469,216.75,586.5469"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon158" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="744.4844"
+       y2="764.4844"
+       id="line160" />
+    <polygon
+       fill="#181818"
+       points="212.75,754.4844,216.75,764.4844,220.75,754.4844,216.75,758.4844"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon162" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="798.4531"
+       y2="818.4531"
+       id="line164" />
+    <polygon
+       fill="#181818"
+       points="212.75,808.4531,216.75,818.4531,220.75,808.4531,216.75,812.4531"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon166" />
+    <line
+       style="stroke:#181818;stroke-width:1.0;"
+       x1="216.75"
+       x2="216.75"
+       y1="852.4219"
+       y2="872.4219"
+       id="line168" />
+    <polygon
+       fill="#181818"
+       points="212.75,862.4219,216.75,872.4219,220.75,862.4219,216.75,866.4219"
+       style="stroke:#181818;stroke-width:1.0;"
+       id="polygon170" />
+    <!--SRC=[VLB1Rjim3BtxAxXJ4o03UdQmGz5XGu2Y2DPUTZ9OYRAroP8dqSswhnyf9-usR3jPCCdt7jzZOSpSj0_wsJTD-vvCm4pWvcZOfmZMzvunb7tJ7ZDDMlFncR8M2mHV6Bo3I6J9_jAJVI7s8_sdnM48_sWvHCyUW_z1K7mVXNu7ske2zlB4Q86Vi5377Egqo6jYOkNj1su0FgGCX6O0aG79dM50Y74afbnWSm4KQ0wTdJFgJhjL-cvLk7jTUTiA-5kunM3cW49eqlZa8zcg3rIKme4JVXukyfUPWSpNfQ2j9aKNlE6wpPHzP3XXZZxsYnM6Ii7yKaS_KgICTRsY3JgYulHDjXSBv_h_X9utspMytsSV7-zWceC8t2phY6XXAXCPxppPxHb4X1N6A41r_cQQIEZEEIpUNw80JelzZRPe07921rxuad2SC_Z3V0r5KhvDuvH4pWcVIMmPmUKqNeYqNWqJYMRel8Ktx-3g-llrrRwHNvlFLBRgS9GWyqog5Q2zIqQfZoyyoEqEcEr9JoqzVI4ZbBNdSdzhLQodxD3Glg5gptqwmpt8yNJ3gPiMFDdsFaLjYzQxvlMKCVVpI95BZVVcUEWAVPifAcJxYNZESTroznVYvQHNb7rJE4q_0G00]-->
+  </g>
+</svg>

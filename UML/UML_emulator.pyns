@@ -1,0 +1,88 @@
+# PynSource Version 1.2
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin. Comments are saved.'}
+{'type':'umlshape', 'id':'atomicModel', 'x':778, 'y':267, 'width':171, 'height':704, 'attrs': 'Hamiltonian|Hpulses|Nrlevels|__mode|_atom|_basis|_bfield|_blochsphere|_graph|_lstHamiltonian|_name|_np_ops|_psi0|_states|atomicMap|cops|dynParams|initState|internalInteraction|mops|qubit_simRes|qubit_simRes_history|simOpts|simRes|simRes_history|tHamiltonian|times|zeeman_splitting_values', 'meths': '__init__|_check_qubitstate|add_ZeemanSplitting|buildHamiltonian|buildLindbladians|buildObservables|buildOnsiteInteraction|buildTHamiltonian|getResult|modelMap|playSim|qudit2qubit|recompile|showHamiltonian|showResults'}
+{'type':'umlshape', 'id':'atomicQRegister', 'x':1377, 'y':86, 'width':176, 'height':945, 'attrs': 'AMconfig|Hpulses|NrQReg|Nrlevels|_AMs|_AMslevels|_AMslevels_ket|_C3pairInteraction_idx|_HSlist|_Vint|__HilbertSpaceSize|__mode|_basis|_basisString|_combinationsC3|_connectivityType|_graphMap|_graphRegister|_graphscolors|_groundstates|_groundstatesAM|_homogeneous|_intbasis|_levels|_lsttHamiltonian|_name|_pairInteraction_idx|_pairInteraction_lval|_rydbergstates|_rydbergstatesAM|compileQRegister|connectivity|dynParams|initnState|layout|lstHamiltonian|lstNrlevels|lstPulses|lstcops|lstinitState|lstmops|map|nC3Interaction|nC6Interaction|nHamiltonian|ncops|nmops|simOpts|simRes|times|tnHamiltonian', 'meths': '__init__|_buildInteractingBasis|_getC3Strength|_getC6Strength|add2QRegister|buildInteractions|buildNBasis|buildNHamiltonian|buildNLindbladians|buildNObservables|buildNinitState|buildTNHamiltonian|compile|getNHamiltonian|getNLindbladian|getNObservables|getResult|playSim|registerMap|showHamiltonian|showResults'}
+{'type':'umlshape', 'id':'scan', 'x':990, 'y':358, 'width':143, 'height':374, 'attrs': 'Nrlevels|atomicmodel|dictionary|executed_scans|last_scan|name|parameters|population_idx|psi0|simulation_mode|times', 'meths': 'RunScans|RunScans_disordered|__init__|_get_scanValues|_scan_i|_scan_i_disordered|_scan_i_parallel|_update_params|getLastScan|plotScanResults'}
+{'type':'umlshape', 'id':'producer', 'x':571, 'y':522, 'width':178, 'height':434, 'attrs': '_HW_specs|_SW_specs|_actors_lst|_atom|_atom_specs|_atomicmodel|_atomicmodelSchedule|_atomicmodel_args|_atomicqregister|_atomicqregisterSchedule|_compiledActors|_director|_general_params|_simMode|atom_energies|name', 'meths': '__init__|_compileActors|_getActorNames|_getActors|_getModel|addActors|compile|getName|runSimulation'}
+{'type':'umlshape', 'id':'actor', 'x':255, 'y':345, 'width':164, 'height':269, 'attrs': '_HW_lst|_HW_specs|_HWschedule|field|field_action|field_action_arguments|kind|name|role|role_args|slave_type|status', 'meths': '__init__|compile'}
+{'type':'umlshape', 'id':'field', 'x':14, 'y':5, 'width':101, 'height':269, 'attrs': '_amplitude|_direction|_frequency|_phase|_polarization|_space|_time|_transition|_wavelength|kind|name|states|units', 'meths': '__init__'}
+{'type':'umlshape', 'id':'optical', 'x':302, 'y':101, 'width':80, 'height':64, 'attrs': '', 'meths': '__init__'}
+{'type':'umlshape', 'id':'acoustic', 'x':300, 'y':24, 'width':90, 'height':64, 'attrs': '', 'meths': '__init__'}
+{'type':'umlshape', 'id':'magnetic', 'x':149, 'y':107, 'width':90, 'height':64, 'attrs': '', 'meths': '__init__'}
+{'type':'umlshape', 'id':'microwave', 'x':149, 'y':16, 'width':100, 'height':64, 'attrs': '', 'meths': '__init__'}
+{'type':'umlshape', 'id':'rf', 'x':155, 'y':201, 'width':66, 'height':64, 'attrs': '', 'meths': '__init__'}
+{'type':'umlshape', 'id':'electric', 'x':291, 'y':196, 'width':90, 'height':64, 'attrs': '', 'meths': '__init__'}
+{'type':'umlshape', 'id':'gravity', 'x':152, 'y':284, 'width':80, 'height':64, 'attrs': '', 'meths': '__init__'}
+{'type':'umlshape', 'id':'optElement', 'x':0, 'y':925, 'width':110, 'height':164, 'attrs': 'args|label|name|type', 'meths': '__init__|get_matrix|get_name'}
+{'type':'umlshape', 'id':'medium', 'x':17, 'y':546, 'width':108, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'flatInterface', 'x':2, 'y':703, 'width':140, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'curvedInterface', 'x':383, 'y':843, 'width':160, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'flatMirror', 'x':173, 'y':703, 'width':110, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'curvedMirror', 'x':373, 'y':1037, 'width':130, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'thinLens', 'x':265, 'y':839, 'width':108, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'thickLens', 'x':-4, 'y':1108, 'width':108, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'prism', 'x':149, 'y':840, 'width':108, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'multiplePrism', 'x':183, 'y':1039, 'width':140, 'height':134, 'attrs': 'label|name|transferMatrix|type', 'meths': '__init__'}
+{'type':'umlshape', 'id':'beam', 'x':1187, 'y':254, 'width':108, 'height':314, 'attrs': '_Efield|_beamVector|_elements|amp|dir|freq|path|ph|pol|tSamp', 'meths': '__init__|add2Path|create|get_Efield|get_beamVector|get_elements|get_pathMatrix'}
+{'type':'umlshape', 'id':'tweezer', 'x':776, 'y':88, 'width':80, 'height':64, 'attrs': '', 'meths': '__init__'}
+{'type':'umlshape', 'id':'OptSetup', 'x':995, 'y':37, 'width':94, 'height':164, 'attrs': '_beams|_elements|name', 'meths': '__init__|_addElements|add2Setup|getbeams'}
+{'type':'umlshape', 'id':'object', 'x':769, 'y':218, 'width':70, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'qt.mesolve', 'x':1043, 'y':976, 'width':110, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'np.array', 'x':425, 'y':664, 'width':90, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'list', 'x':499, 'y':444, 'width':50, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'copy.deepcopy', 'x':69, 'y':435, 'width':140, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'np.dot', 'x':1171, 'y':734, 'width':70, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'dict', 'x':552, 'y':369, 'width':50, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'qt.Bloch', 'x':634, 'y':164, 'width':90, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'qt.QobjEvo', 'x':582, 'y':287, 'width':110, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'qt.tensor', 'x':1234, 'y':71, 'width':100, 'height':29, 'attrs': '', 'meths': ''}
+{'type':'edge', 'id':'tweezer_to_object', 'source':'tweezer', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'scan_to_object', 'source':'scan', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'OptSetup_to_object', 'source':'OptSetup', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'magnetic_to_field', 'source':'magnetic', 'target':'field', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'thinLens_to_optElement', 'source':'thinLens', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'flatInterface_to_optElement', 'source':'flatInterface', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'rf_to_field', 'source':'rf', 'target':'field', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'medium_to_optElement', 'source':'medium', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'optElement_to_object', 'source':'optElement', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'optical_to_field', 'source':'optical', 'target':'field', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'beam_to_object', 'source':'beam', 'target':'object', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'microwave_to_field', 'source':'microwave', 'target':'field', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'gravity_to_field', 'source':'gravity', 'target':'field', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'thickLens_to_optElement', 'source':'thickLens', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'flatMirror_to_optElement', 'source':'flatMirror', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'multiplePrism_to_optElement', 'source':'multiplePrism', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'prism_to_optElement', 'source':'prism', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'curvedMirror_to_optElement', 'source':'curvedMirror', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'curvedInterface_to_optElement', 'source':'curvedInterface', 'target':'optElement', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'electric_to_field', 'source':'electric', 'target':'field', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'acoustic_to_field', 'source':'acoustic', 'target':'field', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'microwave_to_actor', 'source':'microwave', 'target':'actor', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'qt.mesolve_to_atomicModel', 'source':'qt.mesolve', 'target':'atomicModel', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_curvedInterface', 'source':'np.array', 'target':'curvedInterface', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'qt.mesolve_to_atomicQRegister', 'source':'qt.mesolve', 'target':'atomicQRegister', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'list_to_producer', 'source':'list', 'target':'producer', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'copy.deepcopy_to_actor', 'source':'copy.deepcopy', 'target':'actor', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'acoustic_to_actor', 'source':'acoustic', 'target':'actor', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_flatMirror', 'source':'np.array', 'target':'flatMirror', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_medium', 'source':'np.array', 'target':'medium', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.dot_to_beam', 'source':'np.dot', 'target':'beam', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_curvedMirror', 'source':'np.array', 'target':'curvedMirror', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_multiplePrism', 'source':'np.array', 'target':'multiplePrism', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'magnetic_to_actor', 'source':'magnetic', 'target':'actor', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'optical_to_actor', 'source':'optical', 'target':'actor', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_flatInterface', 'source':'np.array', 'target':'flatInterface', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'dict_to_producer', 'source':'dict', 'target':'producer', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.dot_to_thickLens', 'source':'np.dot', 'target':'thickLens', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'electric_to_actor', 'source':'electric', 'target':'actor', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_thinLens', 'source':'np.array', 'target':'thinLens', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'qt.Bloch_to_atomicModel', 'source':'qt.Bloch', 'target':'atomicModel', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'list_to_scan', 'source':'list', 'target':'scan', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'qt.QobjEvo_to_atomicModel', 'source':'qt.QobjEvo', 'target':'atomicModel', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'qt.tensor_to_atomicQRegister', 'source':'qt.tensor', 'target':'atomicQRegister', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'atomicModel_to_producer', 'source':'atomicModel', 'target':'producer', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_prism', 'source':'np.array', 'target':'prism', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'np.array_to_beam', 'source':'np.array', 'target':'beam', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'rf_to_actor', 'source':'rf', 'target':'actor', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'list_to_atomicModel', 'source':'list', 'target':'atomicModel', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'gravity_to_actor', 'source':'gravity', 'target':'actor', 'uml_edge_type': 'composition'}
