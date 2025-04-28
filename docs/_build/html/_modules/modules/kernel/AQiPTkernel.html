@@ -2093,6 +2093,8 @@
 <span class="c1">#softwareSpecs AQiPT class</span>
 <span class="c1">#####################################################################################################</span>
 
+<div class="viewcode-block" id="softwareSpecs">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.softwareSpecs">[docs]</a>
 <span class="k">class</span> <span class="nc">softwareSpecs</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -2123,6 +2125,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_python_waveforms</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span>
 
     
+<div class="viewcode-block" id="softwareSpecs.loadSpecs">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.softwareSpecs.loadSpecs">[docs]</a>
     <span class="k">def</span> <span class="nf">loadSpecs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">directory</span><span class="o">.</span><span class="n">compiler_dir</span><span class="p">,</span> <span class="n">printON</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         
         <span class="c1">#load software_specs JSON file</span>
@@ -2137,8 +2141,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_website</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specifications</span><span class="p">[</span><span class="s1">&#39;website&#39;</span><span class="p">];</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_dateCreation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specifications</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">];</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_comments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specifications</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">];</span> 
-        <span class="k">pass</span>
+        <span class="k">pass</span></div>
+
         
+<div class="viewcode-block" id="softwareSpecs.update">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.softwareSpecs.update">[docs]</a>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">variables_UNITS</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">instructions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_waveforms</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Update the software specifications (modify the current .json file of software_specs)</span>
@@ -2321,12 +2328,17 @@
 
         <span class="c1">#updating configuration</span>
         <span class="k">if</span> <span class="n">configuration</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
-            <span class="k">pass</span>
+            <span class="k">pass</span></div>
 
+
+<div class="viewcode-block" id="softwareSpecs.printHeader">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.softwareSpecs.printHeader">[docs]</a>
     <span class="k">def</span> <span class="nf">printHeader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> | </span><span class="si">{1}</span><span class="s1"> | </span><span class="si">{2}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_author</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_affiliation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_website</span><span class="p">))</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Created: </span><span class="si">{0}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dateCreation</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Comments: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_comments</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Comments: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_comments</span><span class="p">))</span></div>
+</div>
+
 
 
 <span class="c1">#####################################################################################################</span>
@@ -2422,6 +2434,8 @@
 <span class="c1">#channelsBench AQiPT class</span>
 <span class="c1">#####################################################################################################</span>
 
+<div class="viewcode-block" id="IDsBench">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.IDsBench">[docs]</a>
 <span class="k">class</span> <span class="nc">IDsBench</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -2467,6 +2481,8 @@
 
         <span class="n">bench</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_record</span><span class="p">);</span>
 
+<div class="viewcode-block" id="IDsBench.set_HW_bench">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.IDsBench.set_HW_bench">[docs]</a>
     <span class="k">def</span> <span class="nf">set_HW_bench</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specifications</span><span class="p">):</span>
 
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
@@ -2500,8 +2516,11 @@
                         <span class="bp">self</span><span class="o">.</span><span class="n">_add_record</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="n">__name</span><span class="p">,</span> <span class="n">bench</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_CH_bench</span><span class="p">,</span> <span class="n">_hex_ID</span><span class="o">=</span> <span class="n">__CH_hex_ID</span><span class="p">,</span> <span class="n">_python_memory_alloc</span><span class="o">=</span> <span class="n">__CH_python_memory_alloc</span><span class="p">,</span> <span class="n">_subTYPE</span><span class="o">=</span> <span class="n">__CH_subTYPE</span><span class="p">);</span> <span class="c1">#creating and adding the new record of the CH dataclass</span>
                         <span class="n">i</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
                 <span class="k">except</span><span class="p">:</span>
-                    <span class="k">pass</span>
+                    <span class="k">pass</span></div>
 
+
+<div class="viewcode-block" id="IDsBench.set_SW_bench">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.IDsBench.set_SW_bench">[docs]</a>
     <span class="k">def</span> <span class="nf">set_SW_bench</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specifications</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Set the bench for the SW. This is used by the specification parser of the API.</span>
@@ -2536,27 +2555,40 @@
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">_add_record</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="n">__name</span><span class="p">,</span> <span class="n">bench</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_SW_bench</span><span class="p">,</span> <span class="n">_hex_ID</span><span class="o">=</span><span class="n">__hex_ID</span><span class="p">,</span> <span class="n">_python_memory_alloc</span><span class="o">=</span><span class="n">__python_memory_alloc</span><span class="p">,</span> <span class="n">_subTYPE</span><span class="o">=</span><span class="n">__subTYPE</span><span class="p">);</span> <span class="c1">#creating and adding the new record of the SW dataclass</span>
             <span class="k">except</span><span class="p">:</span>
-                <span class="k">pass</span>
+                <span class="k">pass</span></div>
+
     
+<div class="viewcode-block" id="IDsBench.get_HW_bench">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.IDsBench.get_HW_bench">[docs]</a>
     <span class="k">def</span> <span class="nf">get_HW_bench</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Returns the Hardware bench of IDs.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_HW_bench</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_HW_bench</span></div>
 
+
+<div class="viewcode-block" id="IDsBench.get_SW_bench">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.IDsBench.get_SW_bench">[docs]</a>
     <span class="k">def</span> <span class="nf">get_SW_bench</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Returns the Software bench of IDs.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SW_bench</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SW_bench</span></div>
 
+
+<div class="viewcode-block" id="IDsBench.get_CH_bench">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.IDsBench.get_CH_bench">[docs]</a>
     <span class="k">def</span> <span class="nf">get_CH_bench</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Returns the Channels bench of IDs.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CH_bench</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CH_bench</span></div>
+</div>
 
+
+<div class="viewcode-block" id="IDs">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.IDs">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">IDs</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -2583,7 +2615,8 @@
     <span class="n">hex_ID</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;0x0&quot;</span><span class="p">)</span>
     <span class="n">dec_ID</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;0x0&quot;</span><span class="p">)</span>
     <span class="n">python_memory_alloc</span> <span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;0x0&quot;</span><span class="p">)</span>
-    <span class="n">subTYPE</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;Default&quot;</span><span class="p">)</span>
+    <span class="n">subTYPE</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;Default&quot;</span><span class="p">)</span></div>
+
 
 <span class="c1">###################################################################################################</span>
 <span class="c1">#######################                 Middleware Kernel             #############################</span>
@@ -2710,6 +2743,8 @@
 
 <span class="c1"># plt.style.use(&quot;dark_background&quot;);</span>
 
+<div class="viewcode-block" id="RydbergQubitSchedule">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule">[docs]</a>
 <span class="k">class</span> <span class="nc">RydbergQubitSchedule</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Class wrapper of the schedule for the Rydberg qubits and Rydberg quantum register.</span>
@@ -2764,6 +2799,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">coupling_waveforms</span> <span class="o">=</span> <span class="n">merge_waveforms</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coupling_waveforms</span><span class="p">,</span> <span class="s1">&#39;Coupling&#39;</span><span class="p">);</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">detuning_waveforms</span> <span class="o">=</span> <span class="n">merge_waveforms</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">detuning_waveforms</span><span class="p">,</span> <span class="s1">&#39;Detuning&#39;</span><span class="p">);</span>
         
+<div class="viewcode-block" id="RydbergQubitSchedule.add_function">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.add_function">[docs]</a>
     <span class="k">def</span> <span class="nf">add_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_funct</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">idx</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parameter</span> <span class="o">=</span> <span class="s2">&quot;coupling&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Sum waveforms of the Couplings and Detunings.</span>
@@ -2785,8 +2822,11 @@
         <span class="n">_funct</span> <span class="o">=</span> <span class="n">_schedule</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
         <span class="n">_funct</span> <span class="o">+=</span> <span class="n">new_funct</span><span class="p">;</span>
         
-        <span class="n">_schedule</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">_funct</span><span class="p">;</span>
+        <span class="n">_schedule</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">_funct</span><span class="p">;</span></div>
+
         
+<div class="viewcode-block" id="RydbergQubitSchedule.add_coupling">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.add_coupling">[docs]</a>
     <span class="k">def</span> <span class="nf">add_coupling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_schedule</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">idx</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parameter</span> <span class="o">=</span> <span class="s2">&quot;coupling&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Merge waveforms of the Couplings and Detunings.</span>
@@ -2807,8 +2847,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span>
             
-        <span class="n">_schedule</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_schedule</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>    
+        <span class="n">_schedule</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_schedule</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>    </div>
 
+
+<div class="viewcode-block" id="RydbergQubitSchedule.plot_couplings">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.plot_couplings">[docs]</a>
     <span class="k">def</span> <span class="nf">plot_couplings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plotON</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amp</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Plot couplings function.</span>
@@ -2895,8 +2938,11 @@
         
         <span class="k">if</span> <span class="ow">not</span> <span class="n">plotON</span><span class="p">:</span> <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axis</span>
 
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
+
+<div class="viewcode-block" id="RydbergQubitSchedule.plot_detunings">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.plot_detunings">[docs]</a>
     <span class="k">def</span> <span class="nf">plot_detunings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Plot detuning function.</span>
@@ -2952,14 +2998,19 @@
         <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Detuning</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">key</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">plot</span><span class="p">:</span> <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axis</span>
 
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
+
+<div class="viewcode-block" id="RydbergQubitSchedule.plot_all">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.plot_all">[docs]</a>
     <span class="k">def</span> <span class="nf">plot_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">couplings_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">detunings_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Plot all function.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plot_couplings</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">couplings_label</span><span class="p">);</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plot_detunings</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">detunings_label</span><span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_detunings</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">detunings_label</span><span class="p">);</span></div>
+</div>
+
 
 
 <span class="k">class</span> <span class="nc">RydbergQRegisterSchedule</span><span class="p">():</span>
@@ -3026,6 +3077,8 @@
 
 <span class="n">WAVEFORM_PARAMS</span> <span class="o">=</span> <span class="n">aqipt</span><span class="o">.</span><span class="n">simulation_config</span><span class="o">.</span><span class="n">WAVEFORM_PARAMS</span><span class="p">;</span>
 
+<div class="viewcode-block" id="RydbergQubit">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubit">[docs]</a>
 <span class="k">class</span> <span class="nc">RydbergQubit</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Class wrapper of the AQiPTemulator atomicModel for generating the atom instances for</span>
@@ -3111,12 +3164,17 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">atom</span> <span class="o">=</span> <span class="n">_qubit</span><span class="p">;</span>
 
+<div class="viewcode-block" id="RydbergQubit.simulate">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubit.simulate">[docs]</a>
     <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="o">.</span><span class="n">playSim</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;control&#39;</span><span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="o">.</span><span class="n">playSim</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;control&#39;</span><span class="p">);</span></div>
+
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{self.name}</span><span class="s1">&#39;</span><span class="p">)</span>
     
+<div class="viewcode-block" id="RydbergQubit.plot_results">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQubit.plot_results">[docs]</a>
     <span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
@@ -3148,8 +3206,12 @@
 
         <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Population evolution&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">);</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</div>
 
+
+<div class="viewcode-block" id="RydbergQuantumRegister">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister">[docs]</a>
 <span class="k">class</span> <span class="nc">RydbergQuantumRegister</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Class wrapper of the AQiPTemulator atomicQRegister for generating the quantum register</span>
@@ -3244,6 +3306,8 @@
 
         <span class="k">return</span> <span class="n">atoms</span>
 
+<div class="viewcode-block" id="RydbergQuantumRegister.compile">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister.compile">[docs]</a>
     <span class="k">def</span> <span class="nf">compile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Setting of the full atomicQRegister of the instantiated class.</span>
@@ -3269,13 +3333,17 @@
         
         <span class="n">atomic_qregister</span><span class="o">.</span><span class="n">buildNObservables</span><span class="p">();</span>
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">atomic_qregister</span> <span class="o">=</span> <span class="n">atomic_qregister</span><span class="p">;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">atomic_qregister</span> <span class="o">=</span> <span class="n">atomic_qregister</span><span class="p">;</span></div>
 
+
+<div class="viewcode-block" id="RydbergQuantumRegister.simulate">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister.simulate">[docs]</a>
     <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Compile of the full atomicQRegister including the simulation of the instantiated class in the &#39;control&#39; mode.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">atomic_qregister</span><span class="o">.</span><span class="n">playSim</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;control&#39;</span><span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">atomic_qregister</span><span class="o">.</span><span class="n">playSim</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;control&#39;</span><span class="p">);</span></div>
+
 
     <span class="k">def</span> <span class="nf">_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
@@ -3285,6 +3353,8 @@
         <span class="n">qubits_schedules_lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">qubit</span><span class="o">.</span><span class="n">schedule</span> <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qubits</span><span class="p">];</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="n">RydbergQRegisterSchedule</span><span class="p">(</span><span class="n">qubits_schedules_lst</span><span class="p">);</span>
 
+<div class="viewcode-block" id="RydbergQuantumRegister.plot_schedule">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister.plot_schedule">[docs]</a>
     <span class="k">def</span> <span class="nf">plot_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">couplings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detunings</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Plot schedule of the Rydberg quantum register e.g., couplings and detunings.</span>
@@ -3293,8 +3363,11 @@
         <span class="n">waveform_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backend_config</span><span class="o">.</span><span class="n">waveform_config</span><span class="p">;</span>
         <span class="n">coupling_color</span> <span class="o">=</span> <span class="n">waveform_config</span><span class="o">.</span><span class="n">DEFAULT_COLORS</span><span class="p">[</span><span class="s2">&quot;coupling&quot;</span><span class="p">]</span>
         <span class="n">detuning_color</span> <span class="o">=</span> <span class="n">waveform_config</span><span class="o">.</span><span class="n">DEFAULT_COLORS</span><span class="p">[</span><span class="s2">&quot;detuning&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="o">.</span><span class="n">plot_schedule</span><span class="p">(</span><span class="n">couplings</span><span class="p">,</span> <span class="n">detunings</span><span class="p">,</span> <span class="n">coupling_color</span><span class="p">,</span> <span class="n">detuning_color</span><span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="o">.</span><span class="n">plot_schedule</span><span class="p">(</span><span class="n">couplings</span><span class="p">,</span> <span class="n">detunings</span><span class="p">,</span> <span class="n">coupling_color</span><span class="p">,</span> <span class="n">detuning_color</span><span class="p">);</span></div>
 
+
+<div class="viewcode-block" id="RydbergQuantumRegister.plot_results">
+<a class="viewcode-back" href="../../../source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister.plot_results">[docs]</a>
     <span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">           Plot results from the simulation of the Rydberg Quantum Register associated to the transpiled quantum circuit.</span>
@@ -3331,7 +3404,9 @@
 
         <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Population evolution&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">);</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</div>
+
 </pre></div>
 
            </div>

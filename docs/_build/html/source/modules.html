@@ -58,7 +58,17 @@
 <li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware drives</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#analysis-module">Analysis module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-modules.analysis.AQiPTanalysis">Analysis module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#modules.analysis.AQiPTanalysis.DataManager"><code class="docutils literal notranslate"><span class="pre">DataManager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modules.analysis.AQiPTanalysis.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modules.analysis.AQiPTanalysis.ImageData"><code class="docutils literal notranslate"><span class="pre">ImageData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modules.analysis.AQiPTanalysis.TableData"><code class="docutils literal notranslate"><span class="pre">TableData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modules.analysis.AQiPTanalysis.ArrayData"><code class="docutils literal notranslate"><span class="pre">ArrayData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modules.analysis.AQiPTanalysis.AQiPTData"><code class="docutils literal notranslate"><span class="pre">AQiPTData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modules.analysis.AQiPTanalysis.Trc"><code class="docutils literal notranslate"><span class="pre">Trc</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-modules.control.AQiPTcontrol">Control module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#modules.control.AQiPTcontrol.function"><code class="docutils literal notranslate"><span class="pre">function</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#modules.control.AQiPTcontrol.pulse"><code class="docutils literal notranslate"><span class="pre">pulse</span></code></a></li>
@@ -175,8 +185,259 @@
              
   <section id="modules">
 <h1>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h1>
-<section id="analysis-module">
-<h2>Analysis module<a class="headerlink" href="#analysis-module" title="Link to this heading"></a></h2>
+<section id="module-modules.analysis.AQiPTanalysis">
+<span id="analysis-module"></span><h2>Analysis module<a class="headerlink" href="#module-modules.analysis.AQiPTanalysis" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.DataManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.analysis.AQiPTanalysis.</span></span><span class="sig-name descname"><span class="pre">DataManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">AQiPT.AQiPTcore.directory.data_depository_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_data_2025-04-28_03h17m'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Default</span> <span class="pre">comments'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Data</span> <span class="pre">Manager</span> <span class="pre">by</span> <span class="pre">AQiPT.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan_variables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#DataManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.DataManager" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.DataManager.getPath">
+<span class="sig-name descname"><span class="pre">getPath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#DataManager.getPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.DataManager.getPath" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.DataManager.printPath">
+<span class="sig-name descname"><span class="pre">printPath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#DataManager.printPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.DataManager.printPath" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.DataManager.getVariable">
+<span class="sig-name descname"><span class="pre">getVariable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#DataManager.getVariable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.DataManager.getVariable" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.DataManager.add_RAW_data">
+<span class="sig-name descname"><span class="pre">add_RAW_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subgroup_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#DataManager.add_RAW_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.DataManager.add_RAW_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.DataManager.remove_data">
+<span class="sig-name descname"><span class="pre">remove_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#DataManager.remove_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.DataManager.remove_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.analysis.AQiPTanalysis.</span></span><span class="sig-name descname"><span class="pre">ArrayNNClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">training_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path2dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.png'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'adam'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sparse_categorical_crossentropy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['accuracy']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for atom detection in tweezer arrays. It does train a NN with a set of training images and test it with
+other set, afterwards the NN is trained and using the tensorflow model it can be used to classify what configuration
+is in the array.</p>
+<p>Note: tests was carried with 10k images training set and tested with 50 with accuracy &gt;90%</p>
+<p>Attributes:</p>
+<p>keys_to_features (dict): dictionary with figures and keywords association
+parsed_features (tensorflow.parser): tensorflow parser
+image (tensorflow.tensor): image (buffer)
+images (array): loaded images (buffer)
+labels (array): loaded labels of images (buffer)</p>
+<p>path2dataset (str): path to dataset of images
+training_folder (str): folder of training images for the model
+test_folder (str): folder of the test images</p>
+<p>raw_dataset (tensoflow.data): tensorflow data object
+parsed_image_dataset (array): image dataser after parser passed</p>
+<p>training_images (array): set of training images
+label_training_images (list(str)):
+test_images (array): set of test images
+label_test_images (list(str)):</p>
+<p>model (tensorflow.model): neural network tensorflow model
+optimizer (str): tensorflow optimizer
+loss (str): type of loss considered in the model
+metrics (list(str)): metrics used to train the model e.g., ‘accuracy’
+history (tensorflow.fit): tensorflow history of the model</p>
+<p>fig_ext (str): file of images extension</p>
+<p>test_loss (float):
+test_accuracy (float):</p>
+<p>Methods:</p>
+<p>_parse_function: parser of function for getting raw datasets</p>
+<p>import_images: get images
+load_images_and_labels: get images from folder/directory
+load_labels: get labels from folder/directory
+load_tensorflow_dataset: get images from tensorflow dataser</p>
+<p>get_classes: get classes of images to classify
+check_trained_images: check model with trained images
+binary_to_int: transform binary number into integer
+set_model: define NN tensorflow model for analysis
+compile_model: compile the loaded tensorflow model</p>
+<p>fit_model: fit model to training and test datasets
+evaluate: evaluate model
+get_classification: check model for classification</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.import_images">
+<span class="sig-name descname"><span class="pre">import_images</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.import_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.import_images" title="Link to this definition"></a></dt>
+<dd><p>Load all training and test images for NN</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_images_and_labels">
+<span class="sig-name descname"><span class="pre">load_images_and_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'images'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'metadata.txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.load_images_and_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_images_and_labels" title="Link to this definition"></a></dt>
+<dd><p>Image import function from folder with .txt file with one column with the label e.g., 1011 and image files
+the tensorflow file e.g., my_dataset.tfrecord</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_labels">
+<span class="sig-name descname"><span class="pre">load_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'metadata.txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.load_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_labels" title="Link to this definition"></a></dt>
+<dd><p>Load labels from .txt file in folder</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_tensorflow_dataset">
+<span class="sig-name descname"><span class="pre">load_tensorflow_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_path2dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.load_tensorflow_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_tensorflow_dataset" title="Link to this definition"></a></dt>
+<dd><p>Image import function from the tensorflow file e.g., my_dataset.tfrecord</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.get_classes">
+<span class="sig-name descname"><span class="pre">get_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.get_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.get_classes" title="Link to this definition"></a></dt>
+<dd><p>Get classes of possible combinations of atoms present in the array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.check_trained_images">
+<span class="sig-name descname"><span class="pre">check_trained_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figure_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrsamples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.check_trained_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.check_trained_images" title="Link to this definition"></a></dt>
+<dd><p>Check trained images with labels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.binary_to_int">
+<span class="sig-name descname"><span class="pre">binary_to_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.binary_to_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.binary_to_int" title="Link to this definition"></a></dt>
+<dd><p>Convert binary strings to integers</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.set_model">
+<span class="sig-name descname"><span class="pre">set_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.set_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.set_model" title="Link to this definition"></a></dt>
+<dd><p>Euristic NN architecture classifying objects, specifically for circular objects, it is
+designed to classify an image with an output of 2^4 possible outcomes, related to the possibility
+of 2x2 arrays of loaded atoms.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.compile_model">
+<span class="sig-name descname"><span class="pre">compile_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.compile_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.compile_model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.fit_model">
+<span class="sig-name descname"><span class="pre">fit_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.fit_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.fit_model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.evaluate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayNNClassifier.get_classification">
+<span class="sig-name descname"><span class="pre">get_classification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probabilities</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayNNClassifier.get_classification"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayNNClassifier.get_classification" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.Data">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.analysis.AQiPTanalysis.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path2raw_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#Data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.Data" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>AQiPT class for data types usually instantiated as Image,Table,Text,Array or AQiPT data.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.Data.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analysis_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#Data.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.Data.analyze" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.Data.get_latest_version">
+<span class="sig-name descname"><span class="pre">get_latest_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#Data.get_latest_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.Data.get_latest_version" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.Data.get_all_versions">
+<span class="sig-name descname"><span class="pre">get_all_versions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#Data.get_all_versions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.Data.get_all_versions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ImageData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.analysis.AQiPTanalysis.</span></span><span class="sig-name descname"><span class="pre">ImageData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path2raw_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subclass_attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cameraType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'IDS'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ImageData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ImageData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#modules.analysis.AQiPTanalysis.Data" title="modules.analysis.AQiPTanalysis.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ImageData.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ImageData.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ImageData.process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ImageData.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analysis_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ImageData.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ImageData.analyze" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.TableData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.analysis.AQiPTanalysis.</span></span><span class="sig-name descname"><span class="pre">TableData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path2raw_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subclass_attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cameraType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'IDS'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#TableData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.TableData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#modules.analysis.AQiPTanalysis.Data" title="modules.analysis.AQiPTanalysis.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.TableData.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analysis_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#TableData.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.TableData.analyze" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.ArrayData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.analysis.AQiPTanalysis.</span></span><span class="sig-name descname"><span class="pre">ArrayData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path2raw_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#ArrayData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.ArrayData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#modules.analysis.AQiPTanalysis.Data" title="modules.analysis.AQiPTanalysis.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.AQiPTData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.analysis.AQiPTanalysis.</span></span><span class="sig-name descname"><span class="pre">AQiPTData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path2raw_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#AQiPTData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.AQiPTData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#modules.analysis.AQiPTanalysis.Data" title="modules.analysis.AQiPTanalysis.Data"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.Trc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.analysis.AQiPTanalysis.</span></span><span class="sig-name descname"><span class="pre">Trc</span></span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#Trc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.Trc" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.Trc.open">
+<span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#Trc.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.Trc.open" title="Link to this definition"></a></dt>
+<dd><p>_readS .trc binary files from LeCroy Oscilloscopes.
+Decoding is based on LECROY_2_3 template.
+[More info]
+(<a class="reference external" href="http://forums.ni.com/attachments/ni/60/4652/2/LeCroyWaveformTemplate_2_3.pdf">http://forums.ni.com/attachments/ni/60/4652/2/LeCroyWaveformTemplate_2_3.pdf</a>)</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fName = filename of the .trc file</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>a tuple (x, y, d)</dt><dd></dd>
+<dt>x: array with sample times [s],</dt><dd></dd>
+<dt>y: array with sample  values [V],</dt><dd></dd>
+<dt>d: dictionary with metadata</dt><dd></dd>
+</dl>
+<ol class="upperalpha simple" start="13">
+<li><dl class="simple">
+<dt>Betz 09/2015</dt><dd></dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules.analysis.AQiPTanalysis.Trc.fromSPREADSHEET">
+<span class="sig-name descname"><span class="pre">fromSPREADSHEET</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname_lst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/analysis/AQiPTanalysis.html#Trc.fromSPREADSHEET"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.analysis.AQiPTanalysis.Trc.fromSPREADSHEET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-modules.control.AQiPTcontrol">
 <span id="control-module"></span><h2>Control module<a class="headerlink" href="#module-modules.control.AQiPTcontrol" title="Link to this heading"></a></h2>
@@ -1821,7 +2082,7 @@ colormap (str) : colormap for showing the plot</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="modules.control.AQiPTcontrol.experiment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.control.AQiPTcontrol.</span></span><span class="sig-name descname"><span class="pre">experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waveforms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hardware</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">director</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operationMode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">producer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2024-12-16</span> <span class="pre">|</span> <span class="pre">01:54:26'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/control/AQiPTcontrol.html#experiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.control.AQiPTcontrol.experiment" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modules.control.AQiPTcontrol.</span></span><span class="sig-name descname"><span class="pre">experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waveforms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hardware</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">director</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operationMode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">producer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2025-04-28</span> <span class="pre">|</span> <span class="pre">03:17:18'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/modules/control/AQiPTcontrol.html#experiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.control.AQiPTcontrol.experiment" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class for containing the general experiment: hardware, software(protocols), database, models, producers and
 metadata. Requires a pre-loaded director-object with the Hardware and Software specifications to match the

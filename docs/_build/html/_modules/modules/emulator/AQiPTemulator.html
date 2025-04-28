@@ -104,6 +104,7 @@
 
 <span class="c1"># import warnings</span>
 <span class="c1"># warnings.filterwarnings(&#39;ignore&#39;)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="n">under</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
@@ -2174,6 +2175,8 @@
 <span class="c1">#####################################################################################################</span>
 <span class="c1">#Scans-functions for atomicModels (AQiPT)</span>
 <span class="c1">#####################################################################################################</span>
+<div class="viewcode-block" id="scan">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.scan">[docs]</a>
 <span class="k">class</span> <span class="nc">scan</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
@@ -2270,6 +2273,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">results_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">AM</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span><span class="o">.</span><span class="n">expect</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nrlevels</span><span class="p">)]);</span> <span class="c1">#returning last value of simulation</span>
                      
+<div class="viewcode-block" id="scan.RunScans_disordered">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.scan.RunScans_disordered">[docs]</a>
     <span class="k">def</span> <span class="nf">RunScans_disordered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         
         <span class="n">_scanValues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_scanValues</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">);</span>
@@ -2319,7 +2324,8 @@
             <span class="n">_job</span><span class="o">.</span><span class="n">join</span><span class="p">();</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">last_scan</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_results_list</span><span class="p">);</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">executed_scans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_scan</span><span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">executed_scans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_scan</span><span class="p">);</span></div>
+
 
     <span class="k">def</span> <span class="nf">_scan_i</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scanNr1</span><span class="p">,</span> <span class="n">scan_idx1</span><span class="p">,</span> <span class="n">scanNr2</span><span class="p">,</span> <span class="n">scan_idx2</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">scanValues</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">Nrlevels</span><span class="p">,</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">AM</span><span class="p">,</span> <span class="n">result_idx</span><span class="p">,</span> <span class="n">results_list</span><span class="p">,</span> <span class="n">simMode</span><span class="o">=</span><span class="s1">&#39;free&#39;</span><span class="p">):</span>
         
@@ -2379,6 +2385,8 @@
 
         <span class="k">return</span> <span class="n">result</span>
 
+<div class="viewcode-block" id="scan.RunScans">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.scan.RunScans">[docs]</a>
     <span class="k">def</span> <span class="nf">RunScans</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">CPU_cores</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
         <span class="n">_scanValues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_scanValues</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">);</span>
 
@@ -2408,11 +2416,17 @@
         <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">();</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">last_scan</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_results_list</span><span class="p">);</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">executed_scans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_scan</span><span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">executed_scans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_scan</span><span class="p">);</span></div>
 
+
+<div class="viewcode-block" id="scan.getLastScan">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.scan.getLastScan">[docs]</a>
     <span class="k">def</span> <span class="nf">getLastScan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_scan</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_scan</span></div>
 
+
+<div class="viewcode-block" id="scan.plotScanResults">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.scan.plotScanResults">[docs]</a>
     <span class="k">def</span> <span class="nf">plotScanResults</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_value</span><span class="p">,</span> <span class="n">states_of_interest</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="n">variable</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
         <span class="n">_x_axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">variable</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">variable</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="mi">1</span><span class="p">];</span>
 
@@ -2427,11 +2441,15 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-        <span class="k">return</span>
+        <span class="k">return</span></div>
+</div>
+
 
 <span class="c1">#####################################################################################################</span>
 <span class="c1">#Producer AQiPT class</span>
 <span class="c1">#####################################################################################################</span>
+<div class="viewcode-block" id="producer">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.producer">[docs]</a>
 <span class="k">class</span> <span class="nc">producer</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        A class for creating the map of the director channels+instructions(waveforms) into Hamiltonian</span>
@@ -2519,6 +2537,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_atomicqregisterSchedule</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_simMode</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span>
 
+<div class="viewcode-block" id="producer.addActors">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.producer.addActors">[docs]</a>
     <span class="k">def</span> <span class="nf">addActors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actorName</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">deviceLst</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="n">roleDict</span><span class="p">:</span><span class="nb">dict</span><span class="o">=</span><span class="p">{},</span> <span class="n">actorSequence</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">actorType</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">slaveActor</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">actorStatus</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         
         <span class="n">_id_mem_alloc_lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">aqipt</span><span class="o">.</span><span class="n">DFsearch</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_HW_specs</span><span class="o">.</span><span class="n">_IDs_bench</span><span class="p">),</span> <span class="n">device</span><span class="p">)[</span><span class="s1">&#39;python_memory_alloc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">deviceLst</span><span class="p">];</span>
@@ -2621,7 +2641,8 @@
         <span class="c1">#         roleDict[&#39;args&#39;]=_lst_model_elements;</span>
 
         <span class="n">_new_actor</span> <span class="o">=</span> <span class="n">actor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">actorName</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">actorType</span><span class="p">,</span> <span class="n">devices</span><span class="o">=</span><span class="n">deviceLst</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">_role</span><span class="p">,</span> <span class="n">role_args</span><span class="o">=</span><span class="n">roleDict</span><span class="p">[</span><span class="s1">&#39;args&#39;</span><span class="p">],</span> <span class="n">slave</span><span class="o">=</span><span class="n">slaveActor</span><span class="p">,</span> <span class="n">statusMode</span><span class="o">=</span><span class="n">actorStatus</span><span class="p">,</span> <span class="n">hw_specs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_HW_specs</span><span class="p">);</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_actors_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_new_actor</span><span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actors_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_new_actor</span><span class="p">);</span></div>
+
 
     <span class="k">def</span> <span class="nf">_compileActors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         
@@ -2641,9 +2662,14 @@
     <span class="k">def</span> <span class="nf">_getModel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span>
 
+<div class="viewcode-block" id="producer.getName">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.producer.getName">[docs]</a>
     <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
     
+<div class="viewcode-block" id="producer.compile">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.producer.compile">[docs]</a>
     <span class="k">def</span> <span class="nf">compile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_Hamiltonian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulation_time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiledActors</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
@@ -2755,18 +2781,25 @@
                                                       <span class="n">buildHamiltonian</span><span class="o">=</span><span class="ow">not</span><span class="p">(</span><span class="n">t_Hamiltonian</span><span class="p">));</span> 
         <span class="bp">self</span><span class="o">.</span><span class="n">_atomicmodel</span><span class="o">.</span><span class="n">buildHamiltonian</span><span class="p">();</span>       
         <span class="bp">self</span><span class="o">.</span><span class="n">_atomicmodel</span><span class="o">.</span><span class="n">buildLindbladians</span><span class="p">();</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_atomicmodel</span><span class="o">.</span><span class="n">buildObservables</span><span class="p">();</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">_atomicmodel</span><span class="o">.</span><span class="n">buildObservables</span><span class="p">();</span>  </div>
 
+
+<div class="viewcode-block" id="producer.runSimulation">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.producer.runSimulation">[docs]</a>
     <span class="k">def</span> <span class="nf">runSimulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">showResults</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figure_size</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">plot_mode</span><span class="o">=</span><span class="s1">&#39;matplotlib&#39;</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_atomicmodel</span><span class="o">.</span><span class="n">playSim</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_simMode</span><span class="p">);</span>     
 
         <span class="k">if</span> <span class="n">showResults</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>  
-            <span class="bp">self</span><span class="o">.</span><span class="n">_atomicmodel</span><span class="o">.</span><span class="n">showResults</span><span class="p">(</span><span class="n">figure_size</span><span class="o">=</span><span class="n">figure_size</span><span class="p">,</span>  <span class="n">plot_mode</span><span class="o">=</span><span class="n">plot_mode</span><span class="p">);</span>       
+            <span class="bp">self</span><span class="o">.</span><span class="n">_atomicmodel</span><span class="o">.</span><span class="n">showResults</span><span class="p">(</span><span class="n">figure_size</span><span class="o">=</span><span class="n">figure_size</span><span class="p">,</span>  <span class="n">plot_mode</span><span class="o">=</span><span class="n">plot_mode</span><span class="p">);</span>       </div>
+</div>
+
 
 <span class="c1">#####################################################################################################</span>
 <span class="c1">#Actor AQiPT class</span>
 <span class="c1">#####################################################################################################</span>
+<div class="viewcode-block" id="actor">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.actor">[docs]</a>
 <span class="k">class</span> <span class="nc">actor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        A class for creating the map of the director channels+instructions(waveforms) into Hamiltonian</span>
@@ -2874,6 +2907,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">field_action</span> <span class="o">=</span> <span class="p">{};</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">field_action_arguments</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span>
 
+<div class="viewcode-block" id="actor.compile">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.actor.compile">[docs]</a>
     <span class="k">def</span> <span class="nf">compile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         
         <span class="c1">#setting the simulation arguments for the different actors types</span>
@@ -2939,11 +2974,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="n">electric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="n">devices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_HW_lst</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">field_action</span><span class="p">,</span> <span class="n">actionArgs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">field_action_arguments</span><span class="p">,</span> <span class="n">slave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">statusMode</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span> 
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;gravity&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="n">gravity</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="n">devices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_HW_lst</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">field_action</span><span class="p">,</span> <span class="n">actionArgs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">field_action_arguments</span><span class="p">,</span> <span class="n">slave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">statusMode</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="n">gravity</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="n">devices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_HW_lst</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">field_action</span><span class="p">,</span> <span class="n">actionArgs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">field_action_arguments</span><span class="p">,</span> <span class="n">slave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">statusMode</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span></div>
+</div>
+
           
 <span class="c1">#####################################################################################################</span>
 <span class="c1">#field AQiPT class</span>
 <span class="c1">#####################################################################################################</span>
+<div class="viewcode-block" id="field">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.field">[docs]</a>
 <span class="k">class</span> <span class="nc">field</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        A class for creating the general instances of fields: optical, microwave, RF, magnetic</span>
@@ -2994,53 +3033,75 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_wavelength</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span> <span class="c1"># wavelength</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_amplitude</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span> <span class="c1"># amplitude modulation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span> <span class="c1"># units of the attributes</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span></div>
+
 
 
 <span class="c1">###===================###</span>
 <span class="c1">### field sub-classes ###</span>
 <span class="c1">###===================###</span>
 
+<div class="viewcode-block" id="optical">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.optical">[docs]</a>
 <span class="k">class</span> <span class="nc">optical</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Optical field&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">optical</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">optical</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span></div>
+
         <span class="c1"># self.arg = arg;</span>
 
+<div class="viewcode-block" id="acoustic">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.acoustic">[docs]</a>
 <span class="k">class</span> <span class="nc">acoustic</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Acoustic field&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">acoustic</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">acoustic</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span></div>
+
         <span class="c1"># self.arg = arg;</span>
 
+<div class="viewcode-block" id="magnetic">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.magnetic">[docs]</a>
 <span class="k">class</span> <span class="nc">magnetic</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Magnetic field&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">magnetic</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">magnetic</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span></div>
+
         <span class="c1"># self.arg = arg;</span>
 
+<div class="viewcode-block" id="microwave">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.microwave">[docs]</a>
 <span class="k">class</span> <span class="nc">microwave</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Microwave field&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">microwave</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">microwave</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span></div>
+
         <span class="c1"># self.arg = arg;</span>
 
+<div class="viewcode-block" id="rf">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.rf">[docs]</a>
 <span class="k">class</span> <span class="nc">rf</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;RF field&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span></div>
+
         <span class="c1"># self.arg = arg;</span>
 
+<div class="viewcode-block" id="electric">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.electric">[docs]</a>
 <span class="k">class</span> <span class="nc">electric</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Electric field&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">electric</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">electric</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span></div>
+
         <span class="c1"># self.arg = arg;</span>
 
+<div class="viewcode-block" id="gravity">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.gravity">[docs]</a>
 <span class="k">class</span> <span class="nc">gravity</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Microwave field&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">gravity</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">gravity</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">);</span></div>
+
         <span class="c1"># self.arg = arg; </span>
 
 
@@ -3164,6 +3225,8 @@
 <span class="c1">#beam AQiPT class</span>
 <span class="c1">#####################################################################################################</span>
 
+<div class="viewcode-block" id="beam">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.beam">[docs]</a>
 <span class="k">class</span> <span class="nc">beam</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">polarization</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">aligned</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tSampling</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)):</span>
@@ -3181,10 +3244,15 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spacial dependency of setup no supported yet. Sorry :(&#39;</span><span class="p">)</span>
     
+<div class="viewcode-block" id="beam.create">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.beam.create">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">polarization</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">aligned</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tSampling</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)):</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">amplitude</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">polarization</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">aligned</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tSampling</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">amplitude</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">polarization</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">aligned</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tSampling</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span></div>
+
         
+<div class="viewcode-block" id="beam.add2Path">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.beam.add2Path">[docs]</a>
     <span class="k">def</span> <span class="nf">add2Path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optElmnt</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">optElmnt</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="n">optElmnt</span><span class="o">.</span><span class="n">get_matrix</span><span class="p">())</span>
@@ -3192,19 +3260,33 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">optElmnt</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">optElmnt</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="n">element</span><span class="o">.</span><span class="n">get_matrix</span><span class="p">())</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="o">+=</span><span class="n">optElmnt</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="o">+=</span><span class="n">optElmnt</span></div>
+
     
+<div class="viewcode-block" id="beam.get_beamVector">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.beam.get_beamVector">[docs]</a>
     <span class="k">def</span> <span class="nf">get_beamVector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_beamVector</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_beamVector</span></div>
+
     
+<div class="viewcode-block" id="beam.get_Efield">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.beam.get_Efield">[docs]</a>
     <span class="k">def</span> <span class="nf">get_Efield</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Efield</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Efield</span></div>
+
     
+<div class="viewcode-block" id="beam.get_pathMatrix">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.beam.get_pathMatrix">[docs]</a>
     <span class="k">def</span> <span class="nf">get_pathMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span></div>
+
     
+<div class="viewcode-block" id="beam.get_elements">
+<a class="viewcode-back" href="../../../source/modules.html#modules.emulator.AQiPTemulator.beam.get_elements">[docs]</a>
     <span class="k">def</span> <span class="nf">get_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span></div>
+</div>
+
 
 <span class="c1">#####################################################################################################</span>
 <span class="c1">#tweezer AQiPT class</span>
