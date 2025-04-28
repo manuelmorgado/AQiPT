@@ -1,9 +1,10 @@
-#Atomic Quantum information Processing Tool (AQIPT) - DAQ module
+#Atomic Quantum information Processing Tool (AQIPT - /ɪˈkwɪpt/) - DAQ module
 
 # Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
+#                            Universitaet Stuttgart. 5. Physikalisches Institut - QRydDemo
 # Contributor(s): 
-# Created: 2022-04-11
-# Last update: 2023-05-30
+# Created: 2021-10-04
+# Last update: 2024-12-14
 
 import os, time
 
@@ -38,6 +39,10 @@ from flask import Flask
 
 SEQUENCE_PORT = 8059;
 CAMERA_PORT = 8058;
+
+###################################################################################################
+#######################                 Frontend DAQ                  #############################
+###################################################################################################
 
 #####################################################################################################
 #Inspector AQiPT class

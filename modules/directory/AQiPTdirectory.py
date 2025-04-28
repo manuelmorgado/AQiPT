@@ -1,9 +1,10 @@
 #Atomic Quantum information Processing Tool (AQIPT - /ɪˈkwɪpt/) - Directory module
 
 # Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
+#                            Universitaet Stuttgart. 5. Physikalisches Institut - QRydDemo
 # Contributor(s): 
-# Created: 2021-04-08
-# Last update: 2022-02-07
+# Created: 2021-10-04
+# Last update: 2024-12-14
 
 #libs
 import os, json 
@@ -14,12 +15,11 @@ def setCurrentDir(pathDir):
 		Example:
 		import os
 
-		pathDir = "/home/user/Desktop/"; #path directory laptop with current date
+		pathDir = "/home/manuel/Downloads/"; #path directory laptop with current date
 		setCurrentDir(pathDir)
 		os.getcwd()
 	'''
 	os.chdir(pathDir)
-
 
 def loadJSON(path=None, filename=None, printON=False):
 
@@ -29,7 +29,7 @@ def loadJSON(path=None, filename=None, printON=False):
 	'''
 
 	if path==None:
-		with open('C:\\Users\\AQiPT\\modules\\directory\\directories.json', 'r') as json_file:
+		with open('~\\AQiPT\\modules\\directory\\directories.json', 'r') as json_file:
 			directories = json.load(json_file);
 			if printON==True:
 				print(json.dumps(directories, indent=1, sort_keys=True));
@@ -44,6 +44,10 @@ def loadJSON(path=None, filename=None, printON=False):
 				print(json.dumps(directories, indent=1, sort_keys=True));
 			return directories
 		pass
+
+###################################################################################################
+#######################                 Middlewareirectory                  #######################
+###################################################################################################
 
 class directory_tree:
 
