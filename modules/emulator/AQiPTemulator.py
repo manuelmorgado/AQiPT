@@ -1,9 +1,10 @@
-#Atomic Quantum information Processing Tool (AQIPT) - Emulator module
+#Atomic Quantum information Processing Tool (AQIPT - /ɪˈkwɪpt/) - Emulator module
 
 # Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ
+#                            Universitaet Stuttgart. 5. Physikalisches Institut - QRydDemo
 # Contributor(s): 
-# Created: 2021-04-08
-# Last update: 2023-06-26
+# Created: 2021-10-04
+# Last update: 2024-12-14
 
 
 #libs
@@ -23,6 +24,7 @@ import datetime
 
 # import warnings
 # warnings.filterwarnings('ignore')
+np.seterr(under='ignore')
 
 import networkx as nx
 from tqdm import tqdm
@@ -36,6 +38,10 @@ import AQiPT.modules.kernel.AQiPTkernel as kernel
 
 HZ_2_MHZ = 1/1e6;
 HZ_2_KHZ = 1/1e3;
+
+###################################################################################################
+#######################                 Frontend DAQ                  #############################
+###################################################################################################
 
 #####################################################################################################
 #atomicModel AQiPT class
@@ -202,7 +208,7 @@ def totBlockadeInt(atoms_pos, at_nr, excitations_idx=None, qdim=2, c_val=1):
 
 class atomicModel:
     
-    """
+    '''
         A class for develope models based in the n-level system of an atomic model. AQiPT atomicModel()
         class contain the basic toolbox for solve, time-dependent and -independent dynamics for 1 or
         more level physical atomic registers with the help of the AQiPT control-module using the class of 
@@ -288,7 +294,7 @@ class atomicModel:
         modelMap()
             Plot the graph associated to the n-level system of the atomic quantum register
         
-    """
+    '''
     
     
     def __init__(self, times, Nrlevels, initState, params, name='atomicModel-defaultName', simOpt=qt.Options(nsteps=120000, rtol=1e-6, max_step=10e-6)):
@@ -332,11 +338,14 @@ class atomicModel:
         self.simOpts = simOpt;
         self.simRes = None;
         self.simRes_history = [];
-        
+        self.qubit_simRes = None;
+        self.qubit_simRes_history = [];
+
+
         self.__mode = 'free';
 
     
-    def playSim(self, mode='free', psi0='density-matrix'):
+    def playSim(self, mode='free', psi0='density-matrix', store_states=False):
         '''
             Execute simulation
 
@@ -352,11 +361,13 @@ class atomicModel:
 
         if self.__mode=='free':
             if psi0=='state-vector':
+                self.simOpts.store_states = store_states;
                 self.simRes = qt.mesolve(self.Hamiltonian, self.initState, self.times, c_ops=self.cops, e_ops=self.mops, options=self.simOpts);
                 self.simRes_history.append({str(datetime.datetime.now()) : self.simRes});
                 print('Solving for \'free\' state-vector initial state.')
 
             elif psi0=='density-matrix':
+                self.simOpts.store_states = store_states;
                 self.simRes = qt.mesolve(self.Hamiltonian, qt.ket2dm(self.initState), self.times, c_ops=self.cops, e_ops=self.mops, options=self.simOpts);
                 self.simRes_history.append({str(datetime.datetime.now()) : self.simRes});
                 print('Solving for \'free\' density-matrix initial state')
@@ -364,10 +375,12 @@ class atomicModel:
         elif self.__mode=='control':
 
             if self.cops==None:
+                self.simOpts.store_states = store_states;
                 self.simRes = qt.mesolve(self.tHamiltonian, self.initState, self.times, e_ops=self.mops, options=self.simOpts);
                 self.simRes_history.append({str(datetime.datetime.now()) : self.simRes});
 
             else:
+                self.simOpts.store_states = store_states;
                 self.simRes = qt.mesolve(self.tHamiltonian, self.initState, self.times, c_ops=self.cops, e_ops=self.mops, options=self.simOpts);
                 self.simRes_history.append({str(datetime.datetime.now()) : self.simRes});
 
@@ -429,6 +442,8 @@ class atomicModel:
         
         self.__mode = 'control'
 
+        self._lstHamiltonian=[]; #reset attribute for recompilation
+        
         _HQobjEVO = [];
         _HAQiPTpulses = [];
         
@@ -508,7 +523,7 @@ class atomicModel:
         HoffD = sum([self.dynParams['detunings']['Detuning'+str(element)][1]*(self._ops[(self.dynParams['detunings']['Detuning'+str(element)][0])[0]*self.Nrlevels + (self.dynParams['detunings']['Detuning'+str(element)][0])[1]] ) for element in range(len(self.dynParams['detunings'])) ]);
         
         if self.internalInteraction == None:
-            self.Hamiltonian = 0.5*(HD + HoffD);
+            self.Hamiltonian = 0.5*(2*HD + 4*HoffD);
         else:
             # self.Hamiltonian = HD + HoffD;
             _Fullspace = [iden(self.Nrlevels)]*self.dynParams['Ensembles']['Atom_nr']; #empty string of operators for ensemble
@@ -586,16 +601,69 @@ class atomicModel:
         '''
         self.internalInteraction = totBlockadeInt(self.dynParams['Ensembles']['Atom_pos'], self.dynParams['Ensembles']['Atom_nr'], qdim=self.Nrlevels, c_val=c6_val)
 
-    def getResult(self):
+    def getResult(self, states='qudit'):
         '''
             Get results of atomicModel
 
             Assign the values of the simulation executed with playSim() into simRes attribute.
-
+            
+            mode (str): 'qudit' will show full dynamics of all levels
+                        'qubit' will show dynamics of qubit computational states
         '''
-        return self.simRes
+
+        if states=='qudit':
+            return self.simRes
+        elif states=='qubit':
+            return self.qubit_simRes
     
-    def showResults(self, plot_mode='matplotlib', resultseq=None, resultTitle=None, figure_size=(15,9), labels=None, figure=None, axis=None, legendON=True, report=False):
+    def getTHamiltonian(self, time_dependency=False):
+
+        if time_dependency:
+
+            return qt.Qobj(np.sum(self._lstHamiltonian, axis=0)), self.Hpulses
+
+        else:
+
+            return qt.Qobj(np.sum(self._lstHamiltonian, axis=0))
+        
+    def _check_qubitstate(self):
+
+        if 'qubitstate' not in self.dynParams:
+            self.dynParams['qubitstate'] = [0, 1];
+
+    def qudit2qubit(self):
+
+        _result_states = self.getResult().states;
+        
+        self._check_qubitstate();
+        #TODO: to be replace for allocated states
+        states=[];
+        for _state_idx in range(self.Nrlevels):
+            if _state_idx in self.dynParams['qubitstate']:
+                states.append(qt.basis(self.Nrlevels, _state_idx));#TODO: fix index: dont correspond to state index
+
+        _new_results = []
+        for _result in _result_states:
+            _reshaped_operator = qt.Qobj([[_result.matrix_element(bra, ket) for ket in states] for bra in states]);
+            _reshaped_operator.dims = [[2],[2]];
+
+            _new_results.append(_reshaped_operator);
+            
+        self.qubit_simRes = _new_results;
+        self.qubit_simRes_history.append(_new_results);
+
+
+    def showResults(self, plot_mode='matplotlib', resultseq=None, resultTitle=None, 
+                    figure_size=(15,9), 
+                    labels=None,
+                    fontsize=18, 
+                    figure=None, 
+                    axis=None, 
+                    legendON=True, 
+                    report=False, 
+                    time_unit=r'$\mu$s', 
+                    bloch_step=100,
+                    states= 'qudit' ):
         '''
             Show Results of atomicModel
 
@@ -639,7 +707,7 @@ class atomicModel:
                     fig.update_layout(showlegend=False)
 
                 fig.update_layout(
-                    xaxis_title='Time',
+                    xaxis_title='Time [{TIME_UNIT}]'.format(TIME_UNIT=time_unit),
                     yaxis_title='Population',
                     title=resultTitle if resultTitle != None else self._name,
                     width=figure_size[0],
@@ -649,49 +717,167 @@ class atomicModel:
 
         elif plot_mode=='bloch-sphere':
 
+            if self.Nrlevels==2:
+                self.buildObservables(observables=[qt.sigmax(), qt.sigmay(), qt.sigmaz()]);    #building Observables
+                self.playSim(psi0='state-vector', store_states=True);
 
-            self.buildObservables(observables=[qt.sigmax(), qt.sigmay(), qt.sigmaz()]);                                                                 #building Observables
-            self.simOpts.store_states=True;
-            self.playSim(psi0='state-vector');
+                if figure!=None and axis==None:
+                    self._blochsphere = qt.Bloch(fig=figure);
+                elif figure==None and axis!=None:
+                    self._blochsphere = qt.Bloch(axes=axis);
+                else:
+                    self._blochsphere = qt.Bloch(fig=figure, axes=axis);
 
-            self._blochsphere = qt.Bloch(fig=figure); 
-            self._blochsphere.vector_color = ['b']; #color of the initial state vector
+                self._blochsphere.vector_color = ['b']; #color of the initial state vector
 
-            psi_0 = list(self.simRes_history[-1].values())[0].states[0];
-            self._blochsphere.add_states(psi_0);
+                f_point = (bloch_step)*(int(len(self.times)/bloch_step)-1);
+                for _idx in range(0,len(self.times), bloch_step):
 
-            self._blochsphere.point_color = ['r']; #color of the points of the dynamic evolution of the state vector
-            self._blochsphere.point_alpha = [0.1];
+                    psi_0 = (self.simRes_history[-1])[list(self.simRes_history[-1])[-1]].states[_idx];
+                    
+                    #adding initial and final vector
+                    if _idx==0 or _idx==f_point:
+                        self._blochsphere.add_states(psi_0);
 
-            psi_t = [list(self.simRes_history[-1].values())[0].expect[i] for i in range(3)]; #points of the dynamic evolution of the state
+                    _point_0  = [qt.expect(qt.sigmax(),psi_0), qt.expect(qt.sigmay(),psi_0), qt.expect(qt.sigmaz(),psi_0)];
+                    self._blochsphere.add_points(_point_0);
 
-            self._blochsphere.add_points(psi_t);
+                self._blochsphere.vector_alpha = [0.4 for _ in self._blochsphere.vector_alpha];
+                self._blochsphere.vector_color = ['b','r'];
+                self._blochsphere.point_color = ['b']+['gray']*(int(len(self.times)/bloch_step)-2)+['r'];
+                self._blochsphere.point_marker = ['.']*int(len(self.times)/bloch_step);
 
-            self._blochsphere.render();
+
+                self._blochsphere.xlabel = [r'$\frac{|0\rangle + |1\rangle}{\sqrt{2}}$', r'$\frac{|0\rangle - |1\rangle}{\sqrt{2}}$'];
+                self._blochsphere.ylabel = [r'$\frac{|0\rangle + i|1\rangle}{\sqrt{2}}$', r'$\frac{|0\rangle - i|1\rangle}{\sqrt{2}}$'];
+                self._blochsphere.frame_color = 'gray';
+                self._blochsphere.frame_alpha = 0;
+                self._blochsphere.background = False;
+
+                self._blochsphere.render();
+
+
+            elif self.Nrlevels>2:
+                self.qudit2qubit();
+
+
+                self._blochsphere = qt.Bloch(fig=figure); 
+                self._blochsphere.vector_color = ['b']; #color of the initial state vector
+
+                f_point = (bloch_step)*(int(len(self.times)/bloch_step)-1);
+                for _idx in range(0,len(self.times), bloch_step):
+
+                    psi_0 = (self.qubit_simRes_history[-1])[_idx];
+                    
+                    #adding initial and final vector
+                    if _idx==0 or _idx==f_point:
+                        self._blochsphere.add_states(psi_0);
+
+                    _point_0  = [qt.expect(qt.sigmax(),psi_0), qt.expect(qt.sigmay(),psi_0), qt.expect(qt.sigmaz(),psi_0)];
+                    self._blochsphere.add_points(_point_0);
+
+                self._blochsphere.vector_alpha = [0.4 for _ in self._blochsphere.vector_alpha];
+                self._blochsphere.vector_color = ['b','r'];
+                self._blochsphere.point_color = ['b']+['gray']*(int(len(self.times)/bloch_step)-2)+['r'];
+                self._blochsphere.point_marker = ['.']*int(len(self.times)/bloch_step);
+
+
+                self._blochsphere.xlabel = [r'$\frac{|0\rangle + |1\rangle}{\sqrt{2}}$', r'$\frac{|0\rangle - |1\rangle}{\sqrt{2}}$'];
+                self._blochsphere.ylabel = [r'$\frac{|0\rangle + i|1\rangle}{\sqrt{2}}$', r'$\frac{|0\rangle - i|1\rangle}{\sqrt{2}}$'];
+                self._blochsphere.frame_color = 'gray';
+                self._blochsphere.frame_alpha = 0;
+                self._blochsphere.background = False;
+
+                self._blochsphere.render();
 
         else:
-            if resultseq==None:
-                resultseq = self.simRes;
-            
-            fig, axs = plt.subplots(figsize=figure_size);
 
-            if labels is None:
-                for i in range(len(resultseq.expect)):
-                    axs.plot(self.times, resultseq.expect[i], label=i, alpha=0.5, linewidth=1.5);
-            else:
-                for i in range(len(resultseq.expect)):
-                    axs.plot(self.times, resultseq.expect[i], label=labels[i], alpha=0.5, linewidth=1.5);
-            plt.legend();
-            plt.xlabel('Time', fontsize=18);
-            plt.ylabel('Population', fontsize=18);
+            if states=='qudit':
+                if resultseq==None:
+                    resultseq = self.simRes;
+                
+                fig, axs = plt.subplots(figsize=figure_size);
 
-            if resultTitle!=None:
-                    plt.title(resultTitle);
-            else:
-                plt.title(self._name);
+                if labels is None:
+                    for i in range(len(resultseq.expect)):
+                        axs.plot(self.times, resultseq.expect[i], label=i, alpha=0.5, linewidth=1.5);
+                else:
+                    for i in range(len(resultseq.expect)):
+                        axs.plot(self.times, resultseq.expect[i], label=labels[i], alpha=0.5, linewidth=1.5);
+                plt.legend();
+                plt.xlabel('Time [{TIME_UNIT}]'.format(TIME_UNIT=time_unit), fontsize=fontsize);
+                plt.ylabel('Population', fontsize=fontsize);
 
-            return fig, axs
+                if resultTitle!=None:
+                        plt.title(resultTitle);
+                else:
+                    plt.title(self._name);
+
+                return fig, axs
+
+            elif states=='qubit':
+                if resultseq==None:
+                    resultseq = self.qubit_simRes;
+                
+                fig, axs = plt.subplots(figsize=figure_size);
+
+                if labels is None:
+                    for i in range(len(resultseq)):
+                        axs.plot(self.times, resultseq[i], label=i, alpha=0.5, linewidth=1.5, fontsize=fontsize);
+                else:
+                    for i in range(len(resultseq)):
+                        axs.plot(self.times, resultseq[i], label=labels[i], alpha=0.5, linewidth=1.5);
+                plt.legend();
+                plt.xlabel('Time [{TIME_UNIT}]'.format(TIME_UNIT=time_unit), fontsize=fontsize);
+                plt.ylabel('Population', fontsize=fontsize);
+
+                if resultTitle!=None:
+                        plt.title(resultTitle);
+                else:
+                    plt.title(self._name);
+
+                return fig, axs
     
+    def showHamiltonian(self, plot_mode='qutip', figure_size=(15,15), qutip_style="scaled", unit='MHz', color_map='plasma'):
+
+        '''
+
+        '''
+
+        if plot_mode=='qutip':
+
+            qt.hinton(self.Hamiltonian, title='Hamiltonian', label_top=False, color_style=qutip_style)
+
+        elif plot_mode=='matplotlib':
+
+            fig, axs = plt.subplots(1,2, figsize=(15,15));
+
+            ticks = range(self.Nrlevels);
+            tick_labels = [r'$|{VALUE}\rangle$'.format(VALUE=i) for i in range(self.Nrlevels)];
+            
+
+            rHamiltonian = axs[0].imshow(np.real(self.Hamiltonian), cmap=color_map);
+            cbar1 = fig.colorbar(rHamiltonian, ax=axs[0],fraction=0.046, pad=0.046);
+            cbar1.set_label(r' {UNIT}/$2\pi$'.format(UNIT=unit));
+            axs[0].set_title('Real part Hamiltonian: '+self._name);
+            axs[0].set_xticks(ticks); # `ticks` is a list here!
+            axs[0].set_yticks(ticks); # `ticks` is a list here!
+
+            axs[0].set_xticklabels(tick_labels, rotation=90, fontsize=8);  # Set custom tick labels
+            axs[0].set_yticklabels(tick_labels, rotation=0, fontsize=8);  # Set custom tick labels
+            axs[0].grid();
+
+            iHamiltonian = axs[1].imshow(np.imag(self.Hamiltonian), cmap=color_map);
+            cbar2 = fig.colorbar(iHamiltonian, ax=axs[1], fraction=0.046, pad=0.046);
+            cbar2.set_label(r'{UNIT}/$2\pi$'.format(UNIT=unit));
+            axs[1].set_title('Imaginary part Hamiltonian: '+self._name);
+            axs[1].set_xticks(ticks); # `ticks` is a list here!
+            axs[1].set_yticks(ticks); # `ticks` is a list here!
+
+            axs[1].set_xticklabels(tick_labels, rotation=90, fontsize=8);  # Set custom tick labels
+            axs[1].set_yticklabels(tick_labels, rotation=0, fontsize=8);  # Set custom tick labels
+            axs[1].grid();
+
     def modelMap(self, plotON=True, figure_size=(8,8)):
         '''
             Construct and return the Graph plot and Lindbland terms for the Quantum master equation solver of QuTiP.
@@ -921,7 +1107,7 @@ def eliminate_duplicates(lst):
 
 class atomicQRegister:
     
-    """
+    '''
         A class for develope models based in the n-level system of an atomic register. AQiPT atomicQRegister()
         class contain the basic toolbox for solve, time-dependent and -independent dynamics for 1 or
         more physical atomic atomicModel() objects with the help of the AQiPT control-module using the class of 
@@ -1043,7 +1229,7 @@ class atomicQRegister:
         registerMap()
             Plot the graph associated atomicQRegister()
             
-    """
+    '''
 
     def __init__(self, physicalRegisters, initnState=None, name='atomicQRegister-DefaultName', 
                  times=None, NrQReg=None, homogeneous=True, lstNrlevels=None,
@@ -1076,11 +1262,14 @@ class atomicQRegister:
         self.__HilbertSpaceSize = sum(self.lstNrlevels);
         self._HSlist = [];
 
-        self.initnState = None;
+        self.initnState = initnState;
         if initnState==None:
             self.lstinitState = [AM.initState for AM in self._AMs];
-        else:
-            self.lstinitState = bitstring2lst(initnState);
+            self.initnState = initnState;
+        if isinstance(initnState, str):
+            self.lstinitState = initnState;
+        if isinstance(initnState, qt.Qobj):
+            self.initnState = initnState;
         
         self.dynParams = [AM.dynParams for AM in self._AMs];
         
@@ -1218,10 +1407,10 @@ class atomicQRegister:
             self.compileQRegister.update({_nqLabel: _nqDetails}); #store QRegister details/specs
 
         pos = {i: tuple(val) for i, val in enumerate(self.layout)};
-        pos = nx.set_node_attributes(Q, pos, 'pos');
+        # pos = nx.set_node_attributes(Q, pos, 'pos');
 
         #extract node positions
-        pos = nx.get_node_attributes(Q, 'pos');
+        # pos = nx.get_node_attributes(Q, 'pos');
         # print(pos)
         x, y, z = zip(*pos.values());
 
@@ -1428,16 +1617,22 @@ class atomicQRegister:
             Construct the initial state for the N atomicModel() that constitute the atomicQRegister() and store it in the attribute initnState. Either 
             from a given 
         '''
+        if self.initnState is None:
+            for elements in self.lstinitState:
+                if isinstance(elements, qt.Qobj):
+                    self.initnState = qt.tensor(self.lstinitState);
+            
+                elif isinstance(elements, int):
+                    self.initnState = qt.tensor([qt.basis(self.lstNrlevels[i],  self.lstinitState[i]) for i in range(len(self.lstinitState))]) 
+            
+            self.initnState.dims= [[self.Nrlevels],[1]];
+            self.initnState.reshape = (self.Nrlevels, 1);
 
-        for elements in self.lstinitState:
-            if isinstance(elements, qt.Qobj):
-                self.initnState = qt.tensor(self.lstinitState);
-        
-            elif isinstance(elements, int):
-                self.initnState = qt.tensor([qt.basis(self.lstNrlevels[i],  self.lstinitState[i]) for i in range(len(self.lstinitState))]) 
-        
-        self.initnState.dims= [[self.Nrlevels],[1]];
-        self.initnState.reshape = (self.Nrlevels, 1);
+        elif isinstance(self.lstinitState, str):
+            self.initnState = nqString2nqKet(self.lstinitState, bitsdim=[AM.Nrlevels for AM in self._AMs])
+
+            self.initnState.dims= [[self.Nrlevels],[1]];
+            self.initnState.reshape = (self.Nrlevels, 1);
     
     def buildNHamiltonian(self):
         '''
@@ -1487,7 +1682,7 @@ class atomicQRegister:
 
         self.tnHamiltonian = _bufHQobjEvo;
         self.Hpulses = _bufnHAQiPTpulses;
-                    
+
     def buildNLindbladians(self):
         '''
             Construct the Lindbladians for the N atomicModel() that constitute the atomicQRegister() and store it in the attribute ncops.
@@ -2151,39 +2346,41 @@ class producer:
         _id_mem_alloc_lst = [aqipt.DFsearch(pd.DataFrame(self._HW_specs._IDs_bench), device)['python_memory_alloc'].values[0] for device in deviceLst];
         _dev_in_memory = [ctypes.cast( int(_memory_id, 16), ctypes.py_object).value for _memory_id in _id_mem_alloc_lst];
 
-        
-        # print(roleDict)
 
-        _buf_roleDict = copy.copy(roleDict);
+        _buf_roleDict = copy.copy(roleDict); #copy of dictionary role
+        _role = None;
         _lst_model_elements = [None, None, None];
+
+
         for key in _buf_roleDict:
            
             if key == 'role':
-                pass
+                _role = _buf_roleDict['role'];
+
+            elif key == 'args':
+
+                #complete args from atom spec
+                if len(_buf_roleDict['args'])>1:
+
+                    if _buf_roleDict['args'][2] is None:
+                        pass #something happen
+                    else:
+                        pass
+
+                    if _buf_roleDict['args'][1] is None:
+                        pass #add the coupling or detuning from atom spec
+                    else:
+                        pass
+
+                    if _buf_roleDict['args'][0] is None:
+                        pass #operator is added from atom spec
+
             else:
-                roleDict['role'] = None;
-
-            if key == 'args':
-
-                if _buf_roleDict['args'][2] is None:
-                    pass #something happen
-                else:
-                    pass
-
-                if _buf_roleDict['args'][1] is None:
-                    pass #something happen
-                else:
-                    pass
-
-                if _buf_roleDict['args'][0] is None:
-                    pass #something happen
-                else:
-                    pass
-            else:
+                _role = None;
 
                 _lst_model_elements[0] = 'operator';
                 _lst_model_elements[1] = 'amplitude';
-
+                _lst_model_elements[2] = 'f(t)'; #mixing the signals accordingly with the device nature
 
                 #constructing the time dependency for the simulation
                 #build the device-waveform mapper for organizing the waveforms for each sequence corresponding to the different devices that match with the list actor's devices list
@@ -2200,8 +2397,6 @@ class producer:
                             _element_hex_id = aqipt.DFsearch(_dataframe, _aqipt_waveform[1]['identifier'])['python_memory_alloc'][aqipt.DFsearch(_dataframe, _aqipt_waveform[1]['identifier'])['python_memory_alloc'].index[0]];
                             _element_python = ctypes.cast( int(_element_hex_id, 16), ctypes.py_object).value;
 
-
-
                             # print(_aqipt_waveform[1]['identifier'], deviceLst, _element_python.__class__.__name__)
                             if _aqipt_waveform_idx==0:
                                 _dev_waveform_map[str(_aqipt_sequence.label)] = [{str(_aqipt_waveform[1]['identifier']): _aqipt_sequence.digiWaveformStack[_aqipt_waveform_idx]}, _element_python.__class__.__name__];
@@ -2209,21 +2404,17 @@ class producer:
                                 _dev_waveform_map[str(_aqipt_sequence.label)].append([{str(_aqipt_waveform[1]['identifier']): _aqipt_sequence.digiWaveformStack[_aqipt_waveform_idx]},_element_python.__class__.__name__]);
                         _aqipt_waveform_idx+=1;
 
-                #mixing the signals accordingly with the device nature
-                # print(_dev_waveform_map[actorSequence])
-                _lst_model_elements[2] = 'f(t)';
-
                 roleDict['args']=_lst_model_elements;            
 
-        if roleDict['role']==None:
-            # print(roleDict['args'][0])
-            if aqipt.check_elements_equal(roleDict['args'][0]):
-                roleDict['role'] = 'detuning';
-            else:
-                roleDict['role'] = 'coupling';
+        if _role==None:
 
-            if aqipt.check_dict_template(roleDict['args'][0], {'atom':None, 'bfield':None, 'state_lst':None}):
-                roleDict['role'] = 'zeeman-splitting';
+            if aqipt.check_elements_equal(_buf_roleDict['args'][0]):
+                _role = 'detuning';
+            else:
+                _role = 'coupling';
+
+            if aqipt.check_dict_template(_buf_roleDict['args'][0], {'atom':None, 'bfield':None, 'state_lst':None}):
+                _role = 'zeeman-splitting';
 
         # _lst_model_elements = [None, None, None];
         # for key in _buf_roleDict:
@@ -2251,7 +2442,7 @@ class producer:
 
         #         roleDict['args']=_lst_model_elements;
 
-        _new_actor = actor(name=actorName, kind=actorType, devices=deviceLst, role=roleDict['role'], role_args=roleDict['args'], slave=slaveActor, statusMode=actorStatus, hw_specs=self._HW_specs);
+        _new_actor = actor(name=actorName, kind=actorType, devices=deviceLst, role=_role, role_args=roleDict['args'], slave=slaveActor, statusMode=actorStatus, hw_specs=self._HW_specs);
         self._actors_lst.append(_new_actor);
 
     def _compileActors(self):
@@ -2275,7 +2466,7 @@ class producer:
     def getName(self):
         return self.name
     
-    def compile(self, psi0=0, t_Hamiltonian=False):
+    def compile(self, psi0=0, t_Hamiltonian=True, simulation_time=None):
         
         if self._compiledActors==False:
             self._compileActors();
@@ -2284,10 +2475,53 @@ class producer:
         #intial state for AM
         self._atomicmodel_args['psi0']=psi0;
 
+        #simulation time
+        if isinstance(simulation_time, np.ndarray):
+            self._atomicmodel_args['tbase']=simulation_time;
+
         #parameters for AM
         _AM_couplings = {};
         _AM_detunings = {};
         _AM_dissipators = {};
+        
+        _AM_dissipators = {'Dissipator0': [[0,13], 6],
+                             'Dissipator1': [[0,14], 6],
+                             'Dissipator2': [[0,15], 6],
+                             'Dissipator3': [[1,12], 6],
+                             'Dissipator4': [[1,13], 6],
+                             'Dissipator5': [[1,14], 6],
+                             'Dissipator6': [[2,11], 6],
+                             'Dissipator7': [[2,12], 6],
+                             'Dissipator8': [[2,13], 6],
+                             'Dissipator9': [[7,8], 6],
+                             'Dissipator10': [[6,8], 6],
+                             'Dissipator11': [[6,9], 6],
+                             'Dissipator12': [[5,8], 6],
+                             'Dissipator13': [[5,9], 6],
+                             'Dissipator14': [[5,10], 6],
+                             'Dissipator15': [[4,9], 6],
+                             'Dissipator16': [[4,10], 6],
+                             'Dissipator17': [[3,10], 6],
+                             'Dissipator18': [[0,8], 6],
+                             'Dissipator19': [[1,8], 6],
+                             'Dissipator20': [[0,9], 6],
+        #                      'Dissipator21': [[1,9], 6],
+                             'Dissipator21': [[2,9], 6],
+                             'Dissipator22': [[1,10], 6],
+                             'Dissipator23': [[2,10], 6],
+                             'Dissipator24': [[6,15], 6],
+                             'Dissipator25': [[7,15], 6],
+                             'Dissipator26': [[5,14], 6],
+                             'Dissipator27': [[6,14], 6],
+                             'Dissipator28': [[7,14], 6],
+                             'Dissipator29': [[4,13], 6],
+        #                      'Dissipator31': [[5,13], 6],
+                             'Dissipator30': [[6,13], 6],
+                             'Dissipator31': [[3,12], 6],
+                             'Dissipator32': [[4,12], 6],
+                             'Dissipator33': [[5,12], 6],
+                             'Dissipator34': [[3,11], 6],
+                             'Dissipator35': [[4,11], 6]}; 
         _AM_rydbergs = {'RydbergStates': [], 'l_values':[]};
 
         if t_Hamiltonian==False:
@@ -2313,12 +2547,12 @@ class producer:
 
             if t_Hamiltonian==False:
                 for _state_idx  in range(self._atomicmodel_args['Nrlevels']):
-                    _AM_detunings.update({'Detuning'+str(_detuning_idx): [[_state_idx, _state_idx], 1, None]});
+                    _AM_detunings.update({'Detuning'+str(_detuning_idx): [[_state_idx, _state_idx], 0, None]});
                     _detuning_idx+=1;
 
             elif t_Hamiltonian==True:
                 for _state_idx  in range(self._atomicmodel_args['Nrlevels']):
-                    _AM_detunings.update({'Detuning'+str(_detuning_idx): [[_state_idx, _state_idx], 1, np.ones(len(self._atomicmodel_args['tbase']))]});
+                    _AM_detunings.update({'Detuning'+str(_detuning_idx): [[_state_idx, _state_idx], 0, np.ones(len(self._atomicmodel_args['tbase']))]});
                     _detuning_idx+=1;
 
         self._atomicmodel_args['params4AM'] = {'couplings': _AM_couplings, 
@@ -2345,12 +2579,12 @@ class producer:
         self._atomicmodel.buildLindbladians();
         self._atomicmodel.buildObservables();  
 
-    def runSimulation(self, showResults=True, figure_size=(25,5)):
+    def runSimulation(self, showResults=True, figure_size=(25,5), plot_mode='matplotlib'):
 
         self._atomicmodel.playSim(mode=self._simMode);     
 
         if showResults==True:  
-            self._atomicmodel.showResults(figure_size=figure_size);       
+            self._atomicmodel.showResults(figure_size=figure_size,  plot_mode=plot_mode);       
 
 #####################################################################################################
 #Actor AQiPT class
@@ -2386,6 +2620,7 @@ class actor:
             Sparse matrix characterizing the quantum object.
 
     '''
+    
     def __init__(self, name, kind=None, devices=None, role=None, role_args=None, slave=True, statusMode='active', hw_specs=None):
 
         #atributes
@@ -2421,6 +2656,7 @@ class actor:
                 self.kind = 'magnetic';
 
         try:
+            #choosing the right states for the model depending in the format
             self.role_args = [];
             if len(role_args[0])>2 or len(role_args[0])==1:
                 for _pair_states in role_args[0]:
@@ -2462,6 +2698,8 @@ class actor:
 
     def compile(self):
         
+        #setting the simulation arguments for the different actors types
+
         if self.role=='detuning':
             _role_arg_idx=0;
             for _role_arg in self.role_args:
@@ -2501,7 +2739,9 @@ class actor:
                 self.field_action_arguments = _role_arg['coordinates'];
                 _role_arg_idx+=1;
                 print("Not implemented (define spatial geometry)")
-            
+        
+        #generating the field accordingly to the actors kind
+
         if self.kind == 'optical':
             self.field = optical(name=self.name, kind=self.kind, devices=self._HW_lst, action=self.field_action, actionArgs=self.field_action_arguments, slave=True, statusMode=False);
 
