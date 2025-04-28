@@ -1,0 +1,763 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQiPT: Atomic Quantum information Processing Toolbox &mdash; AQiPT: Atomic Quantum information Processing Toolbox  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pre-requisites" href="prerequisites.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #34495e" >
+
+          
+          
+          <a href="#">
+            
+              <img src="_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Pre-requisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Notebooks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #34495e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">AQiPT: Atomic Quantum information Processing Toolbox</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">AQiPT: Atomic Quantum information Processing Toolbox</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <a class="reference internal image-reference" href="_images/AQiPT_philosophy.png"><img alt="_images/AQiPT_philosophy.png" class="align-center" src="_images/AQiPT_philosophy.png" style="width: 800px;" />
+</a>
+<section id="aqipt-atomic-quantum-information-processing-toolbox">
+<h1>AQiPT: Atomic Quantum information Processing Toolbox<a class="headerlink" href="#aqipt-atomic-quantum-information-processing-toolbox" title="Link to this heading"></a></h1>
+<p>AQiPT is an open-source computational tool for the calculation of time-dependent and time-independent simulation of quantum systems, at the theoretical models on the Rotating Wave Approximation (RWA) up to the abstract level of classical control using waveforms. AQiPT is designed to be use at any level of abstraction of the quantum backend.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Pre-requisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AQiPTcore.html">AQiPTcore</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.cite"><code class="docutils literal notranslate"><span class="pre">cite()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.summary_libs"><code class="docutils literal notranslate"><span class="pre">summary_libs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.general_params"><code class="docutils literal notranslate"><span class="pre">general_params</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.general_params.getData"><code class="docutils literal notranslate"><span class="pre">general_params.getData()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.general_params.timebase"><code class="docutils literal notranslate"><span class="pre">general_params.timebase()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.QME_scan"><code class="docutils literal notranslate"><span class="pre">QME_scan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.QME_sol"><code class="docutils literal notranslate"><span class="pre">QME_sol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.digitize"><code class="docutils literal notranslate"><span class="pre">digitize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.time2index"><code class="docutils literal notranslate"><span class="pre">time2index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.saveWaveform"><code class="docutils literal notranslate"><span class="pre">saveWaveform()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.get_size"><code class="docutils literal notranslate"><span class="pre">get_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.get_explicit_variables"><code class="docutils literal notranslate"><span class="pre">get_explicit_variables()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.rand_hex"><code class="docutils literal notranslate"><span class="pre">rand_hex()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.print_classes"><code class="docutils literal notranslate"><span class="pre">print_classes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.DFsearch"><code class="docutils literal notranslate"><span class="pre">DFsearch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.remove_keywords_from_dict"><code class="docutils literal notranslate"><span class="pre">remove_keywords_from_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.print_nonzero"><code class="docutils literal notranslate"><span class="pre">print_nonzero()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.is_dict_of_dicts"><code class="docutils literal notranslate"><span class="pre">is_dict_of_dicts()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.is_list_of_lists"><code class="docutils literal notranslate"><span class="pre">is_list_of_lists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.is_list_of_strings"><code class="docutils literal notranslate"><span class="pre">is_list_of_strings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.check_elements_equal"><code class="docutils literal notranslate"><span class="pre">check_elements_equal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.check_dict_template"><code class="docutils literal notranslate"><span class="pre">check_dict_template()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.get_fft"><code class="docutils literal notranslate"><span class="pre">get_fft()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style"><code class="docutils literal notranslate"><span class="pre">style</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.BLACK"><code class="docutils literal notranslate"><span class="pre">style.BLACK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.RED"><code class="docutils literal notranslate"><span class="pre">style.RED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.GREEN"><code class="docutils literal notranslate"><span class="pre">style.GREEN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.YELLOW"><code class="docutils literal notranslate"><span class="pre">style.YELLOW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.BLUE"><code class="docutils literal notranslate"><span class="pre">style.BLUE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.MAGENTA"><code class="docutils literal notranslate"><span class="pre">style.MAGENTA</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.CYAN"><code class="docutils literal notranslate"><span class="pre">style.CYAN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.WHITE"><code class="docutils literal notranslate"><span class="pre">style.WHITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.UNDERLINE"><code class="docutils literal notranslate"><span class="pre">style.UNDERLINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.style.RESET"><code class="docutils literal notranslate"><span class="pre">style.RESET</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.BackendConfig"><code class="docutils literal notranslate"><span class="pre">BackendConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.BackendConfig.simulation_config"><code class="docutils literal notranslate"><span class="pre">BackendConfig.simulation_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.BackendConfig.waveform_config"><code class="docutils literal notranslate"><span class="pre">BackendConfig.waveform_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.BackendConfig.atomic_config"><code class="docutils literal notranslate"><span class="pre">BackendConfig.atomic_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.BackendConfig.transpiler_config"><code class="docutils literal notranslate"><span class="pre">BackendConfig.transpiler_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.BackendConfig.model_config"><code class="docutils literal notranslate"><span class="pre">BackendConfig.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="AQiPTcore.html#AQiPTcore.BackendConfig.model_fields"><code class="docutils literal notranslate"><span class="pre">BackendConfig.model_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/compiler.html">Compiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/compiler.html#module-compiler.circuits.AQiPTqccompiler">Circuit compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.apply_single_qubit_gate"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.apply_single_qubit_gate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.apply_two_qubit_gate"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.apply_two_qubit_gate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.x"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.x()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.y"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.y()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.z"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.z()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.h"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.h()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.phase"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.phase()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.t"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.t()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.rx"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.rx()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.ry"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.ry()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.rz"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.rz()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.cnot"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.cnot()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCircuitMPS.get_state_vector"><code class="docutils literal notranslate"><span class="pre">QuantumCircuitMPS.get_state_vector()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.OpenQASMParser"><code class="docutils literal notranslate"><span class="pre">OpenQASMParser</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.OpenQASMParser.parse_qasm"><code class="docutils literal notranslate"><span class="pre">OpenQASMParser.parse_qasm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCompiler"><code class="docutils literal notranslate"><span class="pre">QuantumCompiler</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCompiler.compile"><code class="docutils literal notranslate"><span class="pre">QuantumCompiler.compile()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCompiler.are_qubits_neighbors"><code class="docutils literal notranslate"><span class="pre">QuantumCompiler.are_qubits_neighbors()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/compiler.html#compiler.circuits.AQiPTqccompiler.QuantumCompiler.optimize_movement_and_swap"><code class="docutils literal notranslate"><span class="pre">QuantumCompiler.optimize_movement_and_swap()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/compiler.html#gates-compiler">Gates compiler</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/configuration.html">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/configuration.html#directories">Directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/configuration.html#specifications">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/hardware.html">Hardware drives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/hardware.html#virtual-devices">Virtual devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/hardware.html#real-devices">Real devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/hardware.html#module-hardware.drivers.real.Analog">Real devices : Analog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/hardware.html#module-hardware.drivers.real.DAQ">Real devices : DAQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/hardware.html#module-hardware.drivers.real.Data">Real devices : Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/hardware.html#module-hardware.drivers.real.Digital">Real devices : Digital</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/modules.html">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/modules.html#module-modules.analysis.AQiPTanalysis">Analysis module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.DataManager"><code class="docutils literal notranslate"><span class="pre">DataManager</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.DataManager.getPath"><code class="docutils literal notranslate"><span class="pre">DataManager.getPath()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.DataManager.printPath"><code class="docutils literal notranslate"><span class="pre">DataManager.printPath()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.DataManager.getVariable"><code class="docutils literal notranslate"><span class="pre">DataManager.getVariable()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.DataManager.add_RAW_data"><code class="docutils literal notranslate"><span class="pre">DataManager.add_RAW_data()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.DataManager.remove_data"><code class="docutils literal notranslate"><span class="pre">DataManager.remove_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.import_images"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.import_images()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_images_and_labels"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.load_images_and_labels()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_labels"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.load_labels()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_tensorflow_dataset"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.load_tensorflow_dataset()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.get_classes"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.get_classes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.check_trained_images"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.check_trained_images()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.binary_to_int"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.binary_to_int()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.set_model"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.set_model()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.compile_model"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.compile_model()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.fit_model"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.fit_model()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.evaluate"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.evaluate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.get_classification"><code class="docutils literal notranslate"><span class="pre">ArrayNNClassifier.get_classification()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.Data.analyze"><code class="docutils literal notranslate"><span class="pre">Data.analyze()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.Data.get_latest_version"><code class="docutils literal notranslate"><span class="pre">Data.get_latest_version()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.Data.get_all_versions"><code class="docutils literal notranslate"><span class="pre">Data.get_all_versions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ImageData"><code class="docutils literal notranslate"><span class="pre">ImageData</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ImageData.process"><code class="docutils literal notranslate"><span class="pre">ImageData.process()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ImageData.analyze"><code class="docutils literal notranslate"><span class="pre">ImageData.analyze()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.TableData"><code class="docutils literal notranslate"><span class="pre">TableData</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.TableData.analyze"><code class="docutils literal notranslate"><span class="pre">TableData.analyze()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.ArrayData"><code class="docutils literal notranslate"><span class="pre">ArrayData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.AQiPTData"><code class="docutils literal notranslate"><span class="pre">AQiPTData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.Trc"><code class="docutils literal notranslate"><span class="pre">Trc</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.Trc.open"><code class="docutils literal notranslate"><span class="pre">Trc.open()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.analysis.AQiPTanalysis.Trc.fromSPREADSHEET"><code class="docutils literal notranslate"><span class="pre">Trc.fromSPREADSHEET()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/modules.html#module-modules.control.AQiPTcontrol">Control module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function"><code class="docutils literal notranslate"><span class="pre">function</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.resample"><code class="docutils literal notranslate"><span class="pre">function.resample()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.setArea"><code class="docutils literal notranslate"><span class="pre">function.setArea()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.getFunction"><code class="docutils literal notranslate"><span class="pre">function.getFunction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.step"><code class="docutils literal notranslate"><span class="pre">function.step()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.ramp"><code class="docutils literal notranslate"><span class="pre">function.ramp()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.parabola"><code class="docutils literal notranslate"><span class="pre">function.parabola()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.sinusoidal"><code class="docutils literal notranslate"><span class="pre">function.sinusoidal()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.chirp"><code class="docutils literal notranslate"><span class="pre">function.chirp()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.chirplet"><code class="docutils literal notranslate"><span class="pre">function.chirplet()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.gaussian_chirplet"><code class="docutils literal notranslate"><span class="pre">function.gaussian_chirplet()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.gaussian"><code class="docutils literal notranslate"><span class="pre">function.gaussian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.blackman"><code class="docutils literal notranslate"><span class="pre">function.blackman()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.supergaussian"><code class="docutils literal notranslate"><span class="pre">function.supergaussian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.triangular"><code class="docutils literal notranslate"><span class="pre">function.triangular()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.sawtooth"><code class="docutils literal notranslate"><span class="pre">function.sawtooth()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.cspline"><code class="docutils literal notranslate"><span class="pre">function.cspline()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.quadrature"><code class="docutils literal notranslate"><span class="pre">function.quadrature()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.multitone"><code class="docutils literal notranslate"><span class="pre">function.multitone()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.add_tones"><code class="docutils literal notranslate"><span class="pre">function.add_tones()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.intermodulate_pairs"><code class="docutils literal notranslate"><span class="pre">function.intermodulate_pairs()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.intermodulate_multitone"><code class="docutils literal notranslate"><span class="pre">function.intermodulate_multitone()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.multitone_variance"><code class="docutils literal notranslate"><span class="pre">function.multitone_variance()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.equalization"><code class="docutils literal notranslate"><span class="pre">function.equalization()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.function.plotFunction"><code class="docutils literal notranslate"><span class="pre">function.plotFunction()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse"><code class="docutils literal notranslate"><span class="pre">pulse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.resample"><code class="docutils literal notranslate"><span class="pre">pulse.resample()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.overwriteFunction"><code class="docutils literal notranslate"><span class="pre">pulse.overwriteFunction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.add2Pulse"><code class="docutils literal notranslate"><span class="pre">pulse.add2Pulse()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.removeFunction"><code class="docutils literal notranslate"><span class="pre">pulse.removeFunction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.sumFunction"><code class="docutils literal notranslate"><span class="pre">pulse.sumFunction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.combineFunction"><code class="docutils literal notranslate"><span class="pre">pulse.combineFunction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.combinePulses"><code class="docutils literal notranslate"><span class="pre">pulse.combinePulses()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.mergeFunction"><code class="docutils literal notranslate"><span class="pre">pulse.mergeFunction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.getPulse"><code class="docutils literal notranslate"><span class="pre">pulse.getPulse()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.getTbase"><code class="docutils literal notranslate"><span class="pre">pulse.getTbase()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.getLabel"><code class="docutils literal notranslate"><span class="pre">pulse.getLabel()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.changeLabel"><code class="docutils literal notranslate"><span class="pre">pulse.changeLabel()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.plotPulse"><code class="docutils literal notranslate"><span class="pre">pulse.plotPulse()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.digitizeWaveform"><code class="docutils literal notranslate"><span class="pre">pulse.digitizeWaveform()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.compilePulse"><code class="docutils literal notranslate"><span class="pre">pulse.compilePulse()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.pulse.saveWaveform"><code class="docutils literal notranslate"><span class="pre">pulse.saveWaveform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.track"><code class="docutils literal notranslate"><span class="pre">track</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.track.compileTrack"><code class="docutils literal notranslate"><span class="pre">track.compileTrack()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.track.add2Track"><code class="docutils literal notranslate"><span class="pre">track.add2Track()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.track.getTrack"><code class="docutils literal notranslate"><span class="pre">track.getTrack()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.track.getLabel"><code class="docutils literal notranslate"><span class="pre">track.getLabel()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.track.getComposition"><code class="docutils literal notranslate"><span class="pre">track.getComposition()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.track.clearTrack"><code class="docutils literal notranslate"><span class="pre">track.clearTrack()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.track.plotTrack"><code class="docutils literal notranslate"><span class="pre">track.plotTrack()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.sequence"><code class="docutils literal notranslate"><span class="pre">sequence</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.sequence.stack2Sequence"><code class="docutils literal notranslate"><span class="pre">sequence.stack2Sequence()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.sequence.getSequence"><code class="docutils literal notranslate"><span class="pre">sequence.getSequence()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.sequence.getLabel"><code class="docutils literal notranslate"><span class="pre">sequence.getLabel()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.sequence.clearSequence"><code class="docutils literal notranslate"><span class="pre">sequence.clearSequence()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.sequence.plotSequence"><code class="docutils literal notranslate"><span class="pre">sequence.plotSequence()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC"><code class="docutils literal notranslate"><span class="pre">IAC</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.combine_coordinates"><code class="docutils literal notranslate"><span class="pre">IAC.combine_coordinates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.set_qregister"><code class="docutils literal notranslate"><span class="pre">IAC.set_qregister()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.set_freq_map"><code class="docutils literal notranslate"><span class="pre">IAC.set_freq_map()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.get_freq_qreg_map"><code class="docutils literal notranslate"><span class="pre">IAC.get_freq_qreg_map()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.get_pos_qreg_map"><code class="docutils literal notranslate"><span class="pre">IAC.get_pos_qreg_map()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.showCoordinates"><code class="docutils literal notranslate"><span class="pre">IAC.showCoordinates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.showSubstrate"><code class="docutils literal notranslate"><span class="pre">IAC.showSubstrate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.showSite"><code class="docutils literal notranslate"><span class="pre">IAC.showSite()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.get_GIF"><code class="docutils literal notranslate"><span class="pre">IAC.get_GIF()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.generate_grid"><code class="docutils literal notranslate"><span class="pre">IAC.generate_grid()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.assign_targets_optimal"><code class="docutils literal notranslate"><span class="pre">IAC.assign_targets_optimal()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.optimize_agent_positions"><code class="docutils literal notranslate"><span class="pre">IAC.optimize_agent_positions()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.update"><code class="docutils literal notranslate"><span class="pre">IAC.update()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.IAC.track_agent_movements"><code class="docutils literal notranslate"><span class="pre">IAC.track_agent_movements()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid"><code class="docutils literal notranslate"><span class="pre">Grid</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.grid_type"><code class="docutils literal notranslate"><span class="pre">Grid.grid_type</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._nrLines"><code class="docutils literal notranslate"><span class="pre">Grid._nrLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._resolution"><code class="docutils literal notranslate"><span class="pre">Grid._resolution</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._dimensions"><code class="docutils literal notranslate"><span class="pre">Grid._dimensions</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._coordinates"><code class="docutils literal notranslate"><span class="pre">Grid._coordinates</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._amplitudes"><code class="docutils literal notranslate"><span class="pre">Grid._amplitudes</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._frequencies"><code class="docutils literal notranslate"><span class="pre">Grid._frequencies</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._phases"><code class="docutils literal notranslate"><span class="pre">Grid._phases</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._sequenceSweeps"><code class="docutils literal notranslate"><span class="pre">Grid._sequenceSweeps</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.initialConfiguration"><code class="docutils literal notranslate"><span class="pre">Grid.initialConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.finalConfiguration"><code class="docutils literal notranslate"><span class="pre">Grid.finalConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.currentConfiguration"><code class="docutils literal notranslate"><span class="pre">Grid.currentConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid._mapper"><code class="docutils literal notranslate"><span class="pre">Grid._mapper()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.showMap"><code class="docutils literal notranslate"><span class="pre">Grid.showMap()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_amplitudes"><code class="docutils literal notranslate"><span class="pre">Grid.get_amplitudes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_coordinates"><code class="docutils literal notranslate"><span class="pre">Grid.get_coordinates()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_frequencies"><code class="docutils literal notranslate"><span class="pre">Grid.get_frequencies()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_phases"><code class="docutils literal notranslate"><span class="pre">Grid.get_phases()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_nrLines"><code class="docutils literal notranslate"><span class="pre">Grid.get_nrLines()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_sequenceSweeps"><code class="docutils literal notranslate"><span class="pre">Grid.get_sequenceSweeps()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_initialConfiguration"><code class="docutils literal notranslate"><span class="pre">Grid.get_initialConfiguration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_currentConfiguration"><code class="docutils literal notranslate"><span class="pre">Grid.get_currentConfiguration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Grid.get_finalConfiguration"><code class="docutils literal notranslate"><span class="pre">Grid.get_finalConfiguration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id0"><code class="docutils literal notranslate"><span class="pre">Grid.showMap()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id5"><code class="docutils literal notranslate"><span class="pre">Grid.get_amplitudes</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id6"><code class="docutils literal notranslate"><span class="pre">Grid.get_coordinates</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id7"><code class="docutils literal notranslate"><span class="pre">Grid.get_frequencies</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id8"><code class="docutils literal notranslate"><span class="pre">Grid.get_phases</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id9"><code class="docutils literal notranslate"><span class="pre">Grid.get_nrLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id10"><code class="docutils literal notranslate"><span class="pre">Grid.get_sequenceSweeps</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id11"><code class="docutils literal notranslate"><span class="pre">Grid.get_initialConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id12"><code class="docutils literal notranslate"><span class="pre">Grid.get_currentConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id13"><code class="docutils literal notranslate"><span class="pre">Grid.get_finalConfiguration</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep"><code class="docutils literal notranslate"><span class="pre">Sweep</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep._initialConfiguration"><code class="docutils literal notranslate"><span class="pre">Sweep._initialConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep._finalConfiguration"><code class="docutils literal notranslate"><span class="pre">Sweep._finalConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep._ampModulation"><code class="docutils literal notranslate"><span class="pre">Sweep._ampModulation</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep._freqModulation"><code class="docutils literal notranslate"><span class="pre">Sweep._freqModulation</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep._phaseModulation"><code class="docutils literal notranslate"><span class="pre">Sweep._phaseModulation</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep._calibration"><code class="docutils literal notranslate"><span class="pre">Sweep._calibration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep.get_initialConfiguration"><code class="docutils literal notranslate"><span class="pre">Sweep.get_initialConfiguration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep.get_finalConfiguration"><code class="docutils literal notranslate"><span class="pre">Sweep.get_finalConfiguration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep.get_modulation"><code class="docutils literal notranslate"><span class="pre">Sweep.get_modulation()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep.get_calibration"><code class="docutils literal notranslate"><span class="pre">Sweep.get_calibration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Sweep.calibrate"><code class="docutils literal notranslate"><span class="pre">Sweep.calibrate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id14"><code class="docutils literal notranslate"><span class="pre">Sweep.get_initialConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id15"><code class="docutils literal notranslate"><span class="pre">Sweep.get_finalConfiguration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id16"><code class="docutils literal notranslate"><span class="pre">Sweep.get_modulation</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id17"><code class="docutils literal notranslate"><span class="pre">Sweep.get_calibration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id18"><code class="docutils literal notranslate"><span class="pre">Sweep.calibrate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.quadratic_sweep"><code class="docutils literal notranslate"><span class="pre">quadratic_sweep</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.quadratic_sweep._coef"><code class="docutils literal notranslate"><span class="pre">quadratic_sweep._coef</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.quadratic_sweep.amp_function"><code class="docutils literal notranslate"><span class="pre">quadratic_sweep.amp_function</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.quadratic_sweep.freq_function"><code class="docutils literal notranslate"><span class="pre">quadratic_sweep.freq_function</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.quadratic_sweep.phase_function"><code class="docutils literal notranslate"><span class="pre">quadratic_sweep.phase_function</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.quadratic_sweep._sweep"><code class="docutils literal notranslate"><span class="pre">quadratic_sweep._sweep</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.quadratic_sweep._set_sweep"><code class="docutils literal notranslate"><span class="pre">quadratic_sweep._set_sweep()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.quadratic_sweep.showSweep"><code class="docutils literal notranslate"><span class="pre">quadratic_sweep.showSweep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO"><code class="docutils literal notranslate"><span class="pre">NCO</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.number"><code class="docutils literal notranslate"><span class="pre">NCO.number</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.frequency"><code class="docutils literal notranslate"><span class="pre">NCO.frequency</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.phase"><code class="docutils literal notranslate"><span class="pre">NCO.phase</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.amplitude"><code class="docutils literal notranslate"><span class="pre">NCO.amplitude</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.sweep_type"><code class="docutils literal notranslate"><span class="pre">NCO.sweep_type</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.sweep"><code class="docutils literal notranslate"><span class="pre">NCO.sweep</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.busy"><code class="docutils literal notranslate"><span class="pre">NCO.busy</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.set_configuration"><code class="docutils literal notranslate"><span class="pre">NCO.set_configuration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.update_attribute"><code class="docutils literal notranslate"><span class="pre">NCO.update_attribute()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.NCO.release"><code class="docutils literal notranslate"><span class="pre">NCO.release()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id19"><code class="docutils literal notranslate"><span class="pre">NCO.set_configuration()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id20"><code class="docutils literal notranslate"><span class="pre">NCO.update_attribute()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id21"><code class="docutils literal notranslate"><span class="pre">NCO.release()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device"><code class="docutils literal notranslate"><span class="pre">Device</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.device_id"><code class="docutils literal notranslate"><span class="pre">Device.device_id</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device._num_ncos"><code class="docutils literal notranslate"><span class="pre">Device._num_ncos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.nco_pool"><code class="docutils literal notranslate"><span class="pre">Device.nco_pool</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.initial_frequency"><code class="docutils literal notranslate"><span class="pre">Device.initial_frequency</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.initial_amplitude"><code class="docutils literal notranslate"><span class="pre">Device.initial_amplitude</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.initial_phase"><code class="docutils literal notranslate"><span class="pre">Device.initial_phase</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.initial_configuration"><code class="docutils literal notranslate"><span class="pre">Device.initial_configuration</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.get_available_nco"><code class="docutils literal notranslate"><span class="pre">Device.get_available_nco()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.get_available_ncos"><code class="docutils literal notranslate"><span class="pre">Device.get_available_ncos()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.release_nco"><code class="docutils literal notranslate"><span class="pre">Device.release_nco()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.flush"><code class="docutils literal notranslate"><span class="pre">Device.flush()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.execute"><code class="docutils literal notranslate"><span class="pre">Device.execute()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.Device.queue"><code class="docutils literal notranslate"><span class="pre">Device.queue()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id22"><code class="docutils literal notranslate"><span class="pre">Device.get_available_nco()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id23"><code class="docutils literal notranslate"><span class="pre">Device.get_available_ncos()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id24"><code class="docutils literal notranslate"><span class="pre">Device.release_nco()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id25"><code class="docutils literal notranslate"><span class="pre">Device.flush()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id26"><code class="docutils literal notranslate"><span class="pre">Device.execute()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#id27"><code class="docutils literal notranslate"><span class="pre">Device.queue()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.experiment"><code class="docutils literal notranslate"><span class="pre">experiment</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.experiment.compile"><code class="docutils literal notranslate"><span class="pre">experiment.compile()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.experiment.recompile"><code class="docutils literal notranslate"><span class="pre">experiment.recompile()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.experiment.execute"><code class="docutils literal notranslate"><span class="pre">experiment.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW"><code class="docutils literal notranslate"><span class="pre">mapSW</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.sequence_name"><code class="docutils literal notranslate"><span class="pre">mapSW.sequence_name</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.sequence_id"><code class="docutils literal notranslate"><span class="pre">mapSW.sequence_id</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.instruction_name"><code class="docutils literal notranslate"><span class="pre">mapSW.instruction_name</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.instruction_id"><code class="docutils literal notranslate"><span class="pre">mapSW.instruction_id</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.instruction_type"><code class="docutils literal notranslate"><span class="pre">mapSW.instruction_type</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.instruction_specs"><code class="docutils literal notranslate"><span class="pre">mapSW.instruction_specs</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.instruction_realCH"><code class="docutils literal notranslate"><span class="pre">mapSW.instruction_realCH</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.instruction_timeflag"><code class="docutils literal notranslate"><span class="pre">mapSW.instruction_timeflag</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.instruction_timeflags"><code class="docutils literal notranslate"><span class="pre">mapSW.instruction_timeflags</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.control.AQiPTcontrol.mapSW.command"><code class="docutils literal notranslate"><span class="pre">mapSW.command</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/modules.html#module-modules.daq.AQiPTdaq">DAQ module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.inspector"><code class="docutils literal notranslate"><span class="pre">inspector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.dashboard"><code class="docutils literal notranslate"><span class="pre">dashboard</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.dashboard.add_dash4Sequences"><code class="docutils literal notranslate"><span class="pre">dashboard.add_dash4Sequences()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.dashboard.add_dash4LiveImage"><code class="docutils literal notranslate"><span class="pre">dashboard.add_dash4LiveImage()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.dashboard.open"><code class="docutils literal notranslate"><span class="pre">dashboard.open()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.plotSequences"><code class="docutils literal notranslate"><span class="pre">plotSequences</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.plotLiveimage"><code class="docutils literal notranslate"><span class="pre">plotLiveimage</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.plotLiveimage.update_graphs"><code class="docutils literal notranslate"><span class="pre">plotLiveimage.update_graphs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.graph"><code class="docutils literal notranslate"><span class="pre">graph</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.graph.createSurface3D"><code class="docutils literal notranslate"><span class="pre">graph.createSurface3D()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.graph.colormap2D"><code class="docutils literal notranslate"><span class="pre">graph.colormap2D()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.graph.createPlot1D"><code class="docutils literal notranslate"><span class="pre">graph.createPlot1D()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.graph.scatter2D"><code class="docutils literal notranslate"><span class="pre">graph.scatter2D()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.graph.scatter3D"><code class="docutils literal notranslate"><span class="pre">graph.scatter3D()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.surface3D"><code class="docutils literal notranslate"><span class="pre">surface3D</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.surface3D.plot"><code class="docutils literal notranslate"><span class="pre">surface3D.plot()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.surface3D.includeData"><code class="docutils literal notranslate"><span class="pre">surface3D.includeData()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.colormap2D"><code class="docutils literal notranslate"><span class="pre">colormap2D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.plot1D"><code class="docutils literal notranslate"><span class="pre">plot1D</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.plot1D.plot"><code class="docutils literal notranslate"><span class="pre">plot1D.plot()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.plot1D.includeData"><code class="docutils literal notranslate"><span class="pre">plot1D.includeData()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.scatter2D"><code class="docutils literal notranslate"><span class="pre">scatter2D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.daq.AQiPTdaq.scatter3D"><code class="docutils literal notranslate"><span class="pre">scatter3D</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/modules.html#module-modules.directory.AQiPTdirectory">Directory module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.directory.AQiPTdirectory.directory_tree"><code class="docutils literal notranslate"><span class="pre">directory_tree</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.directory.AQiPTdirectory.directory_tree.tree_dictionary"><code class="docutils literal notranslate"><span class="pre">directory_tree.tree_dictionary()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/modules.html#module-modules.emulator.AQiPTemulator">Emulator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel"><code class="docutils literal notranslate"><span class="pre">atomicModel</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.playSim"><code class="docutils literal notranslate"><span class="pre">atomicModel.playSim()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.add_ZeemanSplitting"><code class="docutils literal notranslate"><span class="pre">atomicModel.add_ZeemanSplitting()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.buildTHamiltonian"><code class="docutils literal notranslate"><span class="pre">atomicModel.buildTHamiltonian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.buildHamiltonian"><code class="docutils literal notranslate"><span class="pre">atomicModel.buildHamiltonian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.buildLindbladians"><code class="docutils literal notranslate"><span class="pre">atomicModel.buildLindbladians()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.buildObservables"><code class="docutils literal notranslate"><span class="pre">atomicModel.buildObservables()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.buildOnsiteInteraction"><code class="docutils literal notranslate"><span class="pre">atomicModel.buildOnsiteInteraction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.getResult"><code class="docutils literal notranslate"><span class="pre">atomicModel.getResult()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.getTHamiltonian"><code class="docutils literal notranslate"><span class="pre">atomicModel.getTHamiltonian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.qudit2qubit"><code class="docutils literal notranslate"><span class="pre">atomicModel.qudit2qubit()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.showResults"><code class="docutils literal notranslate"><span class="pre">atomicModel.showResults()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.showHamiltonian"><code class="docutils literal notranslate"><span class="pre">atomicModel.showHamiltonian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.modelMap"><code class="docutils literal notranslate"><span class="pre">atomicModel.modelMap()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicModel.recompile"><code class="docutils literal notranslate"><span class="pre">atomicModel.recompile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister"><code class="docutils literal notranslate"><span class="pre">atomicQRegister</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.compile"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.compile()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.playSim"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.playSim()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.buildNBasis"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.buildNBasis()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.buildNinitState"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.buildNinitState()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.buildNHamiltonian"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.buildNHamiltonian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.buildTNHamiltonian"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.buildTNHamiltonian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.buildNLindbladians"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.buildNLindbladians()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.buildNObservables"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.buildNObservables()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.add2QRegister"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.add2QRegister()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.getNHamiltonian"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.getNHamiltonian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.getNLindbladian"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.getNLindbladian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.buildInteractions"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.buildInteractions()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.getNObservables"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.getNObservables()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.getResult"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.getResult()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.showHamiltonian"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.showHamiltonian()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.showResults"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.showResults()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.atomicQRegister.registerMap"><code class="docutils literal notranslate"><span class="pre">atomicQRegister.registerMap()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.scan"><code class="docutils literal notranslate"><span class="pre">scan</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.scan.RunScans_disordered"><code class="docutils literal notranslate"><span class="pre">scan.RunScans_disordered()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.scan.RunScans"><code class="docutils literal notranslate"><span class="pre">scan.RunScans()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.scan.getLastScan"><code class="docutils literal notranslate"><span class="pre">scan.getLastScan()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.scan.plotScanResults"><code class="docutils literal notranslate"><span class="pre">scan.plotScanResults()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.producer"><code class="docutils literal notranslate"><span class="pre">producer</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.producer.addActors"><code class="docutils literal notranslate"><span class="pre">producer.addActors()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.producer.getName"><code class="docutils literal notranslate"><span class="pre">producer.getName()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.producer.compile"><code class="docutils literal notranslate"><span class="pre">producer.compile()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.producer.runSimulation"><code class="docutils literal notranslate"><span class="pre">producer.runSimulation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.actor"><code class="docutils literal notranslate"><span class="pre">actor</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.actor.compile"><code class="docutils literal notranslate"><span class="pre">actor.compile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.field"><code class="docutils literal notranslate"><span class="pre">field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.optical"><code class="docutils literal notranslate"><span class="pre">optical</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.acoustic"><code class="docutils literal notranslate"><span class="pre">acoustic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.magnetic"><code class="docutils literal notranslate"><span class="pre">magnetic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.microwave"><code class="docutils literal notranslate"><span class="pre">microwave</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.rf"><code class="docutils literal notranslate"><span class="pre">rf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.electric"><code class="docutils literal notranslate"><span class="pre">electric</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.gravity"><code class="docutils literal notranslate"><span class="pre">gravity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.optElement"><code class="docutils literal notranslate"><span class="pre">optElement</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.optElement.get_matrix"><code class="docutils literal notranslate"><span class="pre">optElement.get_matrix()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.optElement.get_name"><code class="docutils literal notranslate"><span class="pre">optElement.get_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.beam"><code class="docutils literal notranslate"><span class="pre">beam</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.beam.create"><code class="docutils literal notranslate"><span class="pre">beam.create()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.beam.add2Path"><code class="docutils literal notranslate"><span class="pre">beam.add2Path()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.beam.get_beamVector"><code class="docutils literal notranslate"><span class="pre">beam.get_beamVector()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.beam.get_Efield"><code class="docutils literal notranslate"><span class="pre">beam.get_Efield()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.beam.get_pathMatrix"><code class="docutils literal notranslate"><span class="pre">beam.get_pathMatrix()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.beam.get_elements"><code class="docutils literal notranslate"><span class="pre">beam.get_elements()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.OptSetup"><code class="docutils literal notranslate"><span class="pre">OptSetup</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.OptSetup.add2Setup"><code class="docutils literal notranslate"><span class="pre">OptSetup.add2Setup()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.emulator.AQiPTemulator.OptSetup.getbeams"><code class="docutils literal notranslate"><span class="pre">OptSetup.getbeams()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/modules.html#module-modules.interface.APIs.API">Interface:API module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.constant"><code class="docutils literal notranslate"><span class="pre">constant()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.wait"><code class="docutils literal notranslate"><span class="pre">wait()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.digital"><code class="docutils literal notranslate"><span class="pre">digital()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.digitals"><code class="docutils literal notranslate"><span class="pre">digitals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.analog"><code class="docutils literal notranslate"><span class="pre">analog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.analogs"><code class="docutils literal notranslate"><span class="pre">analogs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.compose"><code class="docutils literal notranslate"><span class="pre">compose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.data"><code class="docutils literal notranslate"><span class="pre">data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.showDAQ"><code class="docutils literal notranslate"><span class="pre">showDAQ()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.generateSpecifications"><code class="docutils literal notranslate"><span class="pre">generateSpecifications()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.generateDirector"><code class="docutils literal notranslate"><span class="pre">generateDirector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.generateProducer"><code class="docutils literal notranslate"><span class="pre">generateProducer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.runSimulation"><code class="docutils literal notranslate"><span class="pre">runSimulation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.machine"><code class="docutils literal notranslate"><span class="pre">machine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.interface.APIs.API.prepareAcquisition"><code class="docutils literal notranslate"><span class="pre">prepareAcquisition()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source/modules.html#module-modules.kernel.AQiPTkernel">Kernel module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs"><code class="docutils literal notranslate"><span class="pre">atomSpecs</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getTransitionFrequency_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getTransitionFrequency_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getTransitionWavelength_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getTransitionWavelength_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getRabifreq_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getRabifreq_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getSMap_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getSMap_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getLifetime_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getLifetime_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.isRydberg"><code class="docutils literal notranslate"><span class="pre">atomSpecs.isRydberg()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getBBR_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getBBR_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getC6_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getC6_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getRb_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getRb_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getLeRoyRadius_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getLeRoyRadius_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.getPolarizability_fromARC"><code class="docutils literal notranslate"><span class="pre">atomSpecs.getPolarizability_fromARC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.set_atomicData"><code class="docutils literal notranslate"><span class="pre">atomSpecs.set_atomicData()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.update"><code class="docutils literal notranslate"><span class="pre">atomSpecs.update()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomSpecs.save"><code class="docutils literal notranslate"><span class="pre">atomSpecs.save()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomicData"><code class="docutils literal notranslate"><span class="pre">atomicData</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomicData.clabel"><code class="docutils literal notranslate"><span class="pre">atomicData.clabel</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.atomicData.cells"><code class="docutils literal notranslate"><span class="pre">atomicData.cells</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell"><code class="docutils literal notranslate"><span class="pre">datacell</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Energy"><code class="docutils literal notranslate"><span class="pre">datacell.Energy</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Transition_freq"><code class="docutils literal notranslate"><span class="pre">datacell.Transition_freq</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Wavelength"><code class="docutils literal notranslate"><span class="pre">datacell.Wavelength</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Rabi_freq"><code class="docutils literal notranslate"><span class="pre">datacell.Rabi_freq</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Dip_Mat_element"><code class="docutils literal notranslate"><span class="pre">datacell.Dip_Mat_element</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Lifetime"><code class="docutils literal notranslate"><span class="pre">datacell.Lifetime</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Rydberg"><code class="docutils literal notranslate"><span class="pre">datacell.Rydberg</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.BBR"><code class="docutils literal notranslate"><span class="pre">datacell.BBR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.C3"><code class="docutils literal notranslate"><span class="pre">datacell.C3</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.C6"><code class="docutils literal notranslate"><span class="pre">datacell.C6</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Rbl"><code class="docutils literal notranslate"><span class="pre">datacell.Rbl</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.LeRoy_radius"><code class="docutils literal notranslate"><span class="pre">datacell.LeRoy_radius</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Polarizability"><code class="docutils literal notranslate"><span class="pre">datacell.Polarizability</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.datacell.Stark_Map"><code class="docutils literal notranslate"><span class="pre">datacell.Stark_Map</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.loadSpecs"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.loadSpecs()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.printHeader"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.printHeader()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createAOM"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createAOM()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createLaser"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createLaser()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createLaserAUX"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createLaserAUX()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createCamera"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createCamera()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createAWG"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createAWG()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createDDS"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createDDS()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createIQmixer"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createIQmixer()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createDMD"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createDMD()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createSLM"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createSLM()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createShutter"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createShutter()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createMixer"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createMixer()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createCoil"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createCoil()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createSensor"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createSensor()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createAOD"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createAOD()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createElectrode"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createElectrode()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.createAntenna"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.createAntenna()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.hardwareSpecs.initSetup"><code class="docutils literal notranslate"><span class="pre">hardwareSpecs.initSetup()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.softwareSpecs"><code class="docutils literal notranslate"><span class="pre">softwareSpecs</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.softwareSpecs.loadSpecs"><code class="docutils literal notranslate"><span class="pre">softwareSpecs.loadSpecs()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.softwareSpecs.update"><code class="docutils literal notranslate"><span class="pre">softwareSpecs.update()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.softwareSpecs.printHeader"><code class="docutils literal notranslate"><span class="pre">softwareSpecs.printHeader()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDsBench"><code class="docutils literal notranslate"><span class="pre">IDsBench</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDsBench.set_HW_bench"><code class="docutils literal notranslate"><span class="pre">IDsBench.set_HW_bench()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDsBench.set_SW_bench"><code class="docutils literal notranslate"><span class="pre">IDsBench.set_SW_bench()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDsBench.get_HW_bench"><code class="docutils literal notranslate"><span class="pre">IDsBench.get_HW_bench()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDsBench.get_SW_bench"><code class="docutils literal notranslate"><span class="pre">IDsBench.get_SW_bench()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDsBench.get_CH_bench"><code class="docutils literal notranslate"><span class="pre">IDsBench.get_CH_bench()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDs"><code class="docutils literal notranslate"><span class="pre">IDs</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDs.name"><code class="docutils literal notranslate"><span class="pre">IDs.name</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDs.hex_ID"><code class="docutils literal notranslate"><span class="pre">IDs.hex_ID</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDs.dec_ID"><code class="docutils literal notranslate"><span class="pre">IDs.dec_ID</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDs.python_memory_alloc"><code class="docutils literal notranslate"><span class="pre">IDs.python_memory_alloc</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.IDs.subTYPE"><code class="docutils literal notranslate"><span class="pre">IDs.subTYPE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule"><code class="docutils literal notranslate"><span class="pre">RydbergQubitSchedule</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.add_function"><code class="docutils literal notranslate"><span class="pre">RydbergQubitSchedule.add_function()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.add_coupling"><code class="docutils literal notranslate"><span class="pre">RydbergQubitSchedule.add_coupling()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.plot_couplings"><code class="docutils literal notranslate"><span class="pre">RydbergQubitSchedule.plot_couplings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.plot_detunings"><code class="docutils literal notranslate"><span class="pre">RydbergQubitSchedule.plot_detunings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubitSchedule.plot_all"><code class="docutils literal notranslate"><span class="pre">RydbergQubitSchedule.plot_all()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubit"><code class="docutils literal notranslate"><span class="pre">RydbergQubit</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubit.simulate"><code class="docutils literal notranslate"><span class="pre">RydbergQubit.simulate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQubit.plot_results"><code class="docutils literal notranslate"><span class="pre">RydbergQubit.plot_results()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister"><code class="docutils literal notranslate"><span class="pre">RydbergQuantumRegister</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister.compile"><code class="docutils literal notranslate"><span class="pre">RydbergQuantumRegister.compile()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister.simulate"><code class="docutils literal notranslate"><span class="pre">RydbergQuantumRegister.simulate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister.plot_schedule"><code class="docutils literal notranslate"><span class="pre">RydbergQuantumRegister.plot_schedule()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="source/modules.html#modules.kernel.AQiPTkernel.RydbergQuantumRegister.plot_results"><code class="docutils literal notranslate"><span class="pre">RydbergQuantumRegister.plot_results()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Notebooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks.html#how-to-guides">How to guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks.html#explanatory-examples">Explanatory examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="prerequisites.html" class="btn btn-neutral float-right" title="Pre-requisites" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, AQiPT developers and contributors. Last updated on Oct 27, 2022. .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

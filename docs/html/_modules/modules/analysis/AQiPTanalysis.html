@@ -1,0 +1,1091 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modules.analysis.AQiPTanalysis &mdash; AQiPT: Atomic Quantum information Processing Toolbox  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #34495e" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../prerequisites.html">Pre-requisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developers.html">Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../versions.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks.html">Notebooks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #34495e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AQiPT: Atomic Quantum information Processing Toolbox</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">modules.analysis.AQiPTanalysis</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for modules.analysis.AQiPTanalysis</h1><div class="highlight"><pre>
+<span></span><span class="c1">#Atomic Quantum information Processing Tool (AQIPT - /ɪˈkwɪpt/) - Analysis module</span>
+
+<span class="c1"># Author(s): Manuel Morgado. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ</span>
+<span class="c1">#                            Universitaet Stuttgart. 5. Physikalisches Institut - QRydDemo</span>
+<span class="c1"># Contributor(s): S.Bera. Universite de Strasbourg. Laboratory of Exotic Quantum Matter - CESQ</span>
+<span class="c1"># Created: 2021-10-04</span>
+<span class="c1"># Last update: 2024-12-14</span>
+
+<span class="c1">#libs</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">glob</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="kn">from</span> <span class="nn">AQiPT</span> <span class="kn">import</span> <span class="n">AQiPTcore</span> <span class="k">as</span> <span class="n">aqipt</span>
+<span class="kn">from</span> <span class="nn">AQiPT.modules.analysis.AQiPT_analysis_utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">AQiPT.modules.emulator.AQiPTemulator</span> <span class="kn">import</span> <span class="n">bitCom</span>
+
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+
+
+
+<span class="c1">#format name files cameras</span>
+
+<span class="c1">#andor</span>
+<span class="n">andor</span> <span class="o">=</span> <span class="s1">&#39;Andor&#39;</span><span class="p">;</span>
+<span class="n">ANDOR_Abs_file_name</span> <span class="o">=</span> <span class="s2">&quot;R*_AndorAbs.fts&quot;</span><span class="p">;</span>
+<span class="n">ANDOR_Abs2_file_name</span> <span class="o">=</span> <span class="s2">&quot;R*_AndorAbs2.fts&quot;</span><span class="p">;</span>
+<span class="n">ANDOR_Div_file_name</span> <span class="o">=</span> <span class="s2">&quot;R*_AndorDiv.fts&quot;</span><span class="p">;</span>
+<span class="n">ANDOR_Bgd_file_name</span> <span class="o">=</span> <span class="s2">&quot;R*_AndorBgd.fts&quot;</span><span class="p">;</span>
+<span class="n">ANDOR_FILE_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="n">ANDOR_Abs_file_name</span><span class="p">,</span> <span class="n">ANDOR_Div_file_name</span><span class="p">,</span> <span class="n">ANDOR_Bgd_file_name</span><span class="p">];</span>
+
+<span class="c1">#ids</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="s1">&#39;IDS&#39;</span><span class="p">;</span>
+<span class="n">IDS_Abs_file_name</span> <span class="o">=</span> <span class="s2">&quot;R*_Abs1.fts&quot;</span><span class="p">;</span>
+<span class="n">IDS_Div_file_name</span> <span class="o">=</span> <span class="s2">&quot;R*_Div1.fts&quot;</span><span class="p">;</span>
+<span class="n">IDS_Bgd_file_name</span> <span class="o">=</span> <span class="s2">&quot;R*_Bgd.fts&quot;</span><span class="p">;</span>
+<span class="n">IDS_FILE_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="n">IDS_Abs_file_name</span><span class="p">,</span> <span class="n">IDS_Div_file_name</span><span class="p">,</span> <span class="n">IDS_Bgd_file_name</span><span class="p">];</span>
+
+
+<span class="c1">#data structures</span>
+<span class="n">SIDE_IMAGING_FILE</span> <span class="o">=</span> <span class="s1">&#39;data1.csv&#39;</span><span class="p">;</span>
+<span class="n">TOP_IMGAGING_FILE</span> <span class="o">=</span> <span class="s1">&#39;data2.csv&#39;</span><span class="p">;</span>
+
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">#######################                 Frontend Analysis                 #########################</span>
+<span class="c1">###################################################################################################</span>
+
+<span class="c1">#####################################################################################################</span>
+<span class="c1">#DataManager AQiPT class</span>
+<span class="c1">#####################################################################################################</span>
+
+
+<div class="viewcode-block" id="DataManager">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.DataManager">[docs]</a>
+<span class="k">class</span> <span class="nc">DataManager</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">directory</span><span class="o">=</span><span class="n">aqipt</span><span class="o">.</span><span class="n">directory</span><span class="o">.</span><span class="n">data_depository_dir</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;default_data_&#39;</span><span class="o">+</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%Hh%Mm&quot;</span><span class="p">),</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;Default comments&#39;</span><span class="p">,</span><span class="n">authors</span><span class="o">=</span> <span class="s1">&#39;Data Manager by AQiPT.&#39;</span><span class="p">,</span><span class="n">scan_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="p">;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="n">directory</span><span class="o">+</span><span class="n">filename</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="p">;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span> <span class="o">=</span> <span class="n">scan_variables</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span> <span class="o">+</span><span class="s1">&#39;Processed_data.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;w-&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">raw_data_file</span><span class="p">:</span>
+            <span class="n">_main_group</span> <span class="o">=</span> <span class="n">raw_data_file</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;_processed&#39;</span><span class="p">);</span>
+            <span class="c1"># _first_dataset = _main_group.create_dataset(&quot;Dataset_0&quot;, data=[0,1,2,3,4]); #not necessary but useful to debug</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Processed_data</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span> <span class="o">+</span><span class="s1">&#39;Processed_data.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">);</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span> <span class="o">+</span><span class="s1">&#39;RAW_data.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;w-&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">processed_data_file</span><span class="p">:</span>
+            <span class="n">_main_group</span> <span class="o">=</span> <span class="n">processed_data_file</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s1">&#39;Dataset_raw_&#39;</span><span class="o">+</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%Hh%Mm&quot;</span><span class="p">));</span> <span class="c1">#main group within RAW_data.hdf5</span>
+            <span class="n">_image_group</span> <span class="o">=</span> <span class="n">_main_group</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s2">&quot;Image&quot;</span><span class="p">);</span>
+            <span class="n">_text_group</span>  <span class="o">=</span> <span class="n">_main_group</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s2">&quot;Text&quot;</span><span class="p">);</span>
+            <span class="n">_table_group</span> <span class="o">=</span> <span class="n">_main_group</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s2">&quot;Table&quot;</span><span class="p">);</span>
+            <span class="n">_array_group</span> <span class="o">=</span> <span class="n">_main_group</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s2">&quot;Array&quot;</span><span class="p">);</span>
+            <span class="n">_aqipt_group</span> <span class="o">=</span> <span class="n">_main_group</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s2">&quot;AQiPT objects&quot;</span><span class="p">);</span>
+
+            <span class="c1"># _first_dataset = _main_group.create_dataset(&quot;Dataset_0&quot;, data=[0,1,2,3,4]); #not necessary but useful to debug</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RAW_data</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span> <span class="o">+</span><span class="s1">&#39;RAW_data.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">);</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_date</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%Hh%Mm&quot;</span><span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_comments</span> <span class="o">=</span> <span class="n">comments</span><span class="p">;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_authors</span> <span class="o">=</span> <span class="n">authors</span><span class="p">;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">group</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">RAW_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()];</span>
+
+<div class="viewcode-block" id="DataManager.getPath">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.DataManager.getPath">[docs]</a>
+    <span class="k">def</span> <span class="nf">getPath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataManager.printPath">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.DataManager.printPath">[docs]</a>
+    <span class="k">def</span> <span class="nf">printPath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataManager.getVariable">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.DataManager.getVariable">[docs]</a>
+    <span class="k">def</span> <span class="nf">getVariable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable</span></div>
+
+
+<div class="viewcode-block" id="DataManager.add_RAW_data">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.DataManager.add_RAW_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_RAW_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_data</span><span class="p">,</span> <span class="n">group_label</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">subgroup_label</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">data_label</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">group_label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span> <span class="c1">#check group</span>
+            <span class="k">if</span> <span class="n">subgroup_label</span> <span class="ow">in</span> <span class="p">[</span><span class="n">_subgroup</span> <span class="k">for</span> <span class="n">_subgroup</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">RAW_data</span><span class="p">[</span><span class="n">group_label</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()]:</span> <span class="c1">#check dataset</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">RAW_data</span><span class="p">[</span><span class="n">group_label</span><span class="p">][</span><span class="n">subgroup_label</span><span class="p">]</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">data_label</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_data</span><span class="p">);</span> <span class="c1">#set new raw data (dataset) in one of the premade groups</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;New data added!&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataManager.remove_data">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.DataManager.remove_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">remove_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">data</span><span class="p">);</span></div>
+</div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier">[docs]</a>
+<span class="k">class</span> <span class="nc">ArrayNNClassifier</span><span class="p">:</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Class for atom detection in tweezer arrays. It does train a NN with a set of training images and test it with</span>
+<span class="sd">        other set, afterwards the NN is trained and using the tensorflow model it can be used to classify what configuration</span>
+<span class="sd">        is in the array.</span>
+
+<span class="sd">        Note: tests was carried with 10k images training set and tested with 50 with accuracy &gt;90%</span>
+
+<span class="sd">        Attributes:</span>
+
+<span class="sd">        keys_to_features (dict): dictionary with figures and keywords association</span>
+<span class="sd">        parsed_features (tensorflow.parser): tensorflow parser</span>
+<span class="sd">        image (tensorflow.tensor): image (buffer)</span>
+<span class="sd">        images (array): loaded images (buffer)</span>
+<span class="sd">        labels (array): loaded labels of images (buffer)</span>
+
+<span class="sd">        path2dataset (str): path to dataset of images</span>
+<span class="sd">        training_folder (str): folder of training images for the model</span>
+<span class="sd">        test_folder (str): folder of the test images</span>
+
+<span class="sd">        raw_dataset (tensoflow.data): tensorflow data object</span>
+<span class="sd">        parsed_image_dataset (array): image dataser after parser passed</span>
+
+<span class="sd">        training_images (array): set of training images</span>
+<span class="sd">        label_training_images (list(str)):</span>
+<span class="sd">        test_images (array): set of test images</span>
+<span class="sd">        label_test_images (list(str)):</span>
+<span class="sd">        </span>
+<span class="sd">        model (tensorflow.model): neural network tensorflow model </span>
+<span class="sd">        optimizer (str): tensorflow optimizer</span>
+<span class="sd">        loss (str): type of loss considered in the model</span>
+<span class="sd">        metrics (list(str)): metrics used to train the model e.g., &#39;accuracy&#39;</span>
+<span class="sd">        history (tensorflow.fit): tensorflow history of the model</span>
+
+<span class="sd">        fig_ext (str): file of images extension</span>
+
+<span class="sd">        test_loss (float):</span>
+<span class="sd">        test_accuracy (float):</span>
+
+
+<span class="sd">        Methods:</span>
+
+<span class="sd">        _parse_function: parser of function for getting raw datasets</span>
+
+<span class="sd">        import_images: get images</span>
+<span class="sd">        load_images_and_labels: get images from folder/directory</span>
+<span class="sd">        load_labels: get labels from folder/directory</span>
+<span class="sd">        load_tensorflow_dataset: get images from tensorflow dataser </span>
+
+<span class="sd">        get_classes: get classes of images to classify</span>
+<span class="sd">        check_trained_images: check model with trained images</span>
+<span class="sd">        binary_to_int: transform binary number into integer</span>
+<span class="sd">        set_model: define NN tensorflow model for analysis</span>
+<span class="sd">        compile_model: compile the loaded tensorflow model</span>
+
+<span class="sd">        fit_model: fit model to training and test datasets</span>
+<span class="sd">        evaluate: evaluate model</span>
+<span class="sd">        get_classification: check model for classification</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training_folder</span><span class="p">,</span> <span class="n">test_folder</span><span class="p">,</span> <span class="n">path2dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fig_ext</span><span class="o">=</span><span class="s1">&#39;.png&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;sparse_categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">keys_to_features</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parsed_features</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">path2dataset</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_folder</span> <span class="o">=</span> <span class="n">training_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_folder</span> <span class="o">=</span> <span class="n">test_folder</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw_dataset</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parsed_image_dataset</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_images</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_training_images</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_images</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_test_images</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">metrics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig_ext</span> <span class="o">=</span> <span class="n">fig_ext</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_loss</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_accuracy</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">_parse_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proto</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">           Function to parse the image from TFRecord</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">keys_to_features</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;image_raw&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">)}</span> <span class="c1">#feature description dictionary</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">parsed_features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_single_example</span><span class="p">(</span><span class="n">proto</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys_to_features</span><span class="p">)</span> <span class="c1">#parser</span>
+       
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parsed_features</span><span class="p">[</span><span class="s1">&#39;image_raw&#39;</span><span class="p">],</span> <span class="n">out_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>  <span class="c1">#decode image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1">#reshape to the original size</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span>
+
+<div class="viewcode-block" id="ArrayNNClassifier.import_images">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.import_images">[docs]</a>
+    <span class="k">def</span> <span class="nf">import_images</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Load all training and test images for NN</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_training_images</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_images_and_labels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_folder</span><span class="p">)</span>  <span class="c1">#read training images and labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_test_images</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_images_and_labels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">est_folder</span><span class="p">)</span> <span class="c1">#read test images and labels</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_training_images</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_test_images</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.load_images_and_labels">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_images_and_labels">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_images_and_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s1">&#39;metadata.txt&#39;</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Image import function from folder with .txt file with one column with the label e.g., 1011 and image files</span>
+<span class="sd">            the tensorflow file e.g., my_dataset.tfrecord</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1">#include paths</span>
+        <span class="n">images_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">container</span><span class="p">)</span>
+        <span class="n">metadata_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+
+        <span class="c1">#read metadata (labels)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">metadata_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">images_folder</span><span class="p">)</span> <span class="c1">#read and sort images based on &quot;shot_X&quot; where X is a number</span>
+
+        <span class="c1">#helper function to extract X value from file name</span>
+        <span class="k">def</span> <span class="nf">extract_x_value</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;shot_(\d+)_\d+&quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">fig_ext</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1">#extract X as an integer</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>  <span class="c1"># Fallback for unexpected file names</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sorted_image_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_files</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">extract_x_value</span><span class="p">)</span> <span class="c1">#sort image files by the X value</span>
+
+        <span class="c1">#read images</span>
+        <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sorted_image_files</span><span class="p">:</span>
+
+          <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">images_folder</span><span class="p">,</span> <span class="n">image_file</span><span class="p">)</span>
+          <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>  <span class="c1">#convert to RGB if needed</span>
+          <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>  <span class="c1">#convert to numpy array</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="c1">#convert images and labels to numpy arrays for easier processing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.load_labels">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_labels">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s1">&#39;metadata.txt&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Load labels from .txt file in folder</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">metadata_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span> <span class="c1">#include in paths</span>
+
+        <span class="c1">#get metadata (labels)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">metadata_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.load_tensorflow_dataset">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.load_tensorflow_dataset">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_tensorflow_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path2dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Image import function from the tensorflow file e.g., my_dataset.tfrecord</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">new_path2dataset</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">path2dataset</span> <span class="o">=</span> <span class="n">new_path2dataset</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TFRecordDataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path2dataset</span><span class="p">)</span> <span class="c1">#load TFRecord file        </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parsed_image_dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parse_function</span><span class="p">)</span> <span class="c1">#parser of data</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_image</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_image</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsed_image_dataset</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.get_classes">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.get_classes">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Get classes of possible combinations of atoms present in the array</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="p">[</span><span class="n">bitCom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.check_trained_images">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.check_trained_images">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_trained_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">figure_size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">nrsamples</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Check trained images with labels</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrsamples</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figure_size</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrsamples</span><span class="p">):</span>
+
+            <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_images</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">denormalized_image</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">denormalized_image</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">train_labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>   </div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.binary_to_int">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.binary_to_int">[docs]</a>
+    <span class="k">def</span> <span class="nf">binary_to_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Convert binary strings to integers</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">binary_str</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.set_model">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.set_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Euristic NN architecture classifying objects, specifically for circular objects, it is</span>
+<span class="sd">            designed to classify an image with an output of 2^4 possible outcomes, related to the possibility</span>
+<span class="sd">            of 2x2 arrays of loaded atoms. </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+                                        <span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+                                        <span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+                                        <span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+                                        <span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+                                        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+                                        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+                                        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span>
+                                      <span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_summary</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.compile_model">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.compile_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">compile_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.fit_model">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.fit_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_training_images</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_test_images</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.evaluate">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.evaluate">[docs]</a>
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_loss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_accuracy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_images</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_labels</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy of the neural network on the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">test_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> test images: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">test_accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArrayNNClassifier.get_classification">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayNNClassifier.get_classification">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_classification</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">):</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">denormalized_image</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">denormalized_image</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">probabilities</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Class Probability&#39;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span></div>
+</div>
+
+
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">#######################                 Middleware Analysis               #########################</span>
+<span class="c1">###################################################################################################</span>
+
+<span class="c1">#####################################################################################################</span>
+<span class="c1">#Data AQiPT class</span>
+<span class="c1">#####################################################################################################</span>
+<span class="k">def</span> <span class="nf">openFTS</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Open .fts file and yields 2D array</span>
+
+<span class="sd">        INPUTS:</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        file (str): .fts file name</span>
+<span class="sd">        </span>
+<span class="sd">        OUTPUTS:</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        (ndarray): 2D array python object</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">_file_load</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">_file_load</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="k">def</span> <span class="nf">importImages</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filenames</span><span class="p">):</span>
+
+    <span class="n">Abs_file_name</span><span class="p">,</span> <span class="n">Div_file_name</span><span class="p">,</span> <span class="n">Bgd_file_name</span> <span class="o">=</span> <span class="n">filenames</span><span class="p">;</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+    
+    <span class="n">_Abs</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Abs_file_name</span><span class="p">));</span>
+    <span class="n">_Div</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Div_file_name</span><span class="p">));</span>
+    <span class="n">_Bgd</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Bgd_file_name</span><span class="p">));</span>
+
+    <span class="n">_dimensions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">openFTS</span><span class="p">(</span><span class="n">_Abs</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+
+    <span class="n">_x</span> <span class="o">=</span> <span class="n">_dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">_y</span> <span class="o">=</span> <span class="n">_dimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+    <span class="n">_images_list</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Absorption&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">_Abs</span><span class="p">)]),</span> <span class="s2">&quot;Division&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">_Abs</span><span class="p">)]),</span><span class="s2">&quot;Background&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">_Abs</span><span class="p">)])}</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_Abs</span><span class="p">)):</span>
+        <span class="n">_images_list</span><span class="p">[</span><span class="s2">&quot;Absorption&quot;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">openFTS</span><span class="p">(</span><span class="n">_Abs</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">_images_list</span><span class="p">[</span><span class="s2">&quot;Division&quot;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">openFTS</span><span class="p">(</span><span class="n">_Div</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">_images_list</span><span class="p">[</span><span class="s2">&quot;Background&quot;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">openFTS</span><span class="p">(</span><span class="n">_Bgd</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+    <span class="k">return</span> <span class="n">_images_list</span>
+
+
+<div class="viewcode-block" id="Data">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.Data">[docs]</a>
+<span class="k">class</span> <span class="nc">Data</span><span class="p">:</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        AQiPT class for data types usually instantiated as Image,Table,Text,Array or AQiPT data.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path2raw_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">raw_data</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span>
+        <span class="k">elif</span> <span class="n">path2raw_data</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rawData_directory</span> <span class="o">=</span> <span class="n">path2raw_data</span><span class="p">;</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">versions</span> <span class="o">=</span> <span class="p">[</span><span class="n">raw_data</span><span class="p">]</span>  <span class="c1"># Store the initial raw data as the first version</span>
+
+<div class="viewcode-block" id="Data.analyze">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.Data.analyze">[docs]</a>
+    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">analysis_type</span><span class="p">):</span>
+        <span class="c1"># Perform analysis on the raw data and store the new version</span>
+        <span class="c1"># Update the versions list accordingly</span>
+        <span class="n">new_data_version</span> <span class="o">=</span> <span class="n">perform_analysis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">analysis_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_data_version</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Data.get_latest_version">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.Data.get_latest_version">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_latest_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">versions</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Data.get_all_versions">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.Data.get_all_versions">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_all_versions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">versions</span></div>
+</div>
+
+
+<div class="viewcode-block" id="ImageData">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ImageData">[docs]</a>
+<span class="k">class</span> <span class="nc">ImageData</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">,</span> <span class="n">path2raw_data</span><span class="p">,</span> <span class="n">subclass_attribute</span><span class="p">,</span> <span class="n">cameraType</span><span class="o">=</span><span class="s1">&#39;IDS&#39;</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent_attribute</span><span class="p">);</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_camera_type</span> <span class="o">=</span> <span class="n">cameraType</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera_type</span><span class="o">==</span><span class="s1">&#39;IDS&#39;</span><span class="p">:</span>
+           <span class="bp">self</span><span class="o">.</span> <span class="n">__image_filename</span> <span class="o">=</span> <span class="n">IDS_FILE_NAMES</span><span class="p">;</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera_type</span><span class="o">==</span><span class="s1">&#39;Andor&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__image_filename</span> <span class="o">=</span> <span class="n">ANDOR_FILE_NAMES</span><span class="p">;</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__image_filename</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_image_list</span> <span class="o">=</span> <span class="n">importImages</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path2raw_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__image_filename</span><span class="p">);</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_image_list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span>
+
+<div class="viewcode-block" id="ImageData.process">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ImageData.process">[docs]</a>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ImageData.analyze">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ImageData.analyze">[docs]</a>
+    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">analysis_type</span><span class="p">):</span>
+        <span class="c1"># Perform image-specific analysis</span>
+        <span class="k">if</span> <span class="n">analysis_type</span> <span class="o">==</span> <span class="s1">&#39;peaks&#39;</span><span class="p">:</span>
+            <span class="c1"># Implement peak finding for image data</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">analysis_type</span> <span class="o">==</span> <span class="s1">&#39;fitting&#39;</span><span class="p">:</span>
+            <span class="c1"># Implement fitting analysis for image data</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid analysis type for image data.&quot;</span><span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="TableData">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.TableData">[docs]</a>
+<span class="k">class</span> <span class="nc">TableData</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">,</span> <span class="n">path2raw_data</span><span class="p">,</span> <span class="n">subclass_attribute</span><span class="p">,</span> <span class="n">cameraType</span><span class="o">=</span><span class="s1">&#39;IDS&#39;</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent_attribute</span><span class="p">);</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_camera_type</span> <span class="o">=</span> <span class="n">cameraType</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera_type</span><span class="o">==</span><span class="s1">&#39;IDS&#39;</span><span class="p">:</span>
+           <span class="bp">self</span><span class="o">.</span> <span class="n">__datafile_name</span> <span class="o">=</span> <span class="n">IDS_FILE_NAMES</span><span class="p">;</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera_type</span><span class="o">==</span><span class="s1">&#39;Andor&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__datafile_name</span> <span class="o">=</span> <span class="n">ANDOR_FILE_NAMES</span><span class="p">;</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__datafile_name</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span>
+
+<div class="viewcode-block" id="TableData.analyze">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.TableData.analyze">[docs]</a>
+    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">analysis_type</span><span class="p">):</span>
+        <span class="c1"># Perform table-specific analysis</span>
+        <span class="k">if</span> <span class="n">analysis_type</span> <span class="o">==</span> <span class="s1">&#39;peaks&#39;</span><span class="p">:</span>
+            <span class="c1"># Implement peak finding for table data</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">analysis_type</span> <span class="o">==</span> <span class="s1">&#39;fitting&#39;</span><span class="p">:</span>
+            <span class="c1"># Implement fitting analysis for table data</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">analysis_type</span> <span class="o">==</span> <span class="s1">&#39;NN&#39;</span><span class="p">:</span>
+            <span class="c1"># Implement fitting analysis for array of atoms</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid analysis type for table data.&quot;</span><span class="p">)</span></div>
+</div>
+
+
+<span class="k">class</span> <span class="nc">TextData</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<div class="viewcode-block" id="ArrayData">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.ArrayData">[docs]</a>
+<span class="k">class</span> <span class="nc">ArrayData</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="AQiPTData">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.AQiPTData">[docs]</a>
+<span class="k">class</span> <span class="nc">AQiPTData</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">#######################                 Backend Analysis                  #########################</span>
+<span class="c1">###################################################################################################</span>
+
+<span class="c1">#####################################################################################################</span>
+<span class="c1">#Trc AQiPT class</span>
+<span class="c1">#####################################################################################################</span>
+<div class="viewcode-block" id="Trc">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.Trc">[docs]</a>
+<span class="k">class</span> <span class="nc">Trc</span><span class="p">:</span>
+    <span class="n">_recTypes</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;single_sweep&quot;</span><span class="p">,</span> <span class="s2">&quot;interleaved&quot;</span><span class="p">,</span> <span class="s2">&quot;histogram&quot;</span><span class="p">,</span> <span class="s2">&quot;graph&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filter_coefficient&quot;</span><span class="p">,</span> <span class="s2">&quot;complex&quot;</span><span class="p">,</span> <span class="s2">&quot;extrema&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sequence_obsolete&quot;</span><span class="p">,</span> <span class="s2">&quot;centered_RIS&quot;</span><span class="p">,</span> <span class="s2">&quot;peak_detect&quot;</span>
+    <span class="p">)</span>
+    <span class="n">_processings</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;no_processing&quot;</span><span class="p">,</span> <span class="s2">&quot;fir_filter&quot;</span><span class="p">,</span> <span class="s2">&quot;interpolated&quot;</span><span class="p">,</span> <span class="s2">&quot;sparsed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;autoscaled&quot;</span><span class="p">,</span> <span class="s2">&quot;no_result&quot;</span><span class="p">,</span> <span class="s2">&quot;rolling&quot;</span><span class="p">,</span> <span class="s2">&quot;cumulative&quot;</span>
+    <span class="p">)</span>
+    <span class="n">_timebases</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;1_ps/div&#39;</span><span class="p">,</span> <span class="s1">&#39;2_ps/div&#39;</span><span class="p">,</span> <span class="s1">&#39;5_ps/div&#39;</span><span class="p">,</span> <span class="s1">&#39;10_ps/div&#39;</span><span class="p">,</span> <span class="s1">&#39;20_ps/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;50_ps/div&#39;</span><span class="p">,</span> <span class="s1">&#39;100_ps/div&#39;</span><span class="p">,</span> <span class="s1">&#39;200_ps/div&#39;</span><span class="p">,</span> <span class="s1">&#39;500_ps/div&#39;</span><span class="p">,</span> <span class="s1">&#39;1_ns/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;2_ns/div&#39;</span><span class="p">,</span> <span class="s1">&#39;5_ns/div&#39;</span><span class="p">,</span> <span class="s1">&#39;10_ns/div&#39;</span><span class="p">,</span> <span class="s1">&#39;20_ns/div&#39;</span><span class="p">,</span> <span class="s1">&#39;50_ns/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;100_ns/div&#39;</span><span class="p">,</span> <span class="s1">&#39;200_ns/div&#39;</span><span class="p">,</span> <span class="s1">&#39;500_ns/div&#39;</span><span class="p">,</span> <span class="s1">&#39;1_us/div&#39;</span><span class="p">,</span> <span class="s1">&#39;2_us/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;5_us/div&#39;</span><span class="p">,</span> <span class="s1">&#39;10_us/div&#39;</span><span class="p">,</span> <span class="s1">&#39;20_us/div&#39;</span><span class="p">,</span> <span class="s1">&#39;50_us/div&#39;</span><span class="p">,</span> <span class="s1">&#39;100_us/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;200_us/div&#39;</span><span class="p">,</span> <span class="s1">&#39;500_us/div&#39;</span><span class="p">,</span> <span class="s1">&#39;1_ms/div&#39;</span><span class="p">,</span> <span class="s1">&#39;2_ms/div&#39;</span><span class="p">,</span> <span class="s1">&#39;5_ms/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;10_ms/div&#39;</span><span class="p">,</span> <span class="s1">&#39;20_ms/div&#39;</span><span class="p">,</span> <span class="s1">&#39;50_ms/div&#39;</span><span class="p">,</span> <span class="s1">&#39;100_ms/div&#39;</span><span class="p">,</span> <span class="s1">&#39;200_ms/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;500_ms/div&#39;</span><span class="p">,</span> <span class="s1">&#39;1_s/div&#39;</span><span class="p">,</span> <span class="s1">&#39;2_s/div&#39;</span><span class="p">,</span> <span class="s1">&#39;5_s/div&#39;</span><span class="p">,</span> <span class="s1">&#39;10_s/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;20_s/div&#39;</span><span class="p">,</span> <span class="s1">&#39;50_s/div&#39;</span><span class="p">,</span> <span class="s1">&#39;100_s/div&#39;</span><span class="p">,</span> <span class="s1">&#39;200_s/div&#39;</span><span class="p">,</span> <span class="s1">&#39;500_s/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;1_ks/div&#39;</span><span class="p">,</span> <span class="s1">&#39;2_ks/div&#39;</span><span class="p">,</span> <span class="s1">&#39;5_ks/div&#39;</span><span class="p">,</span> <span class="s1">&#39;EXTERNAL&#39;</span>
+    <span class="p">)</span>
+    <span class="n">_vCouplings</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;DC_50_Ohms&#39;</span><span class="p">,</span> <span class="s1">&#39;ground&#39;</span><span class="p">,</span> <span class="s1">&#39;DC_1MOhm&#39;</span><span class="p">,</span> <span class="s1">&#39;ground&#39;</span><span class="p">,</span> <span class="s1">&#39;AC,_1MOhm&#39;</span><span class="p">)</span>
+    <span class="n">_vGains</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;1_uV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;2_uV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;5_uV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;10_uV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;20_uV/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;50_uV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;100_uV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;200_uV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;500_uV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;1_mV/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;2_mV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;5_mV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;10_mV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;20_mV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;50_mV/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;100_mV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;200_mV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;500_mV/div&#39;</span><span class="p">,</span> <span class="s1">&#39;1_V/div&#39;</span><span class="p">,</span> <span class="s1">&#39;2_V/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;5_V/div&#39;</span><span class="p">,</span> <span class="s1">&#39;10_V/div&#39;</span><span class="p">,</span> <span class="s1">&#39;20_V/div&#39;</span><span class="p">,</span> <span class="s1">&#39;50_V/div&#39;</span><span class="p">,</span> <span class="s1">&#39;100_V/div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;200_V/div&#39;</span><span class="p">,</span> <span class="s1">&#39;500_V/div&#39;</span><span class="p">,</span> <span class="s1">&#39;1_kV/div&#39;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        use trc.open(fName) to open a Le Croy .trc file</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># offset to start of WAVEDESC block</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_offs</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_smplFmt</span> <span class="o">=</span> <span class="s2">&quot;int16&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_endi</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<div class="viewcode-block" id="Trc.open">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.Trc.open">[docs]</a>
+    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fName</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            _readS .trc binary files from LeCroy Oscilloscopes.</span>
+<span class="sd">            Decoding is based on LECROY_2_3 template.</span>
+<span class="sd">            [More info]</span>
+<span class="sd">            (http://forums.ni.com/attachments/ni/60/4652/2/LeCroyWaveformTemplate_2_3.pdf)</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            -----------</span>
+<span class="sd">            fName = filename of the .trc file</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -----------</span>
+<span class="sd">            a tuple (x, y, d)</span>
+
+<span class="sd">            x: array with sample times [s],</span>
+
+<span class="sd">            y: array with sample  values [V],</span>
+
+<span class="sd">            d: dictionary with metadata</span>
+
+<span class="sd">            M. Betz 09/2015</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fName</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="c1"># Binary file handle</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_f</span> <span class="o">=</span> <span class="n">f</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_endi</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+            <span class="c1"># offset to start of WAVEDESC block</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_offs</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;WAVEDESC&#39;</span><span class="p">)</span>
+
+            <span class="c1"># -------------------------------</span>
+            <span class="c1">#  Read WAVEDESC block</span>
+            <span class="c1"># -------------------------------</span>
+            <span class="c1"># Template name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_TEMPLATE_NAME</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readS</span><span class="p">(</span><span class="s2">&quot;16s&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_TEMPLATE_NAME</span> <span class="o">!=</span> <span class="s2">&quot;LECROY_2_3&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;Warning, unsupported file template:&quot;</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_TEMPLATE_NAME</span><span class="p">,</span>
+                    <span class="s2">&quot;... trying anyway&quot;</span>
+                <span class="p">)</span>
+            <span class="c1"># 16 or 8 bit sample format?</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_smplFmt</span> <span class="o">=</span> <span class="s2">&quot;int16&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_smplFmt</span> <span class="o">=</span> <span class="s2">&quot;int8&quot;</span>
+            <span class="c1"># Endian-ness (&quot;&lt;&quot; or &quot;&gt;&quot;)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_endi</span> <span class="o">=</span> <span class="s2">&quot;&lt;&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_endi</span> <span class="o">=</span> <span class="s2">&quot;&gt;&quot;</span>
+            <span class="c1">#  Get length of blocks and arrays</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lWAVE_DESCRIPTOR</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">36</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lUSER_TEXT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lTRIGTIME_ARRAY</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lRIS_TIME_ARRAY</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">52</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lWAVE_ARRAY_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lWAVE_ARRAY_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+
+            <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># Will store all the extracted Metadata</span>
+
+            <span class="c1"># ------------------------</span>
+            <span class="c1">#  Get Instrument info</span>
+            <span class="c1"># ------------------------</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;INSTRUMENT_NAME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readS</span><span class="p">(</span><span class="s2">&quot;16s&quot;</span><span class="p">,</span> <span class="mi">76</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;INSTRUMENT_NUMBER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">92</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;TRACE_LABEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readS</span><span class="p">(</span><span class="s2">&quot;16s&quot;</span><span class="p">,</span> <span class="mi">96</span><span class="p">)</span>
+
+            <span class="c1"># ------------------------</span>
+            <span class="c1">#  Get Waveform info</span>
+            <span class="c1"># ------------------------</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;WAVE_ARRAY_COUNT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">116</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;PNTS_PER_SCREEN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;FIRST_VALID_PNT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">124</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;LAST_VALID_PNT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;FIRST_POINT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">132</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;SPARSING_FACTOR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">136</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;SEGMENT_INDEX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">140</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;SUBARRAY_COUNT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">144</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;SWEEPS_PER_ACQ&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">148</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;POINTS_PER_PAIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="mi">152</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;PAIR_OFFSET&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="mi">154</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;VERTICAL_GAIN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">156</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;VERTICAL_OFFSET&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">160</span><span class="p">)</span>
+            <span class="c1"># to get floating values from raw data:</span>
+            <span class="c1"># VERTICAL_GAIN * data - VERTICAL_OFFSET</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;MAX_VALUE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">164</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;MIN_VALUE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">168</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;NOMINAL_BITS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="mi">172</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;NOM_SUBARRAY_COUNT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="mi">174</span><span class="p">)</span>
+            <span class="c1"># sampling interval for time domain waveforms</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;HORIZ_INTERVAL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">176</span><span class="p">)</span>
+            <span class="c1"># trigger offset for the first sweep of the trigger,</span>
+            <span class="c1"># seconds between the trigger and the first data point</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;HORIZ_OFFSET&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;PIXEL_OFFSET&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="mi">188</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;VERTUNIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readS</span><span class="p">(</span><span class="s2">&quot;48s&quot;</span><span class="p">,</span> <span class="mi">196</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;HORUNIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readS</span><span class="p">(</span><span class="s2">&quot;48s&quot;</span><span class="p">,</span> <span class="mi">244</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;HORIZ_UNCERTAINTY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">292</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;TRIGGER_TIME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getTimeStamp</span><span class="p">(</span><span class="mi">296</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;ACQ_DURATION&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">312</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;RECORD_TYPE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Trc</span><span class="o">.</span><span class="n">_recTypes</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="mi">316</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;PROCESSING_DONE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Trc</span><span class="o">.</span><span class="n">_processings</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="mi">318</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;RIS_SWEEPS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="mi">322</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;TIMEBASE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Trc</span><span class="o">.</span><span class="n">_timebases</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="mi">324</span><span class="p">)]</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;VERT_COUPLING&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Trc</span><span class="o">.</span><span class="n">_vCouplings</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="mi">326</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;PROBE_ATT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">328</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;FIXED_VERT_GAIN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Trc</span><span class="o">.</span><span class="n">_vGains</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="mi">332</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;BANDWIDTH_LIMIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="mi">334</span><span class="p">))</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;VERTICAL_VERNIER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">336</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;ACQ_VERT_OFFSET&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="mi">340</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;WAVE_SOURCE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="mi">344</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;USER_TEXT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readS</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lUSER_TEXT</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_lWAVE_DESCRIPTOR</span>
+            <span class="p">)</span>
+
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readSamples</span><span class="p">()</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;VERTICAL_GAIN&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;VERTICAL_OFFSET&quot;</span><span class="p">]</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">*=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;HORIZ_INTERVAL&quot;</span><span class="p">]</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;HORIZ_OFFSET&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">d</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">d</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_readX</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">adr</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; extract a byte / word / float / double from the binary file f &#39;&#39;&#39;</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endi</span> <span class="o">+</span> <span class="n">fmt</span>
+        <span class="n">nBytes</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">adr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">adr</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offs</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nBytes</span><span class="p">))</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">s</span>
+
+    <span class="k">def</span> <span class="nf">_readS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;16s&quot;</span><span class="p">,</span> <span class="n">adr</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; read (and decode) a fixed length string &#39;&#39;&#39;</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">temp</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_readSamples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># ------------------------</span>
+        <span class="c1">#  Get main sample data with the help of numpys .fromfile(</span>
+        <span class="c1"># ------------------------</span>
+        <span class="c1"># Seek to WAVE_ARRAY_1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_offs</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lWAVE_DESCRIPTOR</span> <span class="o">+</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lUSER_TEXT</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lTRIGTIME_ARRAY</span> <span class="o">+</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lRIS_TIME_ARRAY</span>
+        <span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_smplFmt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lWAVE_ARRAY_1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endi</span> <span class="o">==</span> <span class="s2">&quot;&gt;&quot;</span><span class="p">:</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">byteswap</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="nf">_getTimeStamp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adr</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; extract a timestamp from the binary file &#39;&#39;&#39;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_readX</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+        <span class="n">trigTs</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span>
+            <span class="n">Y</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">int</span><span class="p">((</span><span class="n">s</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">trigTs</span>
+
+<div class="viewcode-block" id="Trc.fromSPREADSHEET">
+<a class="viewcode-back" href="../../../source/modules.html#modules.analysis.AQiPTanalysis.Trc.fromSPREADSHEET">[docs]</a>
+    <span class="k">def</span> <span class="nf">fromSPREADSHEET</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname_lst</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
+        <span class="n">frames_lst</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fname_lst</span><span class="p">:</span>
+            <span class="n">pframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">),</span> 
+                                   <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                   <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
+            <span class="n">pframe</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dRedProbe&#39;</span><span class="p">,</span> <span class="s1">&#39;Integrate Ion signal&#39;</span><span class="p">]</span>
+            <span class="n">frames_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pframe</span><span class="p">)</span></div>
+</div>
+
+
+<span class="k">def</span> <span class="nf">fromTRC</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">Ntrace</span><span class="p">,</span> <span class="n">roi</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    \example</span>
+<span class="sd">    dataset = importTr(&#39;C2--trace_data.trc&#39;, 200, (8500, 11000))</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+        <span class="c1"># trc = Trc()</span>
+    <span class="n">datX</span><span class="p">,</span> <span class="n">datY</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Trc</span><span class="p">()</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">datY2</span> <span class="o">=</span> <span class="n">datY</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Ntrace</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">datY</span><span class="o">.</span><span class="n">size</span><span class="o">/</span><span class="n">Ntrace</span><span class="p">))</span>
+    <span class="n">datY2</span> <span class="o">=</span> <span class="o">-</span><span class="n">datY2</span><span class="p">[:,</span> <span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">datY2</span>
+
+<span class="k">def</span> <span class="nf">fromPRN</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">nr_cols</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        xs, ys = fromPrn(&#39;csa.prn&#39;)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delim</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nr_cols</span><span class="p">))</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="n">xValues</span><span class="o">=</span><span class="p">[];</span> <span class="n">yValues</span><span class="o">=</span><span class="p">[];</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="p">)):</span>
+        <span class="n">xValues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">yValues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xValues</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">yValues</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fromCSV</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">pathDir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="nb">str</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)})</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">findpeaksOMP</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span><span class="n">roi</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">Dbg</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span><span class="n">maxpeaks</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">thresh</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span><span class="n">tolx</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">makeplot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">savefig</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Robust peak detection using Orthogonal Matching Pursuit (OMP) v1.0 S. Whitlock, December 6 2020</span>
+<span class="sd">        Args:</span>
+<span class="sd">          dataset (M,T float array): array of time traces of shape (M, T)</span>
+<span class="sd">          roi: (float,float) boundaries defining the region of interest where peaks should be found (</span>
+<span class="sd">          w: (float) Gaussian width of the peaks (also sets the minimum time resolution between peaks)</span>
+<span class="sd">          Dbg (N,T float array): array of background time traces of shape (N,T) for noise minimization (optional)</span>
+<span class="sd">          maxpeaks (int): number of non-zero coefficients used in OMP to decompose the data. This constrains the number of peaks that can be found</span>
+<span class="sd">          thresh (float): threshold amplitude for a peak detection event</span>
+<span class="sd">          tolx (float &lt; 1): solver tolerance</span>
+<span class="sd">          makeplot (bool): generate a plot</span>
+<span class="sd">          savefig (bool): save plot to file peakfits.pdf</span>
+<span class="sd">        Returns:</span>
+<span class="sd">          Number of peaks detected in each time trace; vector of length M</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">shape</span> <span class="c1">#dimensions of the dataset</span>
+        
+    <span class="c1"># generate dictionary of gaussian peaks (atoms)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">dt</span><span class="o">=</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">));</span> <span class="n">atom</span> <span class="o">=</span><span class="n">atom</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+    
+    <span class="n">centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">dt</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="p">,</span><span class="n">centers</span><span class="o">.</span><span class="n">size</span><span class="p">))</span> <span class="c1"># Pre-allocate matrix</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">centers</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">centers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
+        <span class="n">D</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="n">shift</span><span class="p">)</span> 
+        
+    <span class="c1"># include background region into dictionary</span>
+    <span class="k">if</span> <span class="n">Dbg</span><span class="o">.</span><span class="n">size</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">Dplus</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">Dbg</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Dplus</span><span class="o">=</span><span class="n">D</span>
+    
+    <span class="c1">#prepare plot</span>
+    <span class="k">if</span> <span class="n">makeplot</span><span class="p">:</span>
+        <span class="n">my_dpi</span><span class="o">=</span><span class="mi">300</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="n">my_dpi</span><span class="p">)</span>
+        <span class="c1"># ax1.set_aspect(1000)</span>
+        <span class="c1"># ax2.set_aspect(1000)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    
+    <span class="c1">#interate over dataset and perform orthogonalmatchingpursuits</span>
+    <span class="n">out</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">OrthogonalMP</span><span class="p">(</span><span class="n">Dplus</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">nnz</span><span class="o">=</span><span class="n">maxpeaks</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tolx</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>        
+        
+        <span class="c1">#apply threshold condition</span>
+        <span class="n">amplitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">D</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">numberofpeaks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">amplitudes</span><span class="o">&gt;</span><span class="n">thresh</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">makeplot</span> <span class="ow">and</span> <span class="n">k</span><span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">amplitudes</span><span class="o">&lt;</span><span class="n">thresh</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+            <span class="n">peaks</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">D</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">reconstruction</span> <span class="o">=</span> <span class="n">Dplus</span> <span class="o">@</span> <span class="n">x</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">data</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">reconstruction</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">data</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">peaks</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+            
+            <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span><span class="s1">&#39;:r&#39;</span><span class="p">)</span><span class="c1">#region of interest</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">]],[</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span><span class="s1">&#39;:r&#39;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span><span class="s1">&#39;:r&#39;</span><span class="p">)</span><span class="c1">#region of interest</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">]],[</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">thresh</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span><span class="s1">&#39;:r&#39;</span><span class="p">)</span>
+
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numberofpeaks</span><span class="p">)</span>
+    <span class="c1"># if savefig:</span>
+    <span class="c1">#     fig.savefig(&quot;peakfits.pdf&quot;)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, AQiPT developers and contributors. Last updated on Oct 27, 2022. .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
