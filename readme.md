@@ -1,53 +1,102 @@
-# AQiPT: Atomic Quantum information Processing Toolbox
+# 📦 AQiPT: Atomic Quantum Information Processing Toolbox
 
+**AQiPT** is an open-source, modular, and extensible software framework for the control and management of quantum devices and associated hardware components. Designed in Python, AQiPT provides a high-level abstraction layer, modular hardware drivers, instruction scheduling, and data management capabilities, enabling flexible and scalable experimental workflows.
 
-![alt text](https://github.com/manuelmorgado/AQiPT/blob/main/resources/logo/aqipt_logo.png?raw=true)
+Originally developed in the context of academic research, AQiPT is optimized for atomic physics experiments and atom-based quantum computing platforms, offering seamless integration between experimental automation and digital twin architectures.
 
+AQiPT is fully cross-platform (Linux and Windows) and free of licensing fees, making it a versatile tool for research, development, and education in quantum information science and engineering.
 
-AQiPT is a modular and extensible quantum software framework designed for managing and controlling quantum devices and associated hardware components from different manufacturers. Built using Python, this software offers a high-level of abstraction through modular components that handle hardware abstraction, instruction scheduling, and data management. AQiPT also includes a gateway that seamlessly integrates internal processes, enabling high or low-level programming and easy maintenance and extension of the system. Our software caters to different types of users, including those who require precise control of quantum devices and those who need a more user-friendly programming interface. Primarily designed for use in atomic physics experiments and atom-based quantum computing platforms providing tight integration of experimental automation with digital twins
+Its open architecture is designed to encourage community contributions and collaborative development.
 
-The open-source nature of AQiPT allows users to customize and/or modify the package at will. Besides, AQiPT is multiplatform i.e., compatible with UNIX and Windows OS. Being free of licensing fees, AQiPT represent an excellent tool to deep into the research and development of quantum information processing and quantum engineering.
+---
 
+## ✨ Key Features
 
-Support
--------
+- Modular hardware abstraction for diverse quantum hardware backends.
+- High-level and low-level programming interfaces.
+- Integrated instruction scheduling and control.
+- Designed for tight experimental automation and digital twin integration.
+- Open-source, cross-platform, and license-free.
 
-This project has be support by the European Union’s Horizon 2020 research and innovation programme QUSTEC Marie Skłodowska-Curie under grant agreement number 847471.
+---
 
+## 🛠 Installation
 
-Installation
-------------
+AQiPT will soon be available via both `pip` and `conda` (through the `conda-forge` channel).
 
-[![Pip Package](https://img.shields.io/pypi/)
-[![Conda-Forge Package](https://img.shields.io/conda/vn/conda-forge/aqipt?logo=Conda-Forge)](https://anaconda.org/conda-forge/aqipt)
-
-AQiPT will be shortly available on both `pip` and `conda` (the latter in the `conda-forge` channel).
-You can install AQiPT from `pip` by doing
+To install using `pip`:
 
 ```bash
 pip install aqipt
 ```
 
-to get the minimal installation.
+Additional installation methods will be provided in the near future.
+
+---
+
+## 📚 Documentation
+
+The full documentation is generated using [Sphinx](https://www.sphinx-doc.org) and is located in the repository under:
+
+```
+docs/_build/html/index.html
+```
+
+To view the documentation locally:
+
+1. Clone the repository.
+2. Open the `docs/_build/html/index.html` file with a web browser.
+
+🚧 Online hosting for the documentation (e.g., via GitHub Pages) is planned for upcoming releases.
+
+---
+
+## 🚀 How to Contribute
+
+AQiPT is an open project, and contributions are highly encouraged.Ways to contribute include:
+
+- Developing new features,
+- Reporting bugs,
+- Writing or improving documentation,
+- Providing usage examples and tutorials.
+
+To contribute:
+
+- Fork the repository,
+- Create a feature branch,
+- Submit a pull request.
+
+Community discussions, suggestions, and feedback are welcome via the [Issues page](https://github.com/manuelmorgado/AQiPT/issues).
+
+All contributors are acknowledged in the documentation and future project releases.
+
+---
+
+## 📢 Citing AQiPT
+
+If you use AQiPT for your work or research, please consider citing it.Citation information and BibTeX entries will be made available soon.
+
+AQiPT was developed as part of the doctoral thesis, so you can also cite as:
+
+> Morgado, M. (2024). *Atomic Quantum Information Processing Toolbox (AQiPT): A Modular Framework for Quantum Device Control*. Université de Strasbourg. [https://theses.hal.science/tel-04815996](https://theses.hal.science/tel-04815996)
+
+A BibTeX entry for citation:
+
+```bibtex
+@phdthesis{morgado2024aqipt,
+  author       = {Morgado, Manuel},
+  title        = {Atomic Quantum Information Processing Toolbox (AQiPT): A Modular Framework for Quantum Device Control},
+  school       = {Université de Strasbourg},
+  year         = {2024},
+  type         = {Ph.D. Thesis},
+  url          = {https://theses.hal.science/tel-04815996}
+}
+```
 
 
-Documentation
--------------
+---
 
-Documentation will be online very soon.
+## 📜 Acknowledgements
 
+Development of AQiPT has been supported by the European Union’s Horizon 2020 research and innovation programme **QUSTEC Marie Skłodowska-Curie**, under grant agreement number **847471**.
 
-How to contribute?
-------------------
-
-Contributors are acknowledged in the documentation.
-
-Contributions code development of AQiPT as well as Jupyter Notebooks that serve as tutorials are more than welcome. Fork the repository and send your pull requests, you can also fill bug reports at the [issues page](https://github.com/manuelmorgado/AQiPT/issues).
-
-You can also contribute by helping out other users, or participating in the discussions and proposing changes.
-
-
-Citing AQiPT
-------------
-
-In case you use AQiPT in your research or work, you can cite it! 
