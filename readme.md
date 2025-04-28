@@ -1,3 +1,5 @@
+![alt text](https://github.com/manuelmorgado/AQiPT/blob/main/resources/logo/aqipt_logo.png?raw=true)
+
 # 📦 AQiPT: Atomic Quantum Information Processing Toolbox
 
 **AQiPT** is an open-source, modular, and extensible software framework for the control and management of quantum devices and associated hardware components. Designed in Python, AQiPT provides a high-level abstraction layer, modular hardware drivers, instruction scheduling, and data management capabilities, enabling flexible and scalable experimental workflows.
